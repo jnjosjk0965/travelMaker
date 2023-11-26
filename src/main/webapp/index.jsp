@@ -39,6 +39,7 @@
 				.date-input,
 				.lastSearchBar {
 				  	flex: 1;
+				  	height: 4.5rem;
 				}
                 .SearchBar>div:not(:last-child){
                 	background-color: white;
@@ -78,24 +79,24 @@
                         <form>
                         	<div class="SearchBar row g-3">
                             
-                                <div class="departure-input firstSearchBar">
-                                    <label for="departure" class="form-label">출발지</label>
+                                <div class="departure-input firstSearchBar c-flex" style="justify-content: center;">
+                                    <label for="departure">출발지</label>
                                     <input type="text" class="form-control none-deco-input" id="departure" placeholder="출발지를 입력하세요">
                                 </div>
-                                <div class="departure-input">
-                                    <label for="destination" class="form-label">도착지</label>
+                                <div class="departure-input c-flex" style="justify-content: center;">
+                                    <label for="destination">도착지</label>
                                     <input type="text" class="form-control none-deco-input" id="destination" placeholder="도착지를 입력하세요">
                                 </div>
-                                <div class="date-input">
-                                    <label for="departDate" class="form-label">가는 날짜</label>
+                                <div class="date-input c-flex" style="justify-content: center;">
+                                    <label for="departDate">가는 날짜</label>
                                     <input type="date" class="form-control none-deco-input" id="departDate">
                                 </div>
-                                <div class="date-input">
-                                    <label for="returnDate" class="form-label">오는 날짜</label>
+                                <div class="date-input c-flex" style="justify-content: center;">
+                                    <label for="returnDate">오는 날짜</label>
                                     <input type="date" class="form-control none-deco-input" id="returnDate">
                                 </div>
-                                <div class="date-input lastSearchBar">
-                                    <label for="travelers" class="form-label">여행자 수</label>
+                                <div class="date-input lastSearchBar c-flex" style="justify-content: center;">
+                                    <label for="travelers">여행자 수</label>
                                     <input type="number" class="form-control none-deco-input" id="travelers" min="1">
                                 </div>
                                 <div class="" style="width: fit-content;">
