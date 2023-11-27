@@ -7,6 +7,11 @@
             <link rel="stylesheet" href="css/bootstrap.css">
             <title>Travel Maker</title>
             <style>
+            	/*
+            	main color
+            	푸른 계열 #7b9acc
+            	베이지 #FCF6F5
+            	*/
             	.none-deco-input{
             		border: none;
             		padding: 0;
@@ -75,7 +80,7 @@
                                 <button type="button" class="btn btn-primary">로그인</button>
                             </div>
                         </header>
-                        <h2 class="mt-5 mb-4">당신의 여행은 지금부터</h2>
+                        <h2 class="mt-5 mb-4" style="font-weight:bold;">당신의 여행은 지금부터</h2>
                         <form>
                         	<div class="SearchBar row g-3">
                             
@@ -112,44 +117,44 @@
                     <section class="my-5">
                             
                         <div class="container mt-5">
-                            <h2 class="mt-5 mb-4">인기 있는 여행지</h2>
+                            <h2 class="mt-5 mb-4" style="font-weight:bold;">인기 있는 여행지</h2>
                             <div class="row">
                               <div class="col-md-3 mb-4 px-4">
                                 <div class="custom-card">
-                                  <img src="https://via.placeholder.com/180x270" alt="Card Image">
+                                  <img src="img/home/osaka.jpg" alt="Osaka" width="200" height="270">
                                   <div class="card-content">
-                                    <h2 style="font-family:'Black Han Sans', sans-serif, Helvetica, Arial;">Card 1</h2>
-                                    <p>Subtitle for Card 1</p>
+                                    <h2 style="font-family:'Black Han Sans', sans-serif, Helvetica, Arial;">오사카</h2>
+                                    <p>다양한 매력의 도시</p>
                                   </div>
                                 </div>
                               </div>
                           
                               <div class="col-md-3 mb-4 px-4">
                                 <div class="custom-card">
-                                  <img src="https://via.placeholder.com/180x270" alt="Card Image">
+                                  <img src="img/home/fukuoka.jpg" alt="Fukuoka" width="200" height="270">
                                   <div class="card-content">
-                                    <h2 style="font-family:'Black Han Sans', sans-serif, Helvetica, Arial;">Card 2</h2>
-                                    <p>Subtitle for Card 2</p>
+                                    <h2 style="font-family:'Black Han Sans', sans-serif, Helvetica, Arial;">후쿠오카</h2>
+                                    <p>원하는 대로 즐기는 일본</p>
                                   </div>
                                 </div>
                               </div>
                           
                               <div class="col-md-3 mb-4 px-4">
                                 <div class="custom-card">
-                                  <img src="https://via.placeholder.com/180x270" alt="Card Image">
+                                  <img src="img/home/jeju.jpg" alt="jeju" width="200" height="270">
                                   <div class="card-content">
-                                    <h2 style="font-family:'Black Han Sans', sans-serif, Helvetica, Arial;">Card 3</h2>
-                                    <p>Subtitle for Card 3</p>
+                                    <h2 style="font-family:'Black Han Sans', sans-serif, Helvetica, Arial;">제주</h2>
+                                    <p>신비로운 자연과 푸른 바다</p>
                                   </div>
                                 </div>
                               </div>
                           
                               <div class="col-md-3 mb-4 px-4">
                                 <div class="custom-card">
-                                  <img src="https://via.placeholder.com/180x270" alt="Card Image">
+                                  <img src="img/home/danang.jpg" alt="Danang" width="200" height="270">
                                   <div class="card-content">
-                                    <h2 style="font-family:'Black Han Sans', sans-serif, Helvetica, Arial;">Card 4</h2>
-                                    <p>Subtitle for Card 4</p>
+                                    <h2 style="font-family:'Black Han Sans', sans-serif, Helvetica, Arial;">다낭</h2>
+                                    <p>즐거움이 넘치는 휴양지</p>
                                   </div>
                                 </div>
                               </div>
@@ -180,7 +185,7 @@
 				                	<li>로그인</li>
 				                	<li>예약관리</li>
 				                	<li>개인정보</li>
-				                	<li>홋카이도</li>
+				                	<li>리뷰관리</li>
 				              	</ul>
 				            </nav>
 				            <nav class="c-flex mx-4 m-0 p-0">
