@@ -58,7 +58,7 @@
         }
 
         input[type="submit"] {
-    		background-color: #4B89DA;
+            background-color: #4B89DA;
             color: white;
             cursor: pointer;
         }
@@ -74,18 +74,21 @@
             padding: 10px;
             text-align: center;
             width: 100%;
+            box-sizing: border-box; /* 추가: 패딩과 보더를 포함한 전체 크기로 설정 */
         }
 
         /* 수정된 스타일: Google 로그인 버튼 아이콘 */
         .google-login-btn img {
-            margin-right: 10px;
+            margin-right: 5px; /* 수정: 마진을 조금 줄임 */
             vertical-align: middle;
+            width: 20px; /* 추가: 이미지 크기를 조절 */
+            height: 20px;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <span class="login-text">TravelMaker</span> <!-- 로고 넣으면 좋을것 같아욤 아님 말고~~ -->
+        <span class="login-text">TravelMaker</span>
         <span class="close-btn" onclick="closeLoginForm()">X</span>
         <form action="loginAction" method="post">
             <input type="text" id="userEmail" name="userEmail" placeholder="이메일" required><br>
@@ -100,20 +103,19 @@
             Google로 로그인
            </div>
         </form>
-       
     </div>
 
     <script>
-	    // Google 로그인 페이지로 리다이렉트하는 함수
-	    function redirectToGoogleLogin() {
-	        // Google 로그인 페이지 URL로 리다이렉트
-	        window.location.href = 'URL_TO_GOOGLE_LOGIN'; // 구글 API를 이용하여 제공되는 URL로 변경 필요
-	    }
+        // Google 로그인 페이지로 리다이렉트하는 함수
+        function redirectToGoogleLogin() {
+            // Google 로그인 페이지 URL로 리다이렉트
+            window.location.href = 'URL_TO_GOOGLE_LOGIN'; // 구글 API를 이용하여 제공되는 URL로 변경 필요
+        }
 
         function closeLoginForm() {
-        	//index폼과 연결하기 
+            //index폼과 연결하기 
             alert("LoginForm Closed");
-            }
+        }
     </script>
 </body>
 </html>
