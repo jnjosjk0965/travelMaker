@@ -1,1 +1,37 @@
 @import './myfont.css';
+body{
+	background-color:#FCF6F5; 
+}
+.none-deco-input{
+	border: none;
+	padding: 0;
+}
+.c-flex {
+	display: flex;
+  	flex-direction: column;
+}
+.r-flex {
+  	display: flex;
+  	flex-direction: row;
+}
+.containerSize{
+                	margin: 0 auto;
+    				max-width: 76.5rem;
+}
+.my-button1 {
+	font-weight: bold;
+    --bs-btn-color: #000;
+    --bs-btn-bg: #7b9acc;
+    --bs-btn-border-color: #7b9acc;
+    --bs-btn-hover-color: #000;
+    --bs-btn-hover-bg: #7390BF;
+    --bs-btn-hover-border-color: #7390BF;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #000;
+    --bs-btn-active-bg: #7b9acc;
+    --bs-btn-active-border-color: #8AADE6;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #000;
+    --bs-btn-disabled-bg: #7b9acc;
+    --bs-btn-disabled-border-color: #0d6efd;
+}
