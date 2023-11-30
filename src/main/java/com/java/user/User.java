@@ -1,4 +1,4 @@
-package java;
+package com.java.user;
 
 public class User {
 	private String userEmail;

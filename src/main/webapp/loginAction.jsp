@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@ page import="java.UserDao" %>
+<%@ page import="com.java.user.UserDao" %>
+<%@ page import="com.java.user.User" %>
 <%@ page import="java.io.PrintWriter" %>
 <% request.setCharacterEncoding("UTF-8"); %>
-<jsp:useBean id="user" class="java.User" scope="page" />
+<jsp:useBean id="user" class="com.java.user.User" scope="page" />
 <jsp:setProperty name="user" property="userEmail" />
 <jsp:setProperty name="user" property="userPwd" />
 <html>
