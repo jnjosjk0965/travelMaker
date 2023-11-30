@@ -58,9 +58,28 @@
         }
 
         input[type="submit"] {
-            background-color: #4CAF50;
+    		background-color: #4B89DA;
             color: white;
             cursor: pointer;
+        }
+        .google-login-btn {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            color: #333;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 14px;
+            margin-top: 10px;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* 수정된 스타일: Google 로그인 버튼 아이콘 */
+        .google-login-btn img {
+            margin-right: 10px;
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -69,18 +88,28 @@
         <span class="login-text">TravelMaker</span> <!-- 로고 넣으면 좋을것 같아욤 아님 말고~~ -->
         <span class="close-btn" onclick="closeLoginForm()">X</span>
         <form action="loginAction" method="post">
-            <input type="text" id="userEmail" name="userEmail" placeholder="아이디" required><br>
-            <input type="password" id="userPw" name="userPw" placeholder="비밀번호" required><br>
+            <input type="text" id="userEmail" name="userEmail" placeholder="이메일" required><br>
+            <input type="password" id="userPwd" name="userPwd" placeholder="비밀번호" required><br>
              <p>
             계정이 없으십니까? 
             <a href="register.jsp" class="register-link">회원가입</a>
         	</p>
             <input type="submit" value="Login">
+             <div class="google-login-btn" onclick="redirectToGoogleLogin()">
+            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google 로고">
+            Google로 로그인
+           </div>
         </form>
        
     </div>
 
     <script>
+	    // Google 로그인 페이지로 리다이렉트하는 함수
+	    function redirectToGoogleLogin() {
+	        // Google 로그인 페이지 URL로 리다이렉트
+	        window.location.href = 'URL_TO_GOOGLE_LOGIN'; // 구글 API를 이용하여 제공되는 URL로 변경 필요
+	    }
+
         function closeLoginForm() {
         	//index폼과 연결하기 
             alert("LoginForm Closed");

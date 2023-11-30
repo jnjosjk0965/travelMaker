@@ -2,7 +2,7 @@ package user;
 
 public class User {
 	private String userEmail;
-	private String userPasswd;
+	private String userPwd;
 	private String userNName;
 	private String userEName;
 	private String userNum;
@@ -14,11 +14,11 @@ public class User {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public String getUserPasswd() {
-		return userPasswd;
+	public String getuserPwd() {
+		return userPwd;
 	}
-	public void setUserPasswd(String userPasswd) {
-		this.userPasswd = userPasswd;
+	public void setuserPwd(String userPwd) {
+		this.userPwd = userPwd;
 	}
 	public String getUserNName() {
 		return userNName;
