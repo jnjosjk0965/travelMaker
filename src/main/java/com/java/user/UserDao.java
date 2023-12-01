@@ -60,10 +60,10 @@ public class UserDao {
     	try {
     		 pstmt = conn.prepareStatement(SQL);
     		 pstmt.setString(1, user.getUserEmail());
-    		 pstmt.setString(2, user.getuserPwd());
+    		 pstmt.setString(2, user.getUserPwd());
     		 pstmt.setString(3, user.getUserNName());
     		 pstmt.setString(4, user.getUserEName());
-    		 pstmt.setString(5, user.getuserCountry());
+    		 pstmt.setString(5, user.getUserCountry());
     		 pstmt.setString(6, user.getUserBirth());
     		 return pstmt.executeUpdate(); 
     	} catch (Exception e) {
