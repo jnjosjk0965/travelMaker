@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@ page import="java.UserDao" %>
+<%@ page import="com.java.user.UserDao" %>
 <%@ page import="java.io.PrintWriter" %>
 <% request.setCharacterEncoding("UTF-8"); %>
-<jsp:useBean id="user" class="java.User" scope="page" />
+<jsp:useBean id="user" class="com.java.user.User" scope="page" />
 <jsp:setProperty name="user" property="userEmail" />
 <jsp:setProperty name="user" property="userPwd" />
 <jsp:setProperty name="user" property="userNName" />
@@ -18,8 +18,8 @@
 </head>
 <body>
 	<%
-	if (user.getUserEmail() == null || user.getuserPwd() == null || user.getUserNName() == null 
-			|| user.getUserEName() == null || user.getUserCon() == null || user.getUserBirth() == null  ) {
+	if (user.getUserEmail() == null || user.getUserPwd() == null || user.getUserNName() == null 
+			|| user.getUserEName() == null || user.getUserCountry() == null || user.getUserBirth() == null  ) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alter('입력 안 된 사항이 있습니다.')");

@@ -14,10 +14,10 @@ public class User {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public String getuserPwd() {
+	public String getUserPwd() {
 		return userPwd;
 	}
-	public void setuserPwd(String userPwd) {
+	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
 	}
 	public String getUserNName() {
@@ -32,16 +32,16 @@ public class User {
 	public void setUserEName(String userEName) {
 		this.userEName = userEName;
 	}
-	public String getuserPassport() {
+	public String getUserPassport() {
 		return userPassport;
 	}
-	public void setuserPassport(String userPassport) {
+	public void setUserPassport(String userPassport) {
 		this.userPassport = userPassport;
 	}
-	public String getuserCountry() {
+	public String getUserCountry() {
 		return userCountry;
 	}
-	public void setuserCountry(String userCountry) {
+	public void setUserCountry(String userCountry) {
 		this.userCountry = userCountry;
 	}
 	public String getUserBirth() {
