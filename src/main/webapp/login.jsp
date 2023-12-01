@@ -38,6 +38,7 @@
             display: inline-block;
             margin-right: 20px;
         }
+
         .register-link {
             color: #4285f4;
             text-decoration: underline;
@@ -62,7 +63,9 @@
             color: white;
             cursor: pointer;
         }
-        .google-login-btn {
+
+        .google-login-btn,
+        .naver-login-btn {
             background-color: #ffffff;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -77,8 +80,9 @@
             box-sizing: border-box; /* 추가: 패딩과 보더를 포함한 전체 크기로 설정 */
         }
 
-        /* 수정된 스타일: Google 로그인 버튼 아이콘 */
-        .google-login-btn img {
+        /* 수정된 스타일: 로그인 버튼 아이콘 */
+        .google-login-btn img,
+        .naver-login-btn img {
             margin-right: 5px; /* 수정: 마진을 조금 줄임 */
             vertical-align: middle;
             width: 20px; /* 추가: 이미지 크기를 조절 */
@@ -90,30 +94,41 @@
     <div class="login-container">
         <span class="login-text">TravelMaker</span>
         <span class="close-btn" onclick="closeLoginForm()">X</span>
-        <form action="loginAction" method="post">
-            <input type="text" id="userEmail" name="userEmail" placeholder="이메일" required><br>
-            <input type="password" id="userPwd" name="userPwd" placeholder="비밀번호" required><br>
-             <p>
-            계정이 없으십니까? 
-            <a href="register.jsp" class="register-link">회원가입</a>
-        	</p>
+        <form method="post" action="loginProc.jsp">
+            <div style="position: relative; display: flex; align-items: center;">
+                <span style="margin-right: 5px;">&#128100;</span>
+                <input type="text" id="userEmail" name="userEmail" placeholder="이메일" required>
+            </div><br>
+
+            <!-- 비밀번호 칸에 키 이모티콘 왼쪽에 추가 -->
+            <div style="position: relative; display: flex; align-items: center;">
+                <span style="margin-right: 5px;">&#128273;</span>
+                <input type="password" id="userPwd" name="userPwd" placeholder="비밀번호" required>
+            </div><br>
+
+            <p>
+                계정이 없으십니까? 
+                <a href="register.jsp" class="register-link">회원가입</a>
+            </p>
             <input type="submit" value="Login">
-             <div class="google-login-btn" onclick="redirectToGoogleLogin()">
-            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google 로고">
-            Google로 로그인
-           </div>
+
+            <!-- Google 로그인 버튼 -->
+            <div class="google-login-btn" onclick="redirectToGoogleLogin()">
+                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google 로고">
+                Google로 로그인
+            </div>
+
         </form>
     </div>
 
     <script>
         // Google 로그인 페이지로 리다이렉트하는 함수
         function redirectToGoogleLogin() {
-            // Google 로그인 페이지 URL로 리다이렉트
             window.location.href = 'URL_TO_GOOGLE_LOGIN'; // 구글 API를 이용하여 제공되는 URL로 변경 필요
         }
 
         function closeLoginForm() {
-            //index폼과 연결하기 
+        	window.location.href = 'index.jsp'; 
             alert("LoginForm Closed");
         }
     </script>

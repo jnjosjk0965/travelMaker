@@ -1,12 +1,21 @@
-package java;
+package ch01;
+
+/* 유저
+이메일 ( primary key )
+비밀번호
+닉네임
+영어이름 (성, 이름)
+여권번호
+국가/지역
+생년월일 */
 
 public class User {
 	private String userEmail;
 	private String userPwd;
 	private String userNName;
 	private String userEName;
-	private String userNum;
-	private String userCon;
+	private String userPassport;
+	private String userCountry;
 	private String userBirth;
 	public String getUserEmail() {
 		return userEmail;
@@ -14,10 +23,10 @@ public class User {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public String getuserPwd() {
+	public String getUserPwd() {
 		return userPwd;
 	}
-	public void setuserPwd(String userPwd) {
+	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
 	}
 	public String getUserNName() {
@@ -32,17 +41,17 @@ public class User {
 	public void setUserEName(String userEName) {
 		this.userEName = userEName;
 	}
-	public String getUserNum() {
-		return userNum;
+	public String getUserPassport() {
+		return userPassport;
 	}
-	public void setUserNum(String userNum) {
-		this.userNum = userNum;
+	public void setUserPassport(String userPassport) {
+		this.userPassport = userPassport;
 	}
-	public String getUserCon() {
-		return userCon;
+	public String getUserCountry() {
+		return userCountry;
 	}
-	public void setUserCon(String userCon) {
-		this.userCon = userCon;
+	public void setUserCountry(String userCountry) {
+		this.userCountry = userCountry;
 	}
 	public String getUserBirth() {
 		return userBirth;
@@ -50,6 +59,9 @@ public class User {
 	public void setUserBirth(String userBirth) {
 		this.userBirth = userBirth;
 	}
+	
+	
+	
 	
 	
 	
