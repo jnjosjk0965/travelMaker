@@ -5,8 +5,8 @@ public class User {
 	private String userPwd;
 	private String userNName;
 	private String userEName;
-	private String userNum;
-	private String userCon;
+	private String userPassport;
+	private String userCountry;
 	private String userBirth;
 	public String getUserEmail() {
 		return userEmail;
@@ -32,17 +32,17 @@ public class User {
 	public void setUserEName(String userEName) {
 		this.userEName = userEName;
 	}
-	public String getUserNum() {
-		return userNum;
+	public String getuserPassport() {
+		return userPassport;
 	}
-	public void setUserNum(String userNum) {
-		this.userNum = userNum;
+	public void setuserPassport(String userPassport) {
+		this.userPassport = userPassport;
 	}
-	public String getUserCon() {
-		return userCon;
+	public String getuserCountry() {
+		return userCountry;
 	}
-	public void setUserCon(String userCon) {
-		this.userCon = userCon;
+	public void setuserCountry(String userCountry) {
+		this.userCountry = userCountry;
 	}
 	public String getUserBirth() {
 		return userBirth;

@@ -63,7 +63,7 @@ public class UserDao {
     		 pstmt.setString(2, user.getuserPwd());
     		 pstmt.setString(3, user.getUserNName());
     		 pstmt.setString(4, user.getUserEName());
-    		 pstmt.setString(5, user.getUserCon());
+    		 pstmt.setString(5, user.getuserCountry());
     		 pstmt.setString(6, user.getUserBirth());
     		 return pstmt.executeUpdate(); 
     	} catch (Exception e) {

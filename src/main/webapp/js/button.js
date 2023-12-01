@@ -3,10 +3,10 @@
  */
 // 좌석 등급이 변경될 때마다 텍스트 업데이트
 document.getElementById('cabinSelector').addEventListener('change', updateTravelInfo);
-// 좌석 정보 창을 누르면 popup이 toggle
+// 좌석 정보 창을 누르면 dropdown이 toggle
 const cabinInput = document.getElementById('cabin-input');
 cabinInput.addEventListener('click',(event)=>{
-	const popup = document.getElementById('cabin-popup');
+	const popup = document.getElementById('cabin-dropdown');
 	popup.style.display = (popup.style.display === 'none' || popup.style.display === '') ? 'block' : 'none';
 })
 

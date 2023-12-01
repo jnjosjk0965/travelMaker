@@ -154,8 +154,8 @@
 	                        		<span class="Input_Label">여행자 및 좌석</span>
 	                            	<span id="travelInfo">1 성인, 일반석</span>
 	                        	</div>
-	                            <!-- 여행객 및 좌석 popup start -->
-	                            <div id="cabin-popup" class="dropdown-menu gap-1 p-4 rounded-3 mx-0 shadow w-220px" data-bs-theme="light" style="position: absolute; top:5rem; left:-5rem; min-width: 20rem; ">
+	                            <!-- 여행객 및 좌석 dropdown start -->
+	                            <div id="cabin-dropdown" class="dropdown-menu gap-1 p-4 rounded-3 mx-0 shadow w-220px" data-bs-theme="light" style="position: absolute; top:5rem; left:-5rem; min-width: 20rem; ">
 	                            	<div style="margin-bottom: 2.5rem; ">
 	                            		<label class="CabinSelector_Label" style="display: block; margin-bottom: 0.5rem;">좌석 등급</label>
 	                            		<select id="cabinSelector" class="CabinSelector_Select" style="width: 100%; padding: 0.375rem 2rem 0.375rem 0.5rem; appearance:none; 
@@ -234,7 +234,7 @@
 	                            		<button type="submit" class="btn btn-primary w-100 h-100">검색</button>
 	                        		</div>
 								</div>
-								<!-- 여행객 및 좌석 end -->
+								<!-- 여행객 및 좌석 dropdown end -->
 	                        </div>
 	                        <div class="" style="width: fit-content;">
 	                            <button type="submit" class="btn btn-primary w-100 h-100">검색</button>
