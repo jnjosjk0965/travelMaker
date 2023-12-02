@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,8 +64,8 @@
             cursor: pointer;
         }
 
-        .google-login-btn,
-        .naver-login-btn {
+        .google-login-btn
+         {
             background-color: #ffffff;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -81,8 +81,8 @@
         }
 
         /* 수정된 스타일: 로그인 버튼 아이콘 */
-        .google-login-btn img,
-        .naver-login-btn img {
+        .google-login-btn img
+         {
             margin-right: 5px; /* 수정: 마진을 조금 줄임 */
             vertical-align: middle;
             width: 20px; /* 추가: 이미지 크기를 조절 */
@@ -108,7 +108,7 @@
 
             <p>
                 계정이 없으십니까? 
-                <a href="register.jsp" class="register-link">회원가입</a>
+                <a href="register.jsp" class="register-link"> 회원가입 </a>
             </p>
             <input type="submit" value="Login">
 

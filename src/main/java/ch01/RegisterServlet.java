@@ -41,12 +41,12 @@ public class RegisterServlet extends HttpServlet {
 		    	request.setAttribute("RegisterResult", insertCheck);
 				HttpSession session = request.getSession();
 				session.setAttribute("userEmail",userEmail );
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/Index.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("webapp/index.jsp");
 				dispatcher.forward(request, response);
 
 			}else{
 		    	request.setAttribute("RegisterResult", 0);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/Register.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("webapp/register.jsp");
 				dispatcher.forward(request, response);
 			}
 			   
