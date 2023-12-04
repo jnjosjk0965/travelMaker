@@ -4,8 +4,8 @@
     <html>
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bs/bootstrap.css">
-            <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mycss.css">
+            <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bs/bootstrap.css">
+            <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/mycss.css">
             <title>Travel Maker</title>
             <style>
             	/*
@@ -130,7 +130,7 @@
             	<!-- header/검색창 start -->
             	<div class="SearchContainer p-5" style="background-color: #7b9acc;">
             		<div class="container containerSize" style="padding:0;">
-		                <jsp:include page="module/header.jsp" flush="false"/>
+            			<%@ include file="module/header.jsp" %>
 		                <h2 class="mt-5 mb-4" style="font-weight:bold;">당신의 여행은 지금부터</h2>
 		                <form action="/TravelMaker/flightSearch.do">
 		                	<div class="SearchBar row g-3">
@@ -305,6 +305,7 @@
     		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     		<script src="js/button.js"></script>
+    		<script src="js/app.js"></script>
         </body>
     </html>
     

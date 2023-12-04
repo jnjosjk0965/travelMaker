@@ -4,8 +4,8 @@
    request.setCharacterEncoding("utf-8");
    UserDTO udto = (UserDTO)session.getAttribute("userinfo");
 	%>
-    <link rel="stylesheet" href="css/mycss.css">
-    <link rel="stylesheet" href="css/bs/bootstrap.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mycss.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bs/bootstrap.css">
 	<div class="container containerSize" style="padding:0;">
 		<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4">
 			<div class="col-md-3 mb-2 mb-md-0">
@@ -40,7 +40,7 @@
 						<%} %> 
 					</span>
 				</button>
-				<ul id="user-dropdown" class="dropdown-menu position-absolute mx-0 shadow " data-bs-theme="light" style="width:9rem;left:9.56rem;display:none">
+				<ul id="user-dropdown" class="dropdown-menu d-block position-absolute mx-0 shadow " data-bs-theme="light" style="width:9rem;left:9.56rem;height:0rem;overflow:hidden;transition: height ease-out 0.4s 0s;padding:0;border:0">
 				    <li>
 						<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
 				        	<svg class="bi" width="16" height="16"><use xlink:href="#files"></use></svg>

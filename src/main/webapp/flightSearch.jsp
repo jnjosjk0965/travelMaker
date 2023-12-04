@@ -15,6 +15,7 @@
 </head>
 <body>
 	<div class="SearchContainer p-5" style="background-color: #7b9acc;">
+		<%@ include file="module/header.jsp" %>
 		<jsp:include page="module/header.jsp" flush="false"/>
 	</div>
 <% 

@@ -9,12 +9,6 @@ cabinInput.addEventListener('click',()=>{
 	const dropdown = document.getElementById('cabin-dropdown');
 	dropdown.style.display = (dropdown.style.display === 'none' || dropdown.style.display === '') ? 'block' : 'none';
 });
-// 로그인 후 유저 아이콘
-const userButton = document.getElementById("user-button");
-userButton.addEventListener('click', () => {
-	const dropdown = document.getElementById('user-dropdown');
-	dropdown.style.display = (dropdown.style.display === 'none' || dropdown.style.display === '') ? 'block' : 'none';
-});
 
 // 모달 on off
 const loginOpen = document.getElementById("login-button");
