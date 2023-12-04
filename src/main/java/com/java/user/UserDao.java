@@ -20,7 +20,7 @@ public class UserDao {
         String userPwd=null;
         String userNName=null;
         String userEName=null;
-        String userPasssport=null;
+        String userPassport=null;
         String userCountry=null;
         String userBirth=null;
         boolean isAdmin = false;
@@ -38,11 +38,11 @@ public class UserDao {
         		userPwd = rs.getString(2);
         		userNName = rs.getString(3);
         		userEName = rs.getString(4);
-        		userPasssport = rs.getString(5);
+        		userPassport = rs.getString(5);
         		userCountry = rs.getString(6);
         		userBirth = rs.getString(7);
         		isAdmin = rs.getBoolean(8);
-        		udto = new UserDTO(userEmail,userPwd,userNName,userEName,userPasssport,userCountry,userBirth,isAdmin);
+        		udto = new UserDTO(userEmail,userPwd,userNName,userEName,userPassport,userCountry,userBirth,isAdmin);
         	}
         	
         } catch(SQLException e) {
@@ -97,7 +97,7 @@ public class UserDao {
             	pstmt.setString(2, dto.getUserPwd());
             	pstmt.setString(3, dto.getUserNName());
             	pstmt.setString(4, dto.getUserEName());
-            	pstmt.setString(5, dto.getUserPasssport());
+            	pstmt.setString(5, dto.getUserPassport());
             	pstmt.setString(6, dto.getUserCountry());
             	pstmt.setString(7, dto.getUserBirth());
           		cnt = pstmt.executeUpdate();
@@ -105,11 +105,11 @@ public class UserDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            // 변경: 사용한 자원을 닫아야 함
+            // 사용한 자원을 닫음
             JDBCUtil.close(rs, pstmt, conn);
         }
 
-        // 변경: 결과 값을 반환
+        // 결과 값을 반환
         return cnt;
     }
 }

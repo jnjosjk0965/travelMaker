@@ -5,7 +5,7 @@ public class UserDTO {
 	private String userPwd;
 	private String userNName;
 	private String userEName;
-	private String userPasssport;
+	private String userPassport;
 	private String userCountry;
 	private String userBirth;
 	private boolean isAdmin;
@@ -16,27 +16,27 @@ public class UserDTO {
 		this.userPwd = userPwd;
 	}
 	
-	public UserDTO(String userEmail, String userPwd, String userNName, String userEName, String userPasssport,
+	public UserDTO(String userEmail, String userPwd, String userNName, String userEName, String userPassport,
 			String userCountry, String userBirth,boolean isAdmin) {
 		
 		this.userEmail = userEmail;
 		this.userPwd = userPwd;
 		this.userNName = userNName;
 		this.userEName = userEName;
-		this.userPasssport = userPasssport;
+		this.userPassport = userPassport;
 		this.userCountry = userCountry;
 		this.userBirth = userBirth;
 		this.isAdmin=isAdmin;
 	}
 
-	public UserDTO(String userEmail, String userPwd, String userNName, String userEName, String userPasssport,
+	public UserDTO(String userEmail, String userPwd, String userNName, String userEName, String userPassport,
 			String userCountry, String userBirth) {
 		super();
 		this.userEmail = userEmail;
 		this.userPwd = userPwd;
 		this.userNName = userNName;
 		this.userEName = userEName;
-		this.userPasssport = userPasssport;
+		this.userPassport = userPassport;
 		this.userCountry = userCountry;
 		this.userBirth = userBirth;
 	}
@@ -73,12 +73,12 @@ public class UserDTO {
 		this.userEName = userEName;
 	}
 
-	public String getUserPasssport() {
-		return userPasssport;
+	public String getUserPassport() {
+		return userPassport;
 	}
 
-	public void setUserPasssport(String userPasssport) {
-		this.userPasssport = userPasssport;
+	public void setUserPassport(String userPassport) {
+		this.userPassport = userPassport;
 	}
 
 	public String getUserCountry() {
@@ -103,8 +103,6 @@ public class UserDTO {
 
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
-	}
-
-	
+	}	
 
 }

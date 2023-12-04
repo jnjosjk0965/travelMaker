@@ -33,7 +33,7 @@
   						<image x="0" y="0" width="1.5rem" height="1.5rem" href="img/logo/icons8-user-profile-32.png" />
 					</svg>
 					<span style="font-size:1rem; line-height:1.5rem; text-overflow: ellipsis; white-space: nowrap;overflow: hidden;">
-                    	<%if(udto.getIsAdmin()){%>
+                    	<%if(udto.isAdmin()){%>
 							관리자
 						<%}else{%>
 							<%=udto.getUserNName() %>
@@ -65,7 +65,7 @@
 				        	리뷰 작성
 				      	</a>
 				    </li>
-				    <%if(udto.getIsAdmin()){%>
+				    <%if(udto.isAdmin()){%>
 				    <li>
 				      	<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
 				        	<svg class="bi" width="16" height="16"><use xlink:href="#joystick"></use></svg>

@@ -90,7 +90,7 @@
             <button class="form-button" type="submit">가입하기</button>
         </form>
         <div class="signup-link">
-            계정이 이미 있으신가요? <a href="/index.jsp">로그인</a>
+            계정이 이미 있으신가요? <a href="index.jsp">로그인</a>
         </div>
     </div>
 </body>
