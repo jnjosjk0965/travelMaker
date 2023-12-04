@@ -10,7 +10,7 @@
 	        	<span>X</span>
 	        </button>
 		</header>
-        <form action="loginAction" method="post">
+        <form action="/TravelMaker/login.do" method="post">
             <input type="text" id="userEmail" name="userEmail" placeholder="이메일" required><br>
             <input type="password" id="userPwd" name="userPwd" placeholder="비밀번호" required><br>
              <p>

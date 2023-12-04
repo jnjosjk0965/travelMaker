@@ -4,8 +4,8 @@
     <html>
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="css/bs/bootstrap.css">
-            <link rel="stylesheet" href="css/mycss.css">
+            <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bs/bootstrap.css">
+            <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mycss.css">
             <title>Travel Maker</title>
             <style>
             	/*
