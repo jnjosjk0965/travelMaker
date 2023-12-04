@@ -77,8 +77,7 @@
             <input class="form-input" type="password" id="confirmPwd" name="confirmPwd" placeholder="비밀번호 확인" required>
             <input class="form-input" type="text" id="userNName" name="userNName" placeholder="닉네임" required>
             <div class="split-input">
-                <input class="form-input" type="text" id="lastName" name="lastName" placeholder="성" required>
-                <input class="form-input" type="text" id="firstName" name="firstName" placeholder="이름" required>
+                <input class="form-input" type="text" id="userEName" name="userEName" placeholder="이름" required>
             </div>
             <input class="form-input" type="text" id="userCon" name="userCon" placeholder="국가/지역" required>
             <div class="split-input">
@@ -89,7 +88,7 @@
             <button class="form-button" type="submit">가입하기</button>
         </form>
         <div class="signup-link">
-            계정이 이미 있으신가요? <a href="login.jsp">로그인</a>
+            계정이 이미 있으신가요? <a href="index.jsp">로그인</a>
         </div>
     </div>
 </body>

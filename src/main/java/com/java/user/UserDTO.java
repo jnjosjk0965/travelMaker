@@ -1,6 +1,6 @@
 package com.java.user;
 
-public class User {
+public class UserDTO {
 	private String userEmail;
 	private String userPwd;
 	private String userNName;
@@ -8,6 +8,35 @@ public class User {
 	private String userPassport;
 	private String userCountry;
 	private String userBirth;
+	private boolean isAdmin;
+	
+	
+	public UserDTO(String userEmail, String userPwd) {
+		this.userEmail = userEmail;
+		this.userPwd = userPwd;
+	}
+	
+	public UserDTO(String userEmail, String userPwd, String userNName, String userEName, String userPassport,
+			String userCountry, String userBirth,boolean isAdmin) {
+		
+		this.userEmail = userEmail;
+		this.userPwd = userPwd;
+		this.userNName = userNName;
+		this.userEName = userEName;
+		this.userPassport = userPassport;
+		this.userCountry = userCountry;
+		this.userBirth = userBirth;
+		this.isAdmin=isAdmin;
+	}
+
+	public boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 	public String getUserEmail() {
 		return userEmail;
 	}
@@ -50,7 +79,4 @@ public class User {
 	public void setUserBirth(String userBirth) {
 		this.userBirth = userBirth;
 	}
-	
-	
-	
 }

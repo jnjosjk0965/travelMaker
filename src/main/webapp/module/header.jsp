@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.java.user.UserDTO" %>
+   <%
+   request.setCharacterEncoding("utf-8");
+   UserDTO udto = (UserDTO)session.getAttribute("userinfo"); 
+	%>
     <link rel="stylesheet" href="css/mycss.css">
 	<div class="container containerSize" style="padding:0;">
 		<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4">
@@ -11,12 +15,19 @@
 				</a>
 			</div>            
 			<div class="col-md-3 text-end">
-				<button id="login-button" type="button" class="btn my-button1">
+							<button id="login-button" type="button" class="btn my-button1">
 					<svg style="width:1.5rem; height:1.5rem;">
                        	<image href="img/logo/icons8-user-profile-32.png" width="24" height="24">
 					</svg>
+					
 					<span style="font-size:1rem; line-height:1.5rem; text-overflow: ellipsis; white-space: nowrap;overflow: hidden;">
-                       	로그인
+                       <%if(udto == null){ %>
+                       로그인
+                       <%} else if(udto.getIsAdmin()){ %>
+                       관리자
+                       <% } else {%>
+                       	<%= udto.getUserNName() %>
+                       	<%} %>
 					</span>
 				</button>
 			</div>
