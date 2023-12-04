@@ -71,7 +71,7 @@
 <body>
     <div class="signup-container">
         <div class="signup-header">회원가입</div>
-        <form class="signup-form" action="registerAction" method="post">
+        <form class="signup-form" action="/TravelMaker/register.do" method="post">
             <input class="form-input" type="text" id="userEmail" name="userEmail" placeholder="이메일" required>
             <input class="form-input" type="password" id="userPwd" name="userPwd" placeholder="비밀번호" required>
             <input class="form-input" type="password" id="confirmPwd" name="confirmPwd" placeholder="비밀번호 확인" required>
@@ -79,16 +79,18 @@
             <div class="split-input">
                 <input class="form-input" type="text" id="userEName" name="userEName" placeholder="이름" required>
             </div>
-            <input class="form-input" type="text" id="userCon" name="userCon" placeholder="국가/지역" required>
+            <input class="form-input" type="text" id="userPasssport" name="Passsport" placeholder="여권번호" required>
+            <input class="form-input" type="text" id="userCountry" name="userCountry" placeholder="국가/지역" required>
             <div class="split-input">
-                <input class="form-input" type="text" id="birthYear" name="birthYear" placeholder="년" required>
+            	<input class="form-input" type="text" id="userBirth" name="userBirth" placeholder="생년월일" required>
+                <!-- <input class="form-input" type="text" id="birthYear" name="birthYear" placeholder="년" required>
                 <input class="form-input" type="text" id="birthMonth" name="birthMonth" placeholder="월" required>
-                <input class="form-input" type="text" id="birthDay" name="birthDay" placeholder="일" required>
+                <input class="form-input" type="text" id="birthDay" name="birthDay" placeholder="일" required>  -->
             </div>
             <button class="form-button" type="submit">가입하기</button>
         </form>
         <div class="signup-link">
-            계정이 이미 있으신가요? <a href="index.jsp">로그인</a>
+            계정이 이미 있으신가요? <a href="/index.jsp">로그인</a>
         </div>
     </div>
 </body>
