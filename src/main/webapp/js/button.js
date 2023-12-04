@@ -20,6 +20,11 @@ loginClose.addEventListener('click', () => {
 	loginForm.style.display = 'none';
 });
 
+const userButton = document.getElementById("user-button");
+userButton.addEventListener('click', () => {
+	const dropdown = document.getElementById('user-dropdown');
+	dropdown.style.display = (dropdown.style.display === 'none' || dropdown.style.display === '') ? 'block' : 'none';
+});
 
 function decrementCount(nudgerId) {
 	// 해당 너저의 현재 값 가져오기
