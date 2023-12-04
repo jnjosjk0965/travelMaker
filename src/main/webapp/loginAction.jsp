@@ -15,7 +15,7 @@
 <body>
 	<%
 	UserDao userDao = new UserDao();
-	int result = userDao.login(user.getUserEmail(), user.getuserPwd());
+	int result = userDao.login(user.getUserEmail(), user.getUserPwd());
 	if (result == 1) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
