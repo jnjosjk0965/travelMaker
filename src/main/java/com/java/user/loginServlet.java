@@ -33,7 +33,6 @@ public class loginServlet extends HttpServlet {
 			response.sendRedirect("index.jsp");
 			
 			
-			
 		} else {
 			
 		}

@@ -20,7 +20,7 @@ public class UserDao {
         String userPwd=null;
         String userNName=null;
         String userEName=null;
-        String userPassport=null;
+        String userPasssport=null;
         String userCountry=null;
         String userBirth=null;
         boolean isAdmin = false;
@@ -38,11 +38,11 @@ public class UserDao {
         		userPwd = rs.getString(2);
         		userNName = rs.getString(3);
         		userEName = rs.getString(4);
-        		userPassport = rs.getString(5);
+        		userPasssport = rs.getString(5);
         		userCountry = rs.getString(6);
         		userBirth = rs.getString(7);
         		isAdmin = rs.getBoolean(8);
-        		udto = new UserDTO(userEmail,userPwd,userNName,userEName,userPassport,userCountry,userBirth,isAdmin);
+        		udto = new UserDTO(userEmail,userPwd,userNName,userEName,userPasssport,userCountry,userBirth,isAdmin);
         	}
         	
         } catch(SQLException e) {
@@ -70,20 +70,46 @@ public class UserDao {
 		}
     	return "";
     }
-//    public int register(User user) {
-//    	String SQL = "INSERT INTO USER VALUES(?,?,?,?,?,?)";
-//    	try {
-//    		 pstmt = conn.prepareStatement(SQL);
-//    		 pstmt.setString(1, user.getUserEmail());
-//    		 pstmt.setString(2, user.getUserPwd());
-//    		 pstmt.setString(3, user.getUserNName());
-//    		 pstmt.setString(4, user.getUserEName());
-//    		 pstmt.setString(5, user.getUserCountry());
-//    		 pstmt.setString(6, user.getUserBirth());
-//    		 return pstmt.executeUpdate(); 
-//    	} catch (Exception e) {
-//    		e.printStackTrace();
-//    	}
-//    	return -1;
-//    }
+ // 회원가입을 제공하는 메소드
+    public int register(UserDTO dto) {
+    	int cnt=0;
+        String userEmail=null;
+        String userPwd=null;
+        String userNName=null;
+        String userEName=null;
+        String userPasssport=null;
+        String userCountry=null;
+        String userBirth=null;
+        try {
+            conn = JDBCUtil.getConnection();
+
+            // 사용자가 이미 존재하는지 확인
+            String selectSql = "SELECT * FROM user WHERE userEmail = ?";
+            pstmt = conn.prepareStatement(selectSql);
+            pstmt.setString(1, dto.getUserEmail());
+            rs = pstmt.executeQuery();
+            if(rs.next()) {
+                cnt = -1;
+             } else {
+          		String insertsql = "INSERT INTO user (userEmail, userPwd, userNName, userEName, userPasssport, userCountry, userBirth) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            	pstmt = conn.prepareStatement(insertsql);
+            	pstmt.setString(1, dto.getUserEmail());
+            	pstmt.setString(2, dto.getUserPwd());
+            	pstmt.setString(3, dto.getUserNName());
+            	pstmt.setString(4, dto.getUserEName());
+            	pstmt.setString(5, dto.getUserPasssport());
+            	pstmt.setString(6, dto.getUserCountry());
+            	pstmt.setString(7, dto.getUserBirth());
+          		cnt = pstmt.executeUpdate();
+          		}
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 변경: 사용한 자원을 닫아야 함
+            JDBCUtil.close(rs, pstmt, conn);
+        }
+
+        // 변경: 결과 값을 반환
+        return cnt;
+    }
 }
