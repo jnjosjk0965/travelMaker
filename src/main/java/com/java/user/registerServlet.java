@@ -25,6 +25,7 @@ public class registerServlet extends HttpServlet {
         String userEmail = request.getParameter("userEmail");
         String userPwd = request.getParameter("userPwd");
         String userNName = request.getParameter("userNName");
+        
         // 이름을 성과 이름으로 나눠 입력
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
