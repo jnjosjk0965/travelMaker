@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao {
     private Connection conn;
@@ -70,5 +73,67 @@ public class UserDao {
     		e.printStackTrace();
     	}
     	return -1;
+    }
+    
+    //관리자 페이지의 모든 회원 정보 출력 DAO
+    public List<User> getAllUsers() {
+        String sql = "SELECT * FROM USER";
+        List<User> userList = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    User user = new User();
+                    user.setUserEmail(rs.getString("UserEmail"));
+                    user.setUserPwd(rs.getString("UserPwd"));
+                    user.setUserNName(rs.getString("UserNName"));
+                    user.setUserEName(rs.getString("UserEName"));
+                    user.setUserCountry(rs.getString("UserCountry"));
+                    user.setUserBirth(rs.getString("UserBirth"));
+
+                    userList.add(user);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return userList;
+    }
+    public List<User> searchUsersByEmail(String email) {
+        List<User> userList = new ArrayList<>();
+        String sql = "SELECT * FROM USER WHERE UserEmail = ?";
+
+        try {
+        	PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+
+            ResultSet rs = pstmt.executeQuery(); 
+            while (rs.next()) {
+            	User user = new User();
+            	user.setUserEmail(rs.getString("UserEmail"));
+            	user.setUserPwd(rs.getString("UserPwd"));
+            	user.setUserNName(rs.getString("UserNName"));
+            	user.setUserEName(rs.getString("UserEName"));
+            	user.setUserCountry(rs.getString("UserCountry"));
+            	user.setUserBirth(rs.getString("UserBirth"));
+
+            	userList.add(user);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+        	try {
+        		pstmt.close();
+				rs.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+        	
+        }
+
+        return userList;
     }
 }
