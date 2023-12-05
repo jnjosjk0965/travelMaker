@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="com.java.user.UserDao" %>
-	<%@ page import="com.java.user.User" %>
+	<%@ page import="com.java.user.UserDTO" %>
 	<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
@@ -24,13 +24,13 @@
 <%
     String searchEmail = request.getParameter("searchEmail");
     UserDao userDao = new UserDao();
-    List<User> searchResults = userDao.searchUsersByEmail(searchEmail);
+    List<UserDTO> searchResults = userDao.searchUsersByEmail(searchEmail);
 %>
 
 <!-- 검색 결과를 표시하는 부분 추가 -->
 <div>
     <h2>검색 결과</h2>
-    <% for (User user : searchResults) { %>
+    <% for (UserDTO user : searchResults) { %>
         <p><%= user.getUserEmail() %></p>
         <!-- 다른 필요한 정보들을 추가로 표시할 수 있음 -->
     <% } %>

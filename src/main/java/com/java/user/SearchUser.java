@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.java.user.*;
 
-@WebServlet("/searchusr")
+@WebServlet("/search.do")
 public class SearchUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String searchEmail = request.getParameter("searchEmail");
 
         UserDao userDao = new UserDao();
-        List<User> searchResults = userDao.searchUsersByEmail(searchEmail);
+        List<UserDTO> searchResults = userDao.searchUsersByEmail(searchEmail);
 
         request.setAttribute("searchResults", searchResults);
         RequestDispatcher dispatcher = request.getRequestDispatcher("searchResults");

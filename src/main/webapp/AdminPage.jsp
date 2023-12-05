@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.java.user.UserDao" %>
-<%@ page import="com.java.user.User" %>
+<%@ page import="com.java.user.UserDTO" %>
 <%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
@@ -43,7 +43,7 @@
 <%
     // DAO 클래스 및 메서드 호출
     UserDao userDao = new UserDao();
-    List<User> userList = userDao.getAllUsers();
+    List<UserDTO> userList = userDao.getAllUsers();
 %>
 
 
@@ -61,7 +61,7 @@
         </tr>
     </thead>
     <tbody>
-        <% for (User user : userList) { %>
+        <% for (UserDTO user : userList) { %>
             <tr>
                 <td><%= user.getUserEmail() %></td>
                 <td><%= user.getUserPwd() %></td>

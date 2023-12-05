@@ -119,16 +119,14 @@ public class UserDao {
     }
     
     //관리자 페이지의 모든 회원 정보 출력 DAO
-    public List<User> getAllUsers() {
+    public List<UserDTO> getAllUsers() {
         String sql = "SELECT * FROM USER";
-        List<User> userList = new ArrayList<>();
+        List<UserDTO> userList = new ArrayList<>();
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    User user = new User();
-                    user.setUserEmail(rs.getString("UserEmail"));
-                    user.setUserPwd(rs.getString("UserPwd"));
+                    UserDTO user = new UserDTO(rs.getString("UserEmail"),rs.getString("UserPwd"));
                     user.setUserNName(rs.getString("UserNName"));
                     user.setUserEName(rs.getString("UserEName"));
                     user.setUserCountry(rs.getString("UserCountry"));
@@ -143,8 +141,8 @@ public class UserDao {
 
         return userList;
     }
-    public List<User> searchUsersByEmail(String email) {
-        List<User> userList = new ArrayList<>();
+    public List<UserDTO> searchUsersByEmail(String email) {
+        List<UserDTO> userList = new ArrayList<>();
         String sql = "SELECT * FROM USER WHERE UserEmail = ?";
 
         try {
@@ -153,9 +151,7 @@ public class UserDao {
 
             ResultSet rs = pstmt.executeQuery(); 
             while (rs.next()) {
-            	User user = new User();
-            	user.setUserEmail(rs.getString("UserEmail"));
-            	user.setUserPwd(rs.getString("UserPwd"));
+            	UserDTO user = new UserDTO(rs.getString("UserEmail"),rs.getString("UserPwd"));
             	user.setUserNName(rs.getString("UserNName"));
             	user.setUserEName(rs.getString("UserEName"));
             	user.setUserCountry(rs.getString("UserCountry"));
