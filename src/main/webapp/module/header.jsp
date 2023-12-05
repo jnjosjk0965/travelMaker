@@ -75,7 +75,7 @@
 				    <%} %>
 				    <li><hr class="dropdown-divider"></li>
 				    <li>
-				      	<a id="logout-button" class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="index.jsp">
+				      	<a id="logout-button" class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="logout.do">
 				        	<svg class="bi" width="16" height="16"><use xlink:href="#trash"></use></svg>
 				        	로그아웃
 				      	</a>
