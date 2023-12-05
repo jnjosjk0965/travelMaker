@@ -4,13 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-<<<<<<< HEAD
 import java.util.ArrayList;
-import java.util.List;
-=======
-
 import common.JDBCUtil;
->>>>>>> 267b6c11c953b10be48837329927ebe290b69682
 
 public class UserDao {
     private Connection conn;
@@ -78,13 +73,6 @@ public class UserDao {
  // 회원가입을 제공하는 메소드
     public int register(UserDTO dto) {
     	int cnt=0;
-        String userEmail=null;
-        String userPwd=null;
-        String userNName=null;
-        String userEName=null;
-        String userPasssport=null;
-        String userCountry=null;
-        String userBirth=null;
         try {
             conn = JDBCUtil.getConnection();
 
@@ -119,60 +107,68 @@ public class UserDao {
     }
     
     //관리자 페이지의 모든 회원 정보 출력 DAO
-    public List<UserDTO> getAllUsers() {
+    public ArrayList<UserDTO> getAllUsers() {
         String sql = "SELECT * FROM USER";
-        List<UserDTO> userList = new ArrayList<>();
-
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-                    UserDTO user = new UserDTO(rs.getString("UserEmail"),rs.getString("UserPwd"));
-                    user.setUserNName(rs.getString("UserNName"));
-                    user.setUserEName(rs.getString("UserEName"));
-                    user.setUserCountry(rs.getString("UserCountry"));
-                    user.setUserBirth(rs.getString("UserBirth"));
-
-                    userList.add(user);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ArrayList<UserDTO> userList = new ArrayList<>();
+        UserDTO udto = null;
+        
+        String userEmail=null;  
+        String userPwd=null;
+        String userNName=null;
+        String userEName=null;
+        String userPassport=null;
+        String userCountry=null;
+        String userBirth=null;
+        boolean isAdmin = false;
+        try {
+			conn = JDBCUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				userEmail = rs.getString(1);
+        		userPwd = rs.getString(2);
+        		userNName = rs.getString(3);
+        		userEName = rs.getString(4);
+        		userPassport = rs.getString(5);
+        		userCountry = rs.getString(6);
+        		userBirth = rs.getString(7);
+        		isAdmin = rs.getBoolean(8);
+        		udto = new UserDTO(userEmail,userPwd,userNName,userEName,userPassport,userCountry,userBirth,isAdmin);
+        		userList.add(udto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs,pstmt,conn);
+		}
 
         return userList;
     }
-    public List<UserDTO> searchUsersByEmail(String email) {
-        List<UserDTO> userList = new ArrayList<>();
+    public UserDTO searchUsersByEmail(String email) {
+        UserDTO user = null;
         String sql = "SELECT * FROM USER WHERE UserEmail = ?";
 
         try {
+        	conn = JDBCUtil.getConnection();
         	PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, email);
 
             ResultSet rs = pstmt.executeQuery(); 
-            while (rs.next()) {
-            	UserDTO user = new UserDTO(rs.getString("UserEmail"),rs.getString("UserPwd"));
+            if (rs.next()) {
+            	user = new UserDTO(rs.getString("UserEmail"),rs.getString("UserPwd"));
             	user.setUserNName(rs.getString("UserNName"));
             	user.setUserEName(rs.getString("UserEName"));
             	user.setUserCountry(rs.getString("UserCountry"));
             	user.setUserBirth(rs.getString("UserBirth"));
-
-            	userList.add(user);
             }
             
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-        	try {
-        		pstmt.close();
-				rs.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+        	JDBCUtil.close(rs, pstmt, conn);
         	
         }
 
-        return userList;
+        return user;
     }
 }

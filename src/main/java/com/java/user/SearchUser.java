@@ -18,7 +18,7 @@ public class SearchUser extends HttpServlet {
         String searchEmail = request.getParameter("searchEmail");
 
         UserDao userDao = new UserDao();
-        List<UserDTO> searchResults = userDao.searchUsersByEmail(searchEmail);
+        UserDTO searchResults = userDao.searchUsersByEmail(searchEmail);
 
         request.setAttribute("searchResults", searchResults);
         RequestDispatcher dispatcher = request.getRequestDispatcher("searchResults");

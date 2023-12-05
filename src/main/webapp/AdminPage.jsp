@@ -1,13 +1,14 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.java.user.UserDao" %>
 <%@ page import="com.java.user.UserDTO" %>
-<%@ page import="java.util.List" %>
-
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/mycss.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
@@ -27,15 +28,15 @@
     </style>
 </head>
 <body>
-
-<h1 style="text-align: center;">header</h1>
-<hr>
-<h2 style="text-align: center;">Admin Page</h2>
+<div class="container containerSize" style="padding:0;">
+	<jsp:include page="module/header.jsp"/>
+	<h2 style="text-align: center;">Admin Page</h2>
+</div>
 <div id="nav-container">
 
 
 <h3>이메일로 검색하기</h3>
-<form method="post" action="/searchusr">
+<form method="post" action="/TravelMaker/search.do">
     <input type="text" id="searchEmail" name="searchEmail" placeholder="검색어 입력">
     <button type="submit">검색</button>
 </form>
@@ -43,7 +44,7 @@
 <%
     // DAO 클래스 및 메서드 호출
     UserDao userDao = new UserDao();
-    List<UserDTO> userList = userDao.getAllUsers();
+    ArrayList<UserDTO> userList = userDao.getAllUsers();
 %>
 
 
@@ -75,23 +76,6 @@
     </tbody>
 </table>
 </div>
-
-<script>
-function searchByEmail() {
-    var userEmail = document.getElementById('searchEmail').value;
-
-    // AJAX로 서버에 유저 정보 요청
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function() {
-        if (request.readyState === 4 && request.status === 200) {
-            // 서버로부터 받은 데이터를 searchResult에 삽입
-            document.getElementById('searchResult').innerHTML = request.responseText;
-        }
-    };
-    request.open('GET', 'SearchByEmailServlet?userEmail=' + userEmail, true);
-    request.send();
-}
-</script>
 </body>
 </html>
     
