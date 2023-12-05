@@ -4,8 +4,8 @@
     <html>
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="css/bs/bootstrap.css">
-            <link rel="stylesheet" href="css/mycss.css">
+            <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bs/bootstrap.css">
+            <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/mycss.css">
             <title>Travel Maker</title>
             <style>
             	/*
@@ -129,118 +129,120 @@
             <div id="app-root">
             	<!-- header/검색창 start -->
             	<div class="SearchContainer p-5" style="background-color: #7b9acc;">
-	                <jsp:include page="module/header.jsp" flush="false"/>
-	                <h2 class="mt-5 mb-4" style="font-weight:bold;">당신의 여행은 지금부터</h2>
-	                <form action="/TravelMaker/amadeus.do" method="get">
-	                	<div class="SearchBar row g-3">
-	                        <div class="origin-input firstSearchBar c-flex" style="justify-content: center;">
-	                            <span class="Input_Label">출발지</span>
-	                            <input type="text" class="form-control none-deco-input" id="origin" name="origin" placeholder="출발지를 입력하세요">
-	                        </div>
-	                        <div class="origin-input c-flex" style="justify-content: center;">
-	                            <span class="Input_Label">도착지</span>
-	                            <input type="text" class="form-control none-deco-input" id="destination" name="destination" placeholder="도착지를 입력하세요">
-	                        </div>
-	                        <div class="date-input c-flex" style="justify-content: center;">
-	                            <span class="Input_Label">가는 날짜</span>
-	                            <input type="date" class="form-control none-deco-input" id="checkIn" name="checkIn">
-	                        </div>
-	                        <div class="date-input c-flex" style="justify-content: center;">
-	                            <span class="Input_Label">오는 날짜</span>
-	                            <input type="date" class="form-control none-deco-input" id="checkOut" name="checkOut">
-	                        </div>
-	                        <div class="cabin-input lastSearchBar c-flex" style="justify-content: center; position: relative;">
-	                        	<div id="cabin-input" style="text-overflow: ellipsis; overflow: hidden;">
-	                        		<span class="Input_Label">여행자 및 좌석</span>
-	                            	<span id="travelInfo">1 성인, 일반석</span>
-	                        	</div>
-	                            <!-- 여행객 및 좌석 dropdown start -->
-	                            <div id="cabin-dropdown" class="dropdown-menu gap-1 p-4 rounded-3 mx-0 shadow w-220px" data-bs-theme="light" style="position: absolute; top:5rem; left:-5rem; min-width: 20rem; ">
-	                            	<div style="margin-bottom: 2.5rem; ">
-	                            		<label class="CabinSelector_Label" style="display: block; margin-bottom: 0.5rem;">좌석 등급</label>
-	                            		<select id="cabinSelector" class="CabinSelector_Select" style="width: 100%; padding: 0.375rem 2rem 0.375rem 0.5rem; appearance:none; 
-	                            			background: #fff url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48c3R5bGU+PC9zdHlsZT48cGF0aCBkPSJNMTYuNTM3IDguMjVINy40NjNhMS4zNTggMS4zNTggMCAwMC0xLjExIDIuMjUxbDQuMzU0IDQuNzdhMS41MyAxLjUzIDAgMDAyLjE4NC4wNGw0LjcxOC00Ljc3YTEuMzU3IDEuMzU3IDAgMDAtMS4wNzItMi4yOTF6IiBmaWxsPSIjMTYxNjE2Ii8+PC9zdmc+) no-repeat right 0.5rem center;background-size: 1.125rem;">
-	                            			<option value="ECONOMY">일반석</option>
-	                            			<option value="PREMIUM_ECONOMY">프리미엄 일반석</option>
-	                            			<option value="BUSINESS">비즈니스석</option>
-	                            			<option value="FIRST">일등석</option>
-	                            		</select>
-	                            	</div>
-	                            	<div class="">
-								    	<div class="r-flex mb-4" style="justify-content: space-between;">
-								    		<label class="BpkLabel" for="adult-nudger">
-								    			<span class="c-flex" role="text">
-								    				<span class="CabinSelector_Label">
-								    					성인
-								    				</span>
-								    				<span class="BpkText">
-								    					만 16세 이상
-								    				</span>
-								    			</span>
-								    		</label>
-								    		<div class="">
-								    			<div class="bpk-nudger">
-								    				<button type="button" class="BpkButton" title="인원 줄이기 성인" onclick="decrementCount('adult-nudger')">
-								    					<span style="line-height: 1rem; display: inline-block; margin-top: 0.25rem; vertical-align: top;">
-								    						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="" style="width: 1rem; height: 1rem;">
-								    							<path d="M1.5 12A1.5 1.5 0 013 10.5h18a1.5 1.5 0 010 3H3A1.5 1.5 0 011.5 12z"/>
-									    					</svg>
+            		<div class="container containerSize" style="padding:0;">
+            			<%@ include file="module/header.jsp" %>
+		                <h2 class="mt-5 mb-4" style="font-weight:bold;">당신의 여행은 지금부터</h2>
+		                <form action="/TravelMaker/flightSearch.do">
+		                	<div class="SearchBar row g-3">
+		                        <div class="origin-input firstSearchBar c-flex" style="justify-content: center;">
+		                            <span class="Input_Label">출발지</span>
+		                            <input type="text" class="form-control none-deco-input" id="origin" name="originLocationCode" placeholder="출발지를 입력하세요">
+		                        </div>
+		                        <div class="origin-input c-flex" style="justify-content: center;">
+		                            <span class="Input_Label">도착지</span>
+		                            <input type="text" class="form-control none-deco-input" id="destination" name="destinationLocationCode" placeholder="도착지를 입력하세요">
+		                        </div>
+		                        <div class="date-input c-flex" style="justify-content: center;">
+		                            <span class="Input_Label">가는 날짜</span>
+		                            <input type="date" class="form-control none-deco-input" id="checkIn" name="departureDate">
+		                        </div>
+		                        <div class="date-input c-flex" style="justify-content: center;">
+		                            <span class="Input_Label">오는 날짜</span>
+		                            <input type="date" class="form-control none-deco-input" id="checkOut" name="returnDate">
+		                        </div>
+		                        <div class="cabin-input lastSearchBar c-flex" style="justify-content: center; position: relative;">
+		                        	<div id="cabin-input" style="text-overflow: ellipsis; overflow: hidden;">
+		                        		<span class="Input_Label">여행자 및 좌석</span>
+		                            	<span id="travelInfo">1 성인, 일반석</span>
+		                        	</div>
+		                            <!-- 여행객 및 좌석 dropdown start -->
+		                            <div id="cabin-dropdown" class="dropdown-menu gap-1 p-4 rounded-3 mx-0 shadow w-220px" data-bs-theme="light" style="position: absolute; top:5rem; left:-5rem; min-width: 20rem; ">
+		                            	<div style="margin-bottom: 2.5rem; ">
+		                            		<label class="CabinSelector_Label" style="display: block; margin-bottom: 0.5rem;">좌석 등급</label>
+		                            		<select id="cabinSelector" class="CabinSelector_Select" name="travelClass" style="width: 100%; padding: 0.375rem 2rem 0.375rem 0.5rem; appearance:none; 
+		                            			background: #fff url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48c3R5bGU+PC9zdHlsZT48cGF0aCBkPSJNMTYuNTM3IDguMjVINy40NjNhMS4zNTggMS4zNTggMCAwMC0xLjExIDIuMjUxbDQuMzU0IDQuNzdhMS41MyAxLjUzIDAgMDAyLjE4NC4wNGw0LjcxOC00Ljc3YTEuMzU3IDEuMzU3IDAgMDAtMS4wNzItMi4yOTF6IiBmaWxsPSIjMTYxNjE2Ii8+PC9zdmc+) no-repeat right 0.5rem center;background-size: 1.125rem;">
+		                            			<option value="ECONOMY">일반석</option>
+		                            			<option value="PREMIUM_ECONOMY">프리미엄 일반석</option>
+		                            			<option value="BUSINESS">비즈니스석</option>
+		                            			<option value="FIRST">일등석</option>
+		                            		</select>
+		                            	</div>
+		                            	<div class="">
+									    	<div class="r-flex mb-4" style="justify-content: space-between;">
+									    		<label class="BpkLabel" for="adult-nudger">
+									    			<span class="c-flex" role="text">
+									    				<span class="CabinSelector_Label">
+									    					성인
 									    				</span>
-									    			</button>
-									    			<input type="text" aria-live="polite" readonly="" id="adult-nudger" name="adults" class="BpkNudger" tabindex="0" value="1">
-								    				<button type="button" class="BpkButton" title="인원 늘리기 성인" onclick="incrementCount('adult-nudger')">
-								    					<span style="line-height: 1rem; display: inline-block; margin-top: 0.25rem; vertical-align: top;">
-								    						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="" style="width: 1rem; height: 1rem;">
-								    							<path d="M12 1.5A1.5 1.5 0 0010.5 3v7.5H3a1.5 1.5 0 000 3h7.5V21a1.5 1.5 0 003 0v-7.5H21a1.5 1.5 0 000-3h-7.5V3A1.5 1.5 0 0012 1.5z"/>
-							    							</svg>
-							    						</span>
-							    					</button>
+									    				<span class="BpkText">
+									    					만 16세 이상
+									    				</span>
+									    			</span>
+									    		</label>
+									    		<div class="">
+									    			<div class="bpk-nudger">
+									    				<button type="button" class="BpkButton" title="인원 줄이기 성인" onclick="decrementCount('adult-nudger')">
+									    					<span style="line-height: 1rem; display: inline-block; margin-top: 0.25rem; vertical-align: top;">
+									    						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="" style="width: 1rem; height: 1rem;">
+									    							<path d="M1.5 12A1.5 1.5 0 013 10.5h18a1.5 1.5 0 010 3H3A1.5 1.5 0 011.5 12z"/>
+										    					</svg>
+										    				</span>
+										    			</button>
+										    			<input type="text" aria-live="polite" readonly="" id="adult-nudger" name="adults" class="BpkNudger" tabindex="0" value="1">
+									    				<button type="button" class="BpkButton" title="인원 늘리기 성인" onclick="incrementCount('adult-nudger')">
+									    					<span style="line-height: 1rem; display: inline-block; margin-top: 0.25rem; vertical-align: top;">
+									    						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="" style="width: 1rem; height: 1rem;">
+									    							<path d="M12 1.5A1.5 1.5 0 0010.5 3v7.5H3a1.5 1.5 0 000 3h7.5V21a1.5 1.5 0 003 0v-7.5H21a1.5 1.5 0 000-3h-7.5V3A1.5 1.5 0 0012 1.5z"/>
+								    							</svg>
+								    						</span>
+								    					</button>
+													</div>
+												</div>
+											</div>
+											<div class="r-flex mb-4" style="justify-content: space-between;">
+												<label class="BpkLabel" for="children-nudger">
+													<span class="c-flex" role="text">
+														<span class="CabinSelector_Label">
+															유/소아
+														</span>
+														<span class="BpkText">
+															만 0~15세 
+														</span>
+													</span>
+												</label>
+												<div class="">
+													<div class="bpk-nudger">
+														<button type="button" class="BpkButton" title="인원 줄이기 유/소아" onclick="decrementCount('children-nudger')">
+															<span style="line-height: 1rem; display: inline-block; margin-top: 0.25rem; vertical-align: top;">
+																<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="" style="width: 1rem; height: 1rem;">
+																	<path d="M1.5 12A1.5 1.5 0 013 10.5h18a1.5 1.5 0 010 3H3A1.5 1.5 0 011.5 12z"/>
+																</svg>
+															</span>
+														</button>
+														<input type="text" aria-live="polite" readonly="" id="children-nudger" name="" class="BpkNudger" tabindex="0" value="0">
+														<button type="button" class="BpkButton" title="인원 늘리기 유/소아" onclick="incrementCount('children-nudger')">
+															<span style="line-height: 1rem; display: inline-block; margin-top: 0.25rem; vertical-align: top;">
+																<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="" style="width: 1rem; height: 1rem;">
+																	<path d="M12 1.5A1.5 1.5 0 0010.5 3v7.5H3a1.5 1.5 0 000 3h7.5V21a1.5 1.5 0 003 0v-7.5H21a1.5 1.5 0 000-3h-7.5V3A1.5 1.5 0 0012 1.5z"/>
+																</svg>
+															</span>
+														</button>
+													</div>
 												</div>
 											</div>
 										</div>
-										<div class="r-flex mb-4" style="justify-content: space-between;">
-											<label class="BpkLabel" for="children-nudger">
-												<span class="c-flex" role="text">
-													<span class="CabinSelector_Label">
-														유/소아
-													</span>
-													<span class="BpkText">
-														만 0~15세 
-													</span>
-												</span>
-											</label>
-											<div class="">
-												<div class="bpk-nudger">
-													<button type="button" class="BpkButton" title="인원 줄이기 유/소아" onclick="decrementCount('children-nudger')">
-														<span style="line-height: 1rem; display: inline-block; margin-top: 0.25rem; vertical-align: top;">
-															<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="" style="width: 1rem; height: 1rem;">
-																<path d="M1.5 12A1.5 1.5 0 013 10.5h18a1.5 1.5 0 010 3H3A1.5 1.5 0 011.5 12z"/>
-															</svg>
-														</span>
-													</button>
-													<input type="text" aria-live="polite" readonly="" id="children-nudger" name="" class="BpkNudger" tabindex="0" value="0">
-													<button type="button" class="BpkButton" title="인원 늘리기 유/소아" onclick="incrementCount('children-nudger')">
-														<span style="line-height: 1rem; display: inline-block; margin-top: 0.25rem; vertical-align: top;">
-															<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="" style="width: 1rem; height: 1rem;">
-																<path d="M12 1.5A1.5 1.5 0 0010.5 3v7.5H3a1.5 1.5 0 000 3h7.5V21a1.5 1.5 0 003 0v-7.5H21a1.5 1.5 0 000-3h-7.5V3A1.5 1.5 0 0012 1.5z"/>
-															</svg>
-														</span>
-													</button>
-												</div>
-											</div>
-										</div>
+										<div class="" style="width: 100%;">
+		                            		<button type="submit" class="btn btn-primary w-100 h-100">검색</button>
+		                        		</div>
 									</div>
-									<div class="" style="width: 100%;">
-	                            		<button type="submit" class="btn btn-primary w-100 h-100">검색</button>
-	                        		</div>
-								</div>
-								<!-- 여행객 및 좌석 dropdown end -->
-	                        </div>
-	                        <div class="" style="width: fit-content;">
-	                            <button type="submit" class="btn btn-primary w-100 h-100">검색</button>
-	                        </div>
-	                	</div>
-	                </form>
+									<!-- 여행객 및 좌석 dropdown end -->
+		                        </div>
+		                        <div class="" style="width: fit-content;">
+		                            <button type="submit" class="btn btn-primary w-100 h-100">검색</button>
+		                        </div>
+		                	</div>
+		                </form>
+	                </div>
                 </div>           
 		        <!-- header/검색창 end -->
 		        <!-- body start -->
@@ -303,6 +305,7 @@
     		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     		<script src="js/button.js"></script>
+    		<script src="js/app.js"></script>
         </body>
     </html>
     
