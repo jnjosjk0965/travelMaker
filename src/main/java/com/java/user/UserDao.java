@@ -4,8 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+<<<<<<< HEAD
+import java.util.ArrayList;
+import java.util.List;
+=======
 
 import common.JDBCUtil;
+>>>>>>> 267b6c11c953b10be48837329927ebe290b69682
 
 public class UserDao {
     private Connection conn;
@@ -111,5 +116,63 @@ public class UserDao {
 
         // 결과 값을 반환
         return cnt;
+    }
+    
+    //관리자 페이지의 모든 회원 정보 출력 DAO
+    public List<UserDTO> getAllUsers() {
+        String sql = "SELECT * FROM USER";
+        List<UserDTO> userList = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    UserDTO user = new UserDTO(rs.getString("UserEmail"),rs.getString("UserPwd"));
+                    user.setUserNName(rs.getString("UserNName"));
+                    user.setUserEName(rs.getString("UserEName"));
+                    user.setUserCountry(rs.getString("UserCountry"));
+                    user.setUserBirth(rs.getString("UserBirth"));
+
+                    userList.add(user);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return userList;
+    }
+    public List<UserDTO> searchUsersByEmail(String email) {
+        List<UserDTO> userList = new ArrayList<>();
+        String sql = "SELECT * FROM USER WHERE UserEmail = ?";
+
+        try {
+        	PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+
+            ResultSet rs = pstmt.executeQuery(); 
+            while (rs.next()) {
+            	UserDTO user = new UserDTO(rs.getString("UserEmail"),rs.getString("UserPwd"));
+            	user.setUserNName(rs.getString("UserNName"));
+            	user.setUserEName(rs.getString("UserEName"));
+            	user.setUserCountry(rs.getString("UserCountry"));
+            	user.setUserBirth(rs.getString("UserBirth"));
+
+            	userList.add(user);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+        	try {
+        		pstmt.close();
+				rs.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+        	
+        }
+
+        return userList;
     }
 }
