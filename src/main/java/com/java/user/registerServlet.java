@@ -25,16 +25,27 @@ public class registerServlet extends HttpServlet {
         String userEmail = request.getParameter("userEmail");
         String userPwd = request.getParameter("userPwd");
         String userNName = request.getParameter("userNName");
-        String userEName = request.getParameter("userEName");
-        String userPasssport = request.getParameter("userPasssport");
+        
+        // 이름을 성과 이름으로 나눠 입력
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String userEName = firstName + lastName;
+        
+        String userPassport = request.getParameter("userPassport");
         String userCountry = request.getParameter("userCountry");
-        String userBirth = request.getParameter("userBirth");
+        // 년,월,일 버튼 3개로 나눈걸 userBirth에 합쳐 userBith 입력
+        String birthYear = request.getParameter("birthYear");
+        String birthMonth = request.getParameter("birthMonth");
+        String birthDay = request.getParameter("birthDay");
+        String userBirth = birthYear + "-" + birthMonth + "-" + birthDay;
 
-        UserDTO rdto = new UserDTO(userEmail,userPwd,userNName,userEName,userPasssport,userCountry,userBirth);
+        UserDTO rdto = new UserDTO(userEmail,userPwd,userNName,userEName,userPassport,userCountry,userBirth);
         UserDao rdao = new UserDao();
         int cnt = rdao.register(rdto);
         if(cnt>0) {
-        	out.println("<script>alert('회원가입에 성공했습니다.'); location.href='register.jsp';</script>");
+        	
+        	
+        	out.println("<script>alert('회원가입에 성공했습니다.'); location.href='index.jsp';</script>");
         	
         } else if(cnt == -1) {
             out.println("<script>alert('이미 등록된 이메일입니다.'); location.href='register.jsp';</script>"); 

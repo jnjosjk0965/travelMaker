@@ -86,7 +86,7 @@ public class UserDao {
             if(rs.next()) {
                 cnt = -1;
              } else {
-          		String insertsql = "INSERT INTO user (userEmail, userPwd, userNName, userEName, userPasssport, userCountry, userBirth) VALUES (?, ?, ?, ?, ?, ?, ?)";
+          		String insertsql = "INSERT INTO user (userEmail, userPwd, userNName, userEName, userPassport, userCountry, userBirth) VALUES (?, ?, ?, ?, ?, ?, ?)";
             	pstmt = conn.prepareStatement(insertsql);
             	pstmt.setString(1, dto.getUserEmail());
             	pstmt.setString(2, dto.getUserPwd());
