@@ -1,9 +1,10 @@
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.java.user.UserDao" %>
 <%@ page import="com.java.user.UserDTO" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -13,16 +14,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
     <style>
-     #nav-container {
-            width: 700px; /* 큰 네모 크기 설정 */
-            height: 300px;
-            border: 2px solid #ccc; /* 테두리 설정 */
-            padding: 10px; /* 안쪽 여백 설정 */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-            position: absolute;
-            top: 150px;
-            left: 150px;
-     }
+   
+     .search-button {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 12px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
     
     
     </style>
@@ -35,34 +35,42 @@
 <div id="nav-container">
 
 
-<h3>이메일로 검색하기</h3>
-<form method="post" action="/TravelMaker/search.do">
-    <input type="text" id="searchEmail" name="searchEmail" placeholder="검색어 입력">
-    <button type="submit">검색</button>
+<form method="post" action="search.do" style="display: flex; align-items: center; justify-content: flex-end; margin-right: 20px;">
+    <input type="text" id="searchEmail" name="searchEmail" placeholder="회원 이메일 입력" style="width: 30%;  margin-right: 10px;">
+    <button class="search-button" type="submit">검색</button>
 </form>
- 
+ <br>
 <%
     // DAO 클래스 및 메서드 호출
     UserDao userDao = new UserDao();
-    ArrayList<UserDTO> userList = userDao.getAllUsers();
+    List<UserDTO> userList = userDao.getAllUsers();
+    
+    List<UserDTO> usersByEmail = (List<UserDTO>)request.getAttribute("userList");
+    if(usersByEmail != null) {
+        userList = usersByEmail;
+    }
+    
+    List<UserDTO> usersDelete = (List<UserDTO>)request.getAttribute("remainlist");
+
 %>
 
-
-<h2 style="text-align: center;">Travel Maker 회원명단</h2>
-<table border="1" >
+<div class="table-container">
+<form method="post" action="delete.do">
+<table style="border: 1px solid #000;" >
     <thead>
         <tr>
-            <th>UserEmail</th>
-            <th>UserPwd</th>
-            <th>UserNName</th>
-            <th>UserEName</th>
-            <th>UserCountry</th>
-            <th>UserBirth</th>
-            <th>UserDelete</th>
+            <th>회원 이메일</th>
+            <th>회원 비밀번호</th>
+            <th>회원 닉네임</th>
+            <th>회원 여권이름</th>
+            <th>회원 국가</th>
+            <th>회원 생년월일</th>
+            <th>권한 부여</th>
+            <th>회원 탈퇴</th>
         </tr>
     </thead>
     <tbody>
-        <% for (UserDTO user : userList) { %>
+      <% for (UserDTO user : userList) { %>
             <tr>
                 <td><%= user.getUserEmail() %></td>
                 <td><%= user.getUserPwd() %></td>
@@ -70,11 +78,15 @@
                 <td><%= user.getUserEName() %></td>
                 <td><%= user.getUserCountry() %></td>
                 <td><%= user.getUserBirth() %></td>
-                <td><button onclick="" style="background-color: red; width: 80px;">계정 삭제</button></td>
+                <td><%= String.valueOf(user.isAdmin()) %></td>
+                <td>
+                <button name="deleteuser" value="<%= user.getUserEmail() %>" style="background-color: red; width: 90px;">계정 삭제</button></td>
             </tr>
         <% } %>
     </tbody>
 </table>
+</form>
+</div>
 </div>
 </body>
 </html>

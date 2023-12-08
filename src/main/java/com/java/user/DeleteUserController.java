@@ -9,25 +9,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.java.user.UserDao;
-import com.java.user.UserDTO;
 
-@WebServlet("/search.do")
-public class SearchUser extends HttpServlet {
-	
-	
+@WebServlet("/delete.do")
+public class DeleteUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-		String searchEmail = request.getParameter("searchEmail");
 		
+		String deleteuser = request.getParameter("deleteuser");
 		UserDao userdao = new UserDao();
-		List<UserDTO> userList = userdao.searchUsersByEmail(searchEmail);
 		
 		
-		request.setAttribute("userList", userList);
+		
+		List<UserDTO> remainlist = userdao.deleteUser(deleteuser);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminPage.jsp");
 		dispatcher.forward(request, response);
-        
-    }
+	}
+
 }
