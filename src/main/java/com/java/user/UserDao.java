@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
 import common.JDBCUtil;
 
 public class UserDao {
@@ -84,7 +86,7 @@ public class UserDao {
             if(rs.next()) {
                 cnt = -1;
              } else {
-          		String insertsql = "INSERT INTO user (userEmail, userPwd, userNName, userEName, userPasssport, userCountry, userBirth) VALUES (?, ?, ?, ?, ?, ?, ?)";
+          		String insertsql = "INSERT INTO user (userEmail, userPwd, userNName, userEName, userPassport, userCountry, userBirth) VALUES (?, ?, ?, ?, ?, ?, ?)";
             	pstmt = conn.prepareStatement(insertsql);
             	pstmt.setString(1, dto.getUserEmail());
             	pstmt.setString(2, dto.getUserPwd());
@@ -141,25 +143,27 @@ public class UserDao {
 		}finally {
 			JDBCUtil.close(rs,pstmt,conn);
 		}
-
+        // 모든 유저 정보 반환 (ArrayList형태로 반환 받는다.)
         return userList;
     }
-    public UserDTO searchUsersByEmail(String email) {
+    
+    // 유저 이메일을 통해 정보를 받아오는 메소드
+    public List<UserDTO> searchUsersByEmail(String searchEmail) {
+    	List<UserDTO> userList = new ArrayList<>();
         UserDTO user = null;
-        String sql = "SELECT * FROM USER WHERE UserEmail = ?";
+        
 
         try {
         	conn = JDBCUtil.getConnection();
-        	PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, email);
-
-            ResultSet rs = pstmt.executeQuery(); 
-            if (rs.next()) {
-            	user = new UserDTO(rs.getString("UserEmail"),rs.getString("UserPwd"));
-            	user.setUserNName(rs.getString("UserNName"));
-            	user.setUserEName(rs.getString("UserEName"));
-            	user.setUserCountry(rs.getString("UserCountry"));
-            	user.setUserBirth(rs.getString("UserBirth"));
+        	String searchsql = "SELECT * FROM user WHERE userEmail = ?";
+        	pstmt = conn.prepareStatement(searchsql);
+            pstmt.setString(1, searchEmail);
+            
+            rs = pstmt.executeQuery(); 
+            while (rs.next()) {
+            	user = new UserDTO(rs.getString("userEmail"),rs.getString("userPwd"),rs.getString("userNName"),rs.getString("userEName"),
+            					rs.getString("userPassport"),rs.getString("userCountry"),rs.getString("userBirth"),rs.getBoolean("isAdmin"));
+            	userList.add(user);
             }
             
         } catch (SQLException e) {
@@ -169,6 +173,43 @@ public class UserDao {
         	
         }
 
-        return user;
+        return userList;
+    }
+    
+    // 유저 계정 삭제 버튼을 누르면 회원정보를 삭제하는 메소드
+    public List<UserDTO> deleteUser(String deleteuser) {
+        List<UserDTO> remainlist = new ArrayList<>();
+ 
+        try {
+            conn = JDBCUtil.getConnection();
+            String deletesql = "DELETE FROM user WHERE userEmail = ?";
+            pstmt = conn.prepareStatement(deletesql);
+            pstmt.setString(1, deleteuser);
+            System.out.println("deleteuser: " + deleteuser);
+            int rowsAffected = pstmt.executeUpdate();
+            System.out.println("Rows affected: " + rowsAffected);
+            
+            if (rowsAffected > 0) {
+                // 회원 삭제가 성공하면 남은 회원 목록을 조회
+                String selectSql = "SELECT * FROM user";
+                pstmt = conn.prepareStatement(selectSql);
+                ResultSet rs = pstmt.executeQuery();
+
+                while (rs.next()) {
+                    UserDTO user = new UserDTO(rs.getString("userEmail"), rs.getString("userPwd"), rs.getString("userNName"),
+                            rs.getString("userEName"), rs.getString("userPassport"), rs.getString("userCountry"),
+                            rs.getString("userBirth"), rs.getBoolean("isAdmin"));
+                    remainlist.add(user);
+                }
+
+                JDBCUtil.close(rs, pstmt, conn);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.close(pstmt, conn);
+        }
+
+        return remainlist;
     }
 }

@@ -11,8 +11,11 @@
 	        </button>
 		</header>
         <form action="/TravelMaker/login.do" method="post">
+        
             <input type="text" id="userEmail" name="userEmail" placeholder="이메일" required><br>
             <input type="password" id="userPwd" name="userPwd" placeholder="비밀번호" required><br>
+            
+
              <p>
             계정이 없으십니까? 
             <a href="register.jsp" class="register-link">회원가입</a>
@@ -25,4 +28,6 @@
         </form>
 	</div>
 </div>    
+
+
 <!-- Login Modal end -->

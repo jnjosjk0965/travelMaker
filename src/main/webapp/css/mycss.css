@@ -125,3 +125,24 @@ input{
 .SearchBar>div:not(:last-child){
 	background-color: white;
 }
+.table-container {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-container th, .table-container td {
+    padding: 15px;
+    text-align: left;
+}
+
+.table-container th {
+    background-color: #f2f2f2;
+}
+
+.table-container tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.table-container tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}

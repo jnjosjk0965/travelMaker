@@ -10,6 +10,9 @@ public class UserDTO {
 	private String userBirth;
 	private boolean isAdmin;
 	
+	public UserDTO() {
+		
+	}
 	
 	public UserDTO(String userEmail, String userPwd) {
 		this.userEmail = userEmail;
