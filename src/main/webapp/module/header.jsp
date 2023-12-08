@@ -11,7 +11,7 @@
 			<div class="col-md-3 mb-2 mb-md-0">
 				<a href="index.jsp" class="d-inline-flex link-body-emphasis text-decoration-none">
 					<svg xmlns="http://www.w3.org/2000/svg" width="100" height="45" viewBox="0 0 100 45">
-						<image href="img/logo/logo_text.png" width="100" height="45"></image>
+						<image href="img/logo/TM_TextOnly.png" width="100" height="45"></image>
 					</svg>
 				</a>
 			</div>            
@@ -19,7 +19,7 @@
 				<%if(udto == null){ %>
 				<button id="login-button" type="button" class="btn my-button1">
 					<svg style="width:1.5rem; height:1.5rem;">
-                       	<image href="img/logo/icons8-user-profile-32.png" width="24" height="24">
+                       	<image href="img/icon/user_icon.png" width="24" height="24">
 					</svg>
 					<span style="font-size:1rem; line-height:1.5rem; text-overflow: ellipsis; white-space: nowrap;overflow: hidden;">
                      	로그인  
@@ -29,8 +29,8 @@
 				%>
 				<button id="user-button" type="button" class="btn my-button1 dropdown-toggle">
 					<svg height="1.5rem" width="1.5rem">
-  						<circle cx="0.75rem" cy="0.75rem" r="0.75rem" fill="url(#img/logo/icons8-user-profile-32.png)" />
-  						<image x="0" y="0" width="1.5rem" height="1.5rem" href="img/logo/icons8-user-profile-32.png" />
+  						<circle cx="0.75rem" cy="0.75rem" r="0.75rem" fill="url(#img/icon/user_icon.png)" />
+  						<image x="0" y="0" width="1.5rem" height="1.5rem" href="img/icon/user_icon.png" />
 					</svg>
 					<span style="font-size:1rem; line-height:1.5rem; text-overflow: ellipsis; white-space: nowrap;overflow: hidden;">
                     	<%if(udto.isAdmin()){%>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="css/mycss.css">
 <!-- Login Modal -->
-<div id="login-container" class="p-4" style="display:none;">
+<div id="login-container" class="p-4" style="display:none;z-index:100;">
 	<div class="login-content m-auto">
 		<header class="d-flex">
 			<span class="login-text">TravelMaker</span>

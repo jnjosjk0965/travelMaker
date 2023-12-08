@@ -13,41 +13,6 @@
             	푸른 계열 #7b9acc
             	베이지 #FCF6F5
             	*/
-                .origin-input{
-                    flex: 0 0 auto;
-                    width: 10.125rem;
-                }
-                .date-input,
-                .cabin-input{
-                	flex: 0 0 auto;
-                	width: 6rem;
-    				max-width: 10.125rem;
-                }
-                .firstSearchBar{
-                	border-radius: 0.75rem 0 0 0.75rem;
-                }
-                .lastSearchBar{
-    	            width: 10rem;
-    				max-width: 13rem;
-                	border-radius: 0 0.75rem 0.75rem 0;
-                }
-                .SearchBar{
-                	display: flex;
-                	flex-wrap: wrap;
-                	grid-column-gap: 0.25rem;
-    				column-gap: 0.25rem;
-    				flex-wrap: wrap;
-                }
-                .origin-input,
-				.date-input,
-				.cabin-input{
-				  	flex: 1;
-				  	height: 4.5rem;
-				  	cursor: pointer;
-				}
-                .SearchBar>div:not(:last-child){
-                	background-color: white;
-                }
                 .custom-card {
 				    position: relative;
 				    overflow: hidden;
@@ -156,7 +121,7 @@
 		                            	<span id="travelInfo">1 성인, 일반석</span>
 		                        	</div>
 		                            <!-- 여행객 및 좌석 dropdown start -->
-		                            <div id="cabin-dropdown" class="dropdown-menu gap-1 p-4 rounded-3 mx-0 shadow w-220px" data-bs-theme="light" style="position: absolute; top:5rem; left:-5rem; min-width: 20rem; ">
+		                            <div id="cabin-dropdown" class="dropdown-menu gap-1 p-4 rounded-3 mx-0 shadow w-220px" data-bs-theme="light" style="position: absolute; top:5rem; left:-5rem; min-width: 20rem;z-index:50; ">
 		                            	<div style="margin-bottom: 2.5rem; ">
 		                            		<label class="CabinSelector_Label" style="display: block; margin-bottom: 0.5rem;">좌석 등급</label>
 		                            		<select id="cabinSelector" class="CabinSelector_Select" name="travelClass" style="width: 100%; padding: 0.375rem 2rem 0.375rem 0.5rem; appearance:none; 

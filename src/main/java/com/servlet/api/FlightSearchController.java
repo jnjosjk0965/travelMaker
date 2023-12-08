@@ -23,14 +23,12 @@ import com.servlet.api.beans.SearchFlight;
 @WebServlet("/flightSearch.do")
 public class FlightSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-//	private static final String FLIGHT_SEARCH_URL = "https://test.api.amadeus.com/v2/shopping/flight-offers";
-//	private static String accessToken;
+	private static final String FLIGHT_SEARCH_URL = "https://test.api.amadeus.com/v2/shopping/flight-offers";
+	private static String accessToken;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doget");
 		//accessToken = APIKey.getAmaedusAccessToken();
-		
-		HttpSession session = request.getSession();
+	
 		
 		String originLocationCode = request.getParameter("originLocationCode");
 		String destinationLocationCode = request.getParameter("destinationLocationCode");
@@ -49,7 +47,7 @@ public class FlightSearchController extends HttpServlet {
 		searchInfo.setChildren(children);
 		searchInfo.setTravelClass(travelClass);
 		
-		session.setAttribute("searchInfo", searchInfo);
+		request.setAttribute("searchInfo", searchInfo);
 		
 		try {
 //			URL url = new URL(FLIGHT_SEARCH_URL + searchInfo.toString());
@@ -58,7 +56,7 @@ public class FlightSearchController extends HttpServlet {
 //			connection.setRequestProperty("Authorization", "Bearer " + accessToken);
 //			
 //			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			// 멀티스레드에선 StringBuffer
+//			 //멀티스레드에선 StringBuffer
 //			StringBuilder resp = new StringBuilder();
 //			String line;
 //			while ((line = reader.readLine()) != null) {
@@ -749,9 +747,9 @@ public class FlightSearchController extends HttpServlet {
 			// JSON 파싱
 			ObjectMapper objectMapper = new ObjectMapper();
 			FlightOffer offers = objectMapper.readValue(resp.toString(), FlightOffer.class);
-
-			session.setAttribute("offers", offers);
-			response.sendRedirect("flightSearch.jsp");
+			
+			request.setAttribute("offers", offers);
+			request.getRequestDispatcher("flightSearch.jsp").forward(request, response);
 			
 			
 			

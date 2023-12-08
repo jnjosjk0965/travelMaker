@@ -90,3 +90,38 @@ input{
 	align-items: center;
 	background: rgba(0, 0, 0, 0.5);
 }
+.origin-input{
+	flex: 0 0 auto;
+	width: 10.125rem;
+}
+.date-input,
+.cabin-input{
+	flex: 0 0 auto;
+	width: 6rem;
+	max-width: 10.125rem;
+}
+.firstSearchBar{
+	border-radius: 0.75rem 0 0 0.75rem;
+}
+.lastSearchBar{
+	width: 10rem;
+	max-width: 13rem;
+	border-radius: 0 0.75rem 0.75rem 0;
+}
+.SearchBar{
+	display: flex;
+	flex-wrap: wrap;
+	grid-column-gap: 0.25rem;
+	column-gap: 0.25rem;
+	flex-wrap: wrap;
+}
+.origin-input,
+.date-input,
+.cabin-input{
+  	flex: 1;
+  	height: 4.5rem;
+  	cursor: pointer;
+}
+.SearchBar>div:not(:last-child){
+	background-color: white;
+}

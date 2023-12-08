@@ -7,49 +7,41 @@
 <%@page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% FlightOffer offers = (FlightOffer)request.getAttribute("offers"); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>검색 결과</title>
 </head>
 <body>
-	<div class="SearchContainer p-5" style="background-color: #7b9acc;">
+	<div class="SearchContainer p-5">
 		<%@ include file="module/header.jsp" %>
-		<jsp:include page="module/header.jsp" flush="false"/>
+		<%@	include file="module/searchHeader.jsp" %>
 	</div>
-<% 
-	FlightOffer offers = (FlightOffer)session.getAttribute("offers");
-	
-	// offers 가 null 이 아니면서 data가 비어있지 않은 경우에만 처리
-	if(offers != null && offers.getData() != null){
-		List<FlightOffer.Data> dataList = offers.getData();
-	
-		// 데이터를 반복하며 카드 작성
-		for( FlightOffer.Data data : dataList){
-			List<Itinerary> itineraries = data.getItineraries();
-%>
-				<div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
-<%
-			for(Itinerary itinerary : itineraries){
-				Departure departure = itinerary.getSegments().get(0).getDeparture();
-				Arrival arrival = itinerary.getSegments().get(0).getArrival();
-%>
-                    <p>출발시간: <%= departure.getAt() %></p>
-                    <p>출발공항: <%= departure.getIataCode() %></p>
-                    <p>도착시간: <%= arrival.getAt() %></p>
-                    <p>도착공항: <%= arrival.getIataCode() %></p>
-<%
-			}
-			Price price = data.getPrice();
-%>
-					<p>가격: <%= price.getTotal() %> <%= price.getCurrency() %></p>
-				</div>
-<% 
-        }
-    } else {
-    	
-	}
-%>
+	<div class="container">
+		<c:if test="${not empty offers and not empty offers.getData() }">
+			<c:forEach var="data" items="${offers.getData()}">
+				<jsp:include page="module/flightCard.jsp">
+					<jsp:param value="${data.getItineraries().get(0).getSegments().get(0).getCarrierCode()}" name="dep-airline"/>
+					<jsp:param value="${data.getItineraries().get(0).getDuration()}" name="dep-duration"/>
+					<jsp:param value="${data.getItineraries().get(0).getSegments().get(0).getDeparture().getAt()}" name="dep-dep-time"/>
+					<jsp:param value="${data.getItineraries().get(0).getSegments().get(0).getDeparture().getIataCode()}" name="dep-dep-airport"/>
+					<jsp:param value="${data.getItineraries().get(0).getSegments().get(0).getArrival().getAt()}" name="dep-arr-time"/>
+					<jsp:param value="${data.getItineraries().get(0).getSegments().get(0).getArrival().getIataCode()}" name="dep-arr-airport"/>
+					<jsp:param value="${data.getItineraries().get(1).getSegments().get(0).getCarrierCode()}" name="ret-airline"/>
+					<jsp:param value="${data.getItineraries().get(1).getDuration()}" name="ret-duration"/>
+					<jsp:param value="${data.getItineraries().get(1).getSegments().get(0).getDeparture().getAt()}" name="ret-dep-time"/>
+					<jsp:param value="${data.getItineraries().get(1).getSegments().get(0).getDeparture().getIataCode()}" name="ret-dep-airport"/>
+					<jsp:param value="${data.getItineraries().get(1).getSegments().get(0).getArrival().getAt()}" name="ret-arr-time"/>
+					<jsp:param value="${data.getItineraries().get(1).getSegments().get(0).getArrival().getIataCode()}" name="ret-arr-airport"/>
+					<jsp:param value="${data.getTravelerPricings().get(0).getPrice().getTotal()}" name="price"/>
+					<jsp:param value="${data.getPrice().getTotal()}" name="total"/>
+				</jsp:include>
+			</c:forEach>
+		</c:if>
+	</div>
 </body>
 </html>

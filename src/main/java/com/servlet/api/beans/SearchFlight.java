@@ -54,7 +54,7 @@ public class SearchFlight {
 	public String toString() {
 		String result = "?originLocationCode=" + originLocationCode + "&destinationLocationCode="+destinationLocationCode + 
 				"&departureDate="+departureDate+"&returnDate="+returnDate+"&adults="+adults+
-				"&nonStop=true&currencyCode=KRW&max=250";
+				"&nonStop=true&max=250";
 		if(children != null) {
 			result += "&children=" + children;
 		}

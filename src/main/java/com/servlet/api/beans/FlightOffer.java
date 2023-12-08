@@ -1,9 +1,17 @@
 package com.servlet.api.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import common.DurationParser;
+
+import java.text.NumberFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FlightOffer {
@@ -11,6 +19,10 @@ public class FlightOffer {
     private Meta meta;
 	@JsonProperty("data")
     private List<Data> data;
+	@JsonIgnore
+	private static NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
+	@JsonIgnore
+	private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("a h:mm",Locale.getDefault());
 
     public Meta getMeta() {
 		return meta;
@@ -131,8 +143,15 @@ public class FlightOffer {
     }
 	@JsonIgnoreProperties(ignoreUnknown = true)
     public static class Itinerary {
+		private String duration;
         private List<Segment> segments;
         
+		public String getDuration() {
+			return DurationParser.formatDuration(DurationParser.parseDuration(duration));
+		}
+		public void setDuration(String duration) {
+			this.duration = duration;
+		}
 		public List<Segment> getSegments() {
 			return segments;
 		}
@@ -205,7 +224,7 @@ public class FlightOffer {
 			this.terminal = terminal;
 		}
 		public String getAt() {
-			return at;
+			return LocalDateTime.parse(at).format(dateFormatter);
 		}
 		public void setAt(String at) {
 			this.at = at;
@@ -230,7 +249,7 @@ public class FlightOffer {
 			this.terminal = terminal;
 		}
 		public String getAt() {
-			return at;
+			return LocalDateTime.parse(at).format(dateFormatter);
 		}
 		public void setAt(String at) {
 			this.at = at;
@@ -261,19 +280,31 @@ public class FlightOffer {
 			this.currency = currency;
 		}
 		public String getTotal() {
-			return total;
+			String[]temp = total.split("\\.");
+			if(temp.length == 0)
+				return numFormatter.format(Integer.parseInt(total)); 
+			else
+				return numFormatter.format(Integer.parseInt(temp[0]));
 		}
 		public void setTotal(String total) {
 			this.total = total;
 		}
 		public String getBase() {
-			return base;
+			String[]temp = base.split("\\.");
+			if(temp.length == 0)
+				return numFormatter.format(Integer.parseInt(base)); 
+			else
+				return numFormatter.format(Integer.parseInt(temp[0]));
 		}
 		public void setBase(String base) {
 			this.base = base;
 		}
 		public String getGrandTotal() {
-			return grandTotal;
+			String[]temp = grandTotal.split("\\.");
+			if(temp.length == 0)
+				return numFormatter.format(Integer.parseInt(grandTotal)); 
+			else
+				return numFormatter.format(Integer.parseInt(temp[0]));
 		}
 		public void setGrandTotal(String grandTotal) {
 			this.grandTotal = grandTotal;
