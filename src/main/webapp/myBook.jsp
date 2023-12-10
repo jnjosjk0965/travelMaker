@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bs/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/mycss.css">
-    <title>결제</title>
-    <style>
+    <title>예약확인</title>
+     <style>
         .back-btn {
             border: none;
             background: none;
@@ -42,32 +42,32 @@
                 <!-- 여행 예약 확인 섹션 -->
                 <div class="col-md-6">
                     <h2 class="mt-5 mb-4" style="font-weight:bold;">
-                        <button id="back_button" class="back-btn" >
-						    &lt;
-						</button>
-                        확인 및 결제
+                        <button id="back_button" class="back-btn">
+                            <span> &lt; </span>
+                        </button>
+                        내 예약
                     </h2>
                     <h4 style="font-weight:bold;"> 예약 정보 </h4> <br>
 
-                    <h5 style="font-weight:bold;">날짜  
-                        <button id="update_button" class="update-btn">
-                             수정 
+                    <h5 style="font-weight:bold;"> 
+                        <br> 날짜 
+                        <button id="back_button" class="back-btn">
+                            <span> 수정 </span> 
                         </button>
-                    </h5>
-                    <br>
+                    </h5> <br>
 
-                    <h5 style="font-weight:bold;">  여행자
-                        <button id="update_button" class="update-btn">
-                             수정 
-                        </button> 
-                    </h5>
-                     <br>
+                    <h5 style="font-weight:bold;"> 
+                        여행자 
+                        <button id="back_button" class="back-btn">
+                            <span> 수정 </span> 
+                        </button>
+                    </h5> <br>
 
                     <hr style="border-top: 2px solid #808080; margin: 30px 0;">
 
                     <h3 style="font-weight:bold;"> 
                         결제 수단 </h3>  <br>
-                    <select id="paymentMethod" name="paymentMethod" class="form-control" value="결제방식">
+                    <select id="paymentMethod" name="paymentMethod" class="form-control">
                         <option value="creditCard">신용카드</option>
                         <option value="kbBank">국민은행</option>
 					    <option value="nhBank">농협은행</option>
@@ -84,11 +84,11 @@
                     그 후에 취소하시면 예약 대금이 환불되지 않습니다. </h6>
                     <br>
                     
-                    <button id="login-button" type="button" class="btn my-button1">
-                        <span style="font-size:1rem; line-height:1.5rem; text-overflow: ellipsis; white-space: nowrap;overflow: hidden; ">
-                                확인 및 결제  
-                            </span>
-                    </button>
+                    <button id="login-button" type="button" class="btn my-button1" style="background-color: red;">
+					    <span style="font-size: 1rem; line-height: 1.5rem; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; color: white;">
+					        예약취소
+					    </span>
+					</button>
                 </div> <!-- 여행 예약 확인 섹션 끝 -->
 
                 <!-- Card 컴포넌트 시작 -->
