@@ -21,7 +21,7 @@
 					<svg style="width:1.5rem; height:1.5rem;">
                        	<image href="img/logo/icons8-user-profile-32.png" width="24" height="24">
 					</svg>
-					<span style="font-size:1rem; line-height:1.5rem; text-overflow: ellipsis; white-space: nowrap;overflow: hidden;">
+					<span style="font-size:1rem; line-height:1.5rem; text-overflow: ellipsis; white-space: nowrap;overflow: hidden; ">
                      	로그인  
 					</span>
 				</button>
