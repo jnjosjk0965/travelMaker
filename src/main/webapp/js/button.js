@@ -3,23 +3,6 @@
  */
 // 좌석 등급이 변경될 때마다 텍스트 업데이트
 document.getElementById('cabinSelector').addEventListener('change', updateTravelInfo);
-// 좌석 정보 창을 누르면 dropdown이 toggle
-const cabinInput = document.getElementById('cabin-input');
-cabinInput.addEventListener('click',()=>{
-	const dropdown = document.getElementById('cabin-dropdown');
-	dropdown.style.display = (dropdown.style.display === 'none' || dropdown.style.display === '') ? 'block' : 'none';
-});
-
-// 모달 on off
-const loginOpen = document.getElementById("login-button");
-const loginClose = document.getElementById("login-close-button");
-const loginForm = document.getElementById("login-container");
-loginOpen.addEventListener('click', () => {
-	loginForm.style.display = 'block';
-});
-loginClose.addEventListener('click', () => {
-	loginForm.style.display = 'none';
-});
 
 function decrementCount(nudgerId) {
 	// 해당 너저의 현재 값 가져오기
@@ -67,22 +50,4 @@ function updateTravelInfo() {
 		document.getElementById('travelInfo').innerText = adultCount + ' 성인, ' + selectedCabin;	
 	}
 }
-// 유저 이미지 클릭시 메뉴 드롭다운
-const userButton = document.getElementById("user-button");
-const userDropdown = document.getElementById("user-dropdown");
-let dropToggle = true;
-userButton.addEventListener("click", ()=>{
-	if(dropToggle){
-		userDropdown.style.height = "14rem";
-		userDropdown.style.paddingTop = "0.5rem";
-		userDropdown.style.paddingBottom = "0.5rem";
-		userDropdown.style.border = "0.8px";
-		dropToggle = !dropToggle;
-	}else{
-		userDropdown.style.height = "0rem";
-		userDropdown.style.paddingTop = "0rem";
-		userDropdown.style.paddingBottom = "0rem";
-		userDropdown.style.border = "0px";
-		dropToggle = !dropToggle;
-	}
-})
+

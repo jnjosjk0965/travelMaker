@@ -5,8 +5,8 @@
 function validateForm() {
         const origin = document.getElementById('origin');
         const destination = document.getElementById('destination');
-        const checkIn = document.getElementById('checkIn');
-        const checkOut = document.getElementById('checkOut');
+        const departureDate = document.getElementById('departureDate');
+        const returnDate = document.getElementById('returnDate');
 
         // 필수 입력란이 비어있으면 포커스 이동
         if (origin.value === "") {
@@ -19,13 +19,13 @@ function validateForm() {
             return false;
         }
 		
-		if (checkIn.value === ""){
-			checkIn.focus();
+		if (departureDate.value === ""){
+			departureDate.focus();
 			return false;
 		}
 		
-		if (checkOut.value === ""){
-			checkOut.focus();
+		if (returnDate.value === ""){
+			returnDate.focus();
 			return false;
 		}
         // 모든 조건을 통과하면 true 반환하여 폼이 submit 됨

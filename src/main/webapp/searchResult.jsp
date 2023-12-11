@@ -1,3 +1,4 @@
+<%@page import="com.servlet.api.beans.HotelList"%>
 <%@page import="com.servlet.api.beans.FlightOffer.Price"%>
 <%@page import="com.servlet.api.beans.FlightOffer.Arrival"%>
 <%@page import="com.servlet.api.beans.FlightOffer.Departure"%>
@@ -8,7 +9,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<% FlightOffer offers = (FlightOffer)request.getAttribute("offers"); 
+<% 
+FlightOffer flightOffers = (FlightOffer)session.getAttribute("flightOffers");
+HotelList hotelList = (HotelList)session.getAttribute("hotelList");
 %>
 <!DOCTYPE html>
 <html>
@@ -22,8 +25,8 @@
 		<%@	include file="module/searchHeader.jsp" %>
 	</div>
 	<div class="container">
-		<c:if test="${not empty offers and not empty offers.getData() }">
-			<c:forEach var="data" items="${offers.getData()}">
+		<c:if test="${not empty flightOffers }">
+			<c:forEach var="data" items="${flightOffers.getFlightData()}">
 				<jsp:include page="module/flightCard.jsp">
 					<jsp:param value="${data.getItineraries().get(0).getSegments().get(0).getCarrierCode()}" name="dep-airline"/>
 					<jsp:param value="${data.getItineraries().get(0).getDuration()}" name="dep-duration"/>

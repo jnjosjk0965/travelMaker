@@ -5,7 +5,6 @@ body{
 input{
 	width: 100%;
     padding: 10px;
-    margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -79,35 +78,6 @@ input{
     width: 20px; /* 추가: 이미지 크기를 조절 */
     height: 20px;
 }
-#login-container{
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: rgba(0, 0, 0, 0.5);
-}
-.origin-input{
-	flex: 0 0 auto;
-	width: 10.125rem;
-}
-.date-input,
-.cabin-input{
-	flex: 0 0 auto;
-	width: 6rem;
-	max-width: 10.125rem;
-}
-.firstSearchBar{
-	border-radius: 0.75rem 0 0 0.75rem;
-}
-.lastSearchBar{
-	width: 10rem;
-	max-width: 13rem;
-	border-radius: 0 0.75rem 0.75rem 0;
-}
 .SearchBar{
 	display: flex;
 	flex-wrap: wrap;
@@ -115,15 +85,84 @@ input{
 	column-gap: 0.25rem;
 	flex-wrap: wrap;
 }
-.origin-input,
-.date-input,
-.cabin-input{
+.searchControl-origin{
+	position: relative;
+	border-radius: 0.75rem 0 0 0.75rem;
+	width: 10.125rem;
+}
+.searchControl-destination{
+	position: relative;
+	border-radius: 0;
+	width: 10.125rem;
+}
+.searchControl-cabin{
+	border-radius: 0 0.75rem 0.75rem 0;
+}
+.searchControl-cabin::after{
+	display:none;
+}
+.searchControl-cabin .dropdown-toggle::after{
+	display: none;
+}
+.searchControl-cabin,
+.searchControl-date{
+	width: 10rem;
+	max-width: 13rem;
+}
+.searchControl-origin,
+.searchControl-destination,
+.searchControl-date,
+.searchControl-cabin{
   	flex: 1;
+  	padding: 0 1rem;
   	height: 4.5rem;
   	cursor: pointer;
 }
 .SearchBar>div:not(:last-child){
 	background-color: white;
+}
+.CabinSelector_Label,
+.Input_Label{
+    color: #05203c;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+}
+.input_Label{
+	cursor: pointer;
+}
+.CabinSelector_Select{
+	height: 3rem;
+	border-color: #c2c9cd;
+	border-radius: 0.75rem;
+}
+.BpkButton{
+	min-height: 2.25rem;
+	padding-right: 0.625rem;
+	padding-left: 0.625rem;
+	border-radius: 0.5rem;
+	border: none;
+	display:inline-block;
+	background-color: #e0e3e5;
+}
+.BpkNudger{
+	width: 2.5rem;
+	padding: 0.5rem 0;
+	display:inline-block;
+	border: none;
+	text-align: center;
+	font-size: 1rem;
+	line-height: 1.25rem;
+	font-weight: 700;
+}
+#travelInfo {
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .table-container {
     border-collapse: collapse;

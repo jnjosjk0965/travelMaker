@@ -2,6 +2,7 @@ package com.servlet.api.beans;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -16,29 +17,29 @@ import java.util.Locale;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FlightOffer {
 	@JsonProperty("meta")
-    private Meta meta;
+    private FlightMeta meta;
 	@JsonProperty("data")
-    private List<Data> data;
+    private List<FlightData> data;
 	@JsonIgnore
 	private static NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
 	@JsonIgnore
 	private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("a h:mm",Locale.getDefault());
 
-    public Meta getMeta() {
+    public FlightMeta getFlightMeta() {
 		return meta;
 	}
-	public void setMeta(Meta meta) {
+	public void setFlightMeta(FlightMeta meta) {
 		this.meta = meta;
 	}
-	public List<Data> getData() {
+	public List<FlightData> getFlightData() {
 		return data;
 	}
-	public void setData(List<Data> data) {
+	public void setFlightData(List<FlightData> data) {
 		this.data = data;
 	}
 	// Inner classes for nested structures
 
-    public static class Meta {
+    public static class FlightMeta {
     	// 검색 결과 수
     	@JsonProperty("count")
         private int count;
@@ -74,7 +75,7 @@ public class FlightOffer {
 		}
     }
 	@JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Data {
+    public static class FlightData {
     	@JsonProperty("id")
         private String id; // 플라이트 오퍼 id
     	@JsonProperty("oneWay")
