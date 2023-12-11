@@ -1,24 +1,26 @@
 package com.servlet.api.beans;
 
-public class SearchFlight {
-	private String originLocationCode;
-	private String destinationLocationCode;
+import com.java.mapping.CityMapper;
+
+public class SearchInfo {
+	private String originLocation;
+	private String destinationLocation;
 	private String departureDate;
 	private String returnDate;
 	private String adults;
 	private String children;
 	private String travelClass;
-	public String getOriginLocationCode() {
-		return originLocationCode;
+	public String getOriginLocation() {
+		return originLocation;
 	}
-	public void setOriginLocationCode(String originLocationCode) {
-		this.originLocationCode = originLocationCode;
+	public void setOriginLocation(String originLocation) {
+		this.originLocation = originLocation;
 	}
-	public String getDestinationLocationCode() {
-		return destinationLocationCode;
+	public String getDestinationLocation() {
+		return destinationLocation;
 	}
-	public void setDestinationLocationCode(String destinationLocationCode) {
-		this.destinationLocationCode = destinationLocationCode;
+	public void setDestinationLocation(String destinationLocation) {
+		this.destinationLocation = destinationLocation;
 	}
 	public String getDepartureDate() {
 		return departureDate;
@@ -50,11 +52,12 @@ public class SearchFlight {
 	public void setTravelClass(String travelClass) {
 		this.travelClass = travelClass;
 	}
-	@Override
-	public String toString() {
-		String result = "?originLocationCode=" + originLocationCode + "&destinationLocationCode="+destinationLocationCode + 
+	
+	public String getFlightString() {
+		String result = "?originLocationCode=" + CityMapper.getAirportCode(originLocation) + 
+				"&destinationLocationCode="+ CityMapper.getAirportCode(destinationLocation) + 
 				"&departureDate="+departureDate+"&returnDate="+returnDate+"&adults="+adults+
-				"&nonStop=true&currencyCode=KRW&max=250";
+				"&currencyCode=KRW&nonStop=true&max=250";
 		if(children != null) {
 			result += "&children=" + children;
 		}
@@ -62,5 +65,10 @@ public class SearchFlight {
 		return result;
 	}
 	
-	
+	public String getHotelListString() {
+		String result = "?latitude=" + CityMapper.getGeoInfo(destinationLocation)[0] + 
+						"&longitude="+ CityMapper.getGeoInfo(destinationLocation)[1] + 
+						"&radius=10";
+		return result;
+	}
 }
