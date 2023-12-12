@@ -4,7 +4,7 @@
 	<div class="r-flex p-4" style="justify-content: space-between;">
 		<div>
 			<a href="/">
-				<img src="img/logo/logo_pictext.png" style="width:180px">
+				<img src="img/logo/TM_Logo.png" style="width:180px">
 			</a>
 			<h3>Team Travel Maker</h3>
 			<ul>

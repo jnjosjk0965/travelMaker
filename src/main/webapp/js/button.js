@@ -3,23 +3,6 @@
  */
 // 좌석 등급이 변경될 때마다 텍스트 업데이트
 document.getElementById('cabinSelector').addEventListener('change', updateTravelInfo);
-// 좌석 정보 창을 누르면 dropdown이 toggle
-const cabinInput = document.getElementById('cabin-input');
-cabinInput.addEventListener('click',()=>{
-	const dropdown = document.getElementById('cabin-dropdown');
-	dropdown.style.display = (dropdown.style.display === 'none' || dropdown.style.display === '') ? 'block' : 'none';
-});
-
-// 모달 on off
-const loginOpen = document.getElementById("login-button");
-const loginClose = document.getElementById("login-close-button");
-const loginForm = document.getElementById("login-container");
-loginOpen.addEventListener('click', () => {
-	loginForm.style.display = 'block';
-});
-loginClose.addEventListener('click', () => {
-	loginForm.style.display = 'none';
-});
 
 function decrementCount(nudgerId) {
 	// 해당 너저의 현재 값 가져오기
