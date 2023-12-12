@@ -67,7 +67,7 @@
 				    </li>
 				    <%if(udto.isAdmin()){%>
 				    <li>
-				      	<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+				      	<a class="dropdown-item d-flex gap-2 align-items-center" href="AdminPage.jsp">
 				        	<svg class="bi" width="16" height="16"><use xlink:href="#joystick"></use></svg>
 				        	유저관리
 				      	</a>

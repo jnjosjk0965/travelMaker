@@ -6,7 +6,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-  
     #hotel-container {
       display: flex;
       flex-direction: column; /* 세로로 배치 */
@@ -49,6 +48,7 @@
 	  width: 60%;
 	  height: 50%;
 	  margin-bottom: 20px; /* 텍스트 블록 간격 조절 */
+	  padding: 20px;
       
 	}
 	#hotel-payment{
@@ -60,7 +60,7 @@
 
 	}
   .youtube-video {
-    width: 65%;
+    width: 67.5%;
     padding: 5px; /* 안쪽 여백 설정 */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   }
@@ -117,6 +117,54 @@
  		 margin-up: 20px; /* 텍스트 블록 간격 조절 */
  		 
 	}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    width: 100%; /* 또는 원하는 크기로 조절 */
+    max-width: 70%;
+    height: 50%; /* 또는 원하는 최대 크기로 조절 */
+    background-color: rgba(0, 0, 0, 0.5);
+    right: 0; /* 오른쪽 끝에 위치하도록 함 */
+    top: 0; /* 상단에 위치하도록 함 */
+    margin-right: 0; /* 오른쪽 여백을 0으로 설정하여 오른쪽으로 배치되도록 함 */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin: 15% auto;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.rating-box,
+.review-text-box {
+  margin-top: 15px;
+  width: 60%;
+  height: 20%;
+}
+
+#hotel-verification-button,
+#submitReviewButton {
+  background-color: #18b9c7;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
 
   </style>
 
@@ -150,6 +198,7 @@
 	
     <div id="hotel-info">
       <h1>숙소 정보</h1>
+      <hr>
   <div class="amenity">
     <img src="img/icon/sleeping.png" alt="Sleeping PNG" style="width: 24px; height: 24px;">
     <h3>더블 베드</h3>
@@ -224,8 +273,7 @@
 	
 	
     <!-- 여기서부터 UserReview 부분 -->
-    
-    
+   
     <div id="user-reviews">
     <!-- Review Box 1 -->
     <div class="review-box">
@@ -236,6 +284,7 @@
   	  <img src="img/icon/star.png" alt="star-rating" style="width: 24px; height: 24px;">
       <img src="img/icon/star.png" alt="star-rating" style="width: 24px; height: 24px;">
       <img src="img/icon/star.png" alt="star-rating" style="width: 24px; height: 24px;">
+      <hr>
       <p>깔끔하고 좋아요! 조식이 아쉽지만 에어컨도 잘 나오고 무엇보다 프론트가 24시간란 점이 참 좋았던 것 같아요!</p>
       
     </div>
@@ -249,6 +298,7 @@
       <img src="img/icon/star.png" alt="star-rating" style="width: 24px; height: 24px;">
       <img src="img/icon/star.png" alt="star-rating" style="width: 24px; height: 24px;">
       <img src="img/icon/star.png" alt="star-rating" style="width: 24px; height: 24px;">
+      <hr>
       <p>This is great hotel. I've ever seen before like this hotel!! wonderful!!</p>
     </div>
 
@@ -261,13 +311,16 @@
       <img src="img/icon/star.png" alt="star-rating" style="width: 24px; height: 24px;">
       <img src="img/icon/star.png" alt="star-rating" style="width: 24px; height: 24px;">
       <img src="img/icon/half-star.png" alt="half-star" style="width: 24px; height: 24px;">
+      <hr>
       <p>非常好的设施！ 您的设施状况良好。</p>
     </div>
-
-    <div id="review-button-box">
-      <button id="write-review-button" onclick="writeReview()">리뷰 작성</button>
+    
     </div>
-  </div>
+    	<!-- 리뷰 작성은 모달로 전해집니다! -->
+    <div id="review-button-box">
+ 		 <button id="write-review-button" onclick="openModal()">이용후기 더보기</button>
+	</div>
+
 		
  
 </body>

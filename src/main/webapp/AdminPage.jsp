@@ -9,7 +9,8 @@
 <html lang="kr">
 <head>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/mycss.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bs/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/mycss.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
@@ -23,13 +24,17 @@
             border: none;
             cursor: pointer;
         }
+        .table- container{
+        justify-content: center; /* 가운데 정렬 */
+        padding: 10px;
+        }
     
     
     </style>
 </head>
 <body>
 <div class="container containerSize" style="padding:0;">
-	<jsp:include page="module/header.jsp"/>
+	<%@ include file="module/header.jsp" %>
 	<h2 style="text-align: center;">Admin Page</h2>
 </div>
 <div id="nav-container">
