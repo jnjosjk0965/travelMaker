@@ -30,7 +30,7 @@ public class SearchController extends HttpServlet {
 	private static String accessToken;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		accessToken = APIKey.getAmaedusAccessToken();
+		//accessToken = APIKey.getAmaedusAccessToken();
 		HttpSession session = request.getSession();
 		
 		String originLocation = request.getParameter("originLocation");

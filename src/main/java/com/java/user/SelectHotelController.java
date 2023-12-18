@@ -41,8 +41,10 @@ public class SelectHotelController extends HttpServlet {
 		
 		if(showDetail) {
 			// 상세 페이지로
+			response.sendRedirect("hotelInfo.jsp");
 		}else {
 			// 결제 페이지로
+			response.sendRedirect("purchase.jsp");
 		}
 	}
 

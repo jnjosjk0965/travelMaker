@@ -68,7 +68,7 @@
                     <h3 style="font-weight:bold;"> 
                         결제 수단 </h3>  <br>
                     <select id="paymentMethod" name="paymentMethod" class="form-control" value="결제방식">
-                        <option value="creditCard">신용카드</option>
+                        <option> </option>
                         <option value="kbBank">국민은행</option>
 					    <option value="nhBank">농협은행</option>
 					    <option value="shBank">신한은행</option>
