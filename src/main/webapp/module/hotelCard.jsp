@@ -59,7 +59,7 @@ int krwPrice = Integer.parseInt(roomPrice) * Currency.JPY;
 			<div class="title-info">
 				<a href="/TravelMaker/SelectHotel.do<%=queryString + "&showDetail=True"%>">
 					<span style="font-size: 18px;font-weight: bold">
-						<%= request.getParameter("hotelName") %>
+						<%= hotelName %>
 					</span>
 				</a>
 			</div>
