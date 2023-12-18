@@ -9,7 +9,7 @@
 <% 
 SearchInfo searchInfo = (SearchInfo)session.getAttribute("searchInfo");
 FlightOffer flightOffers = (FlightOffer)session.getAttribute("flightOffers");
-//Hotel hotelOffers = (Hotel)session.getAttribute("hotelOffers");
+Hotel hotelOffers = (Hotel)session.getAttribute("hotelOffers");
 FlightDTO selectedFlight;
 if(session.getAttribute("selected") == null){
 	selectedFlight = flightOffers.getCheapestFlight(searchInfo.getTravelClass());
@@ -17,8 +17,7 @@ if(session.getAttribute("selected") == null){
 }else{
 	selectedFlight = (FlightDTO)session.getAttribute("selected");
 }
-		
-
+hotelOffers.getData().get(0).getOffers().get(0).getRoom().getType()
 %>
 <!DOCTYPE html>
 <html>
@@ -76,8 +75,14 @@ if(session.getAttribute("selected") == null){
 			<c:if test="${ not empty hotelOffers }">
 				<c:forEach var="hotel" items="${ hotelOffers.getData() }">
 					<jsp:include page="module/hotelCard.jsp">
+						<jsp:param value="${hotel.getHotelDetailData().getHotelId()}" name="hotelId"/>
 						<jsp:param value="${hotel.getHotelDetailData().getName()}" name="hotelName"/>
-						<jsp:param value="${hotel.isAvailable()}" name="isAvailable"/>
+						<jsp:param value="${hotel.getHotelDetailData().getLatitude()}" name="latitude"/>
+						<jsp:param value="${hotel.getHotelDetailData().getLongitude()}" name="longitude"/>
+						<jsp:param value="${hotel.getOffers().get(0).getId()}" name="roomId"/>
+						<jsp:param value="${hotel.getOffers().get(0).getCheckInDate()}" name="checkInDate"/>
+						<jsp:param value="${hotel.getOffers().get(0).getCheckOutDate()}" name="checkOutDate"/>
+						<jsp:param value="${hotel.getOffers().get(0).getRoom().getType()}" name="roomType"/>
 						<jsp:param value="${hotel.getOffers().get(0).getPrice().getTotal()}" name="hotelPrice"/>
 					</jsp:include>
 				</c:forEach>
