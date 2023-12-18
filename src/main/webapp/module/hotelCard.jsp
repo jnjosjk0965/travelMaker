@@ -30,8 +30,22 @@
 	}
 </style>
 <% 
+String hotelId = request.getParameter("hotelId");
+String hotelName = request.getParameter("hotelName");
+String latitude = request.getParameter("latitude"); 
+String longitude = request.getParameter("longitude");
+String roomId = request.getParameter("roomId");
+String checkInDate = request.getParameter("checkInDate");
+String checkOutDate = request.getParameter("checkOutDate");
+String roomType = request.getParameter("roomType");
+String roomPrice = request.getParameter("roomPrice");
+
+String queryString = "?hotelId=" + hotelId +"&hotelName=" + hotelName + "&latitude=" + latitude +"&longitude=" + longitude +
+					"&roomId=" + roomId + "&checkInDate=" + checkInDate + "&checkOutDate=" + checkOutDate + 
+					"&roomType=" + roomType + "&roomPrice=" + roomPrice;
+
 NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
-int krwPrice = Integer.parseInt(request.getParameter("hotelPrice")) * Currency.JPY;
+int krwPrice = Integer.parseInt(roomPrice) * Currency.JPY;
 %>
 
 <div class="hotel-card mb-1">
@@ -43,15 +57,17 @@ int krwPrice = Integer.parseInt(request.getParameter("hotelPrice")) * Currency.J
 	<div class="hotelInfo mx-3">
 		<div style="cursor: pointer;">
 			<div class="title-info">
-				<span style="font-size: 18px;font-weight: bold">
-					<%= request.getParameter("hotelName") %>
-				</span>
+				<a href="TravelMaker/SelectHotel.do<%=queryString + "&showDetail=True"%>">
+					<span style="font-size: 18px;font-weight: bold">
+						<%= request.getParameter("hotelName") %>
+					</span>
+				</a>
 			</div>
 		</div>
 	</div>
 	<div class="c-flex justify-content-md-between">
 		<span><%= numFormatter.format(krwPrice) %> 원</span>
-		<button type="button" class="btn my-button1 ticket-btn"  onclick="openModal()">
+		<a href="TravelMaker/SelectHotel.do<%=queryString + "&showDetail=False"%>" class="btn my-button1 ticket-btn" >
 			예약&nbsp;
 			<span style="line-height: 1rem; display: inline-block; margin-top: 0.1rem; vertical-align: top;">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="BpkIcon_bpk-icon--rtl-support__YWE2M" fill="white" style="width: 1rem; height: 1rem;">
