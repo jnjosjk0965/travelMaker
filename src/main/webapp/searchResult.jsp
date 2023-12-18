@@ -17,7 +17,6 @@ if(session.getAttribute("selected") == null){
 }else{
 	selectedFlight = (FlightDTO)session.getAttribute("selected");
 }
-hotelOffers.getData().get(0).getOffers().get(0).getRoom().getType()
 %>
 <!DOCTYPE html>
 <html>
