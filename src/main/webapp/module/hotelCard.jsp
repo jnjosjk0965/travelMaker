@@ -75,6 +75,6 @@ int krwPrice = Integer.parseInt(roomPrice) * Currency.JPY;
 					</path>
 				</svg>
 			</span>
-		</button>
+		</a>
 	</div>
 </div>
