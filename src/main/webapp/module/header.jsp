@@ -21,7 +21,7 @@
 					<svg style="width:1.5rem; height:1.5rem;">
                        	<image href="img/icon/user_icon.png" width="24" height="24">
 					</svg>
-					<span style="font-size:1rem; line-height:1.5rem; text-overflow: ellipsis; white-space: nowrap;overflow: hidden;">
+					<span style="font-size:1rem; line-height:1.5rem; text-overflow: ellipsis; white-space: nowrap;overflow: hidden; ">
                      	로그인  
 					</span>
 				</button>
@@ -67,7 +67,7 @@
 				    </li>
 				    <%if(udto.isAdmin()){%>
 				    <li class="mt-1">
-				      	<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+				      	<a class="dropdown-item d-flex gap-2 align-items-center" href="AdminPage.jsp">
 				        	<svg class="bi" width="16" height="16"><use xlink:href="#joystick"></use></svg>
 				        	유저관리
 				      	</a>
