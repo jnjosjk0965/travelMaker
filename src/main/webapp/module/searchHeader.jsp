@@ -1,7 +1,9 @@
+<%@page import="com.servlet.api.beans.SearchInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+<% SearchInfo info =(SearchInfo)session.getAttribute("searchInfo"); %>
 <style>
 	.search-header-root{
 		min-height: 3.5rem;
@@ -117,18 +119,19 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script type="text/javascript" src="https://npmcdn.com/flatpickr@4.6.13/dist/l10n/ko.js"></script>
 <script>
+	const dep = new Date('<%= info.getDepartureDate() %>')
+	const ret = new Date('<%= info.getReturnDate() %>')
 	const departureDate = document.getElementById('departureDate');
 	const returnDate = document.getElementById('returnDate');
-	let depDefault = new Date();
-	depDefault.setDate(depDefault.getDate() + 1);
-	let retDefault = new Date();
-	retDefault.setDate(retDefault.getDate() + 4);
 	flatpickr(departureDate, {
 		dateFormat: 'Y-m-d',
 		enableTime: false,
 		minDate: 'today',
-		defaultDate: depDefault,
+		defaultDate: dep,
 		locale: 'ko',
+		onReady: function(selectedDates, dateStr, instance){
+			departureDate.value = instance.formatDate(dep, 'Y-m-d');
+	    },
 		onClose: function(selectedDates, dateStr, instance) {
 	        // 선택된 날짜를 input 요소에 설정
 	        departureDate.value = dateStr;
@@ -138,10 +141,10 @@
 		dateFormat: 'Y-m-d',
 		enableTime: false,
 		minDate: 'today',
-		defaultDate: retDefault,
+		defaultDate: ret,
 		locale: 'ko',
 		onReady: function(selectedDates, dateStr, instance){
-	        returnDate.value = instance.formatDate(retDefault, 'Y-m-d');
+	        returnDate.value = instance.formatDate(ret, 'Y-m-d');
 	    },
 		onClose: function(selectedDates, dateStr, instance) {
 	        // 선택된 날짜를 input 요소에 설정

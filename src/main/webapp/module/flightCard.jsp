@@ -1,3 +1,7 @@
+<%@page import="java.util.Locale"%>
+<%@page import="java.text.NumberFormat"%>
+<%@page import="com.servlet.api.beans.SearchInfo"%>
+<%@page import="com.servlet.api.beans.FlightDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -15,7 +19,7 @@
 		border-radius: 0.75rem 0 0 0.75rem;
 		flex: 2 1 auto;
 		position: relative;
-    	background-color: #fff;
+    	background-color: #eee;
 	}
 	.price-info{
 		position: relative;
@@ -168,8 +172,51 @@
     	font-weight: 700;
 	}
 </style>
-<%
-	
+<%  
+SearchInfo searchInfo = (SearchInfo)session.getAttribute("searchInfo");
+NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
+FlightDTO flight = new FlightDTO();
+
+int flightPrice = Integer.parseInt(request.getParameter("price")); // 인당 가격
+flight.setFlightPrice(flightPrice);
+String outNumber = request.getParameter("out-number");
+String retNumber = request.getParameter("ret-number");
+String flightId = searchInfo.getDepFormatDate() + outNumber + searchInfo.getRetFormatDate() + retNumber;
+
+String outboundAirline = request.getParameter("out-airline");
+String outboundDuration = request.getParameter("out-duration");
+String outboundDepartureTime = request.getParameter("out-dep-time");
+String outboundDepartureAirport = request.getParameter("out-dep-airport");
+String outboundArrivalTime = request.getParameter("out-arr-time");
+String outboundArrivalAirport = request.getParameter("out-arr-airport");
+
+String returnAirline = request.getParameter("ret-airline");
+String returnDuration = request.getParameter("ret-duration");
+String returnDepartureTime = request.getParameter("ret-dep-time");
+String returnDepartureAirport = request.getParameter("ret-dep-airport");
+String returnArrivalTime = request.getParameter("ret-arr-time");
+String returnArrivalAirport = request.getParameter("ret-arr-airport");
+
+flight.setOutboundAirline(outboundAirline);
+flight.setOutboundSeatClass(searchInfo.getTravelClass());
+flight.setOutboundFlightNo(outNumber);
+flight.setOutboundDuration(outboundDuration);
+flight.setOutboundDepartureTime(outboundDepartureTime);
+flight.setOutboundDepartureAirport(outboundDepartureAirport);
+flight.setOutboundArrivalTime(outboundArrivalTime);
+flight.setOutboundArrivalAirport(outboundArrivalAirport);
+
+flight.setReturnAirline(returnAirline);
+flight.setReturnSeatClass(searchInfo.getTravelClass());
+flight.setReturnFlightNo(retNumber);
+flight.setReturnDuration(returnDuration);
+flight.setReturnDepartureTime(returnDepartureTime);
+flight.setReturnDepartureAirport(returnDepartureAirport);
+flight.setReturnArrivalTime(returnArrivalTime);
+flight.setReturnArrivalAirport(returnArrivalAirport);
+
+flight.setFlightId(flightId);
+
 %>
 <div class="flight-card r-flex mb-2">
 	<div class="ticket-info">
@@ -178,20 +225,20 @@
 				<div class="ticket-detail">
 					<div class="airline-logo-container">
 						<img alt="항공사 로고" src="https://via.placeholder.com/60x30" class="">
-						<%= request.getParameter("dep-airline") %>
+						<%= outboundAirline %>
 					</div>
 					<div class="flight-info">
 						<div class="time-airport atleft">
-							<span class="time-info-text"><%= request.getParameter("dep-dep-time") %></span>
+							<span class="time-info-text"><%= outboundDepartureTime %></span>
 							<span class="airport-code-text">
-								<div >
-									<%= request.getParameter("dep-dep-airport") %>
+								<div>
+									<%= outboundDepartureAirport %>
 								</div>
 							</span>
 						</div>
 						<div class="mid-info">
 							<span class="" style="font-size: .75rem;line-height: 1rem;font-weight: 400;">
-								<%= request.getParameter("dep-duration") %>
+								<%= outboundDuration %>
 							</span>
 							<div class="plane-pointer">
 								<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 12 12" class="plane-icon">
@@ -206,34 +253,33 @@
 							</div>
 						</div>
 						<div class="time-airport atright">
-							<span class="time-info-text"><%= request.getParameter("dep-arr-time") %></span>
+							<span class="time-info-text"><%= outboundArrivalTime %></span>
 							<span class="airport-code-text">
-								<div aria-label="도쿄 하네다, HND, 일본">
-									<%= request.getParameter("dep-arr-airport") %>
+								<div>
+									<%= outboundArrivalAirport %>
 								</div>
 							</span>
 						</div>
 					</div>
 				</div>
-				<% String retAir = request.getParameter("ret-airline"); %>
-				<c:if test="${ retAir eq null }">
+				<c:if test="${ returnAirline eq null }">
 				<div class="ticket-detail">
 					<div class="airline-logo-container">
 						<img alt="항공사 로고" src="https://via.placeholder.com/60x30" class="">
-						<%= request.getParameter("ret-airline") %>
+						<%= returnAirline %>
 					</div>
 					<div class="flight-info">
 						<div class="time-airport atleft">
-							<span class="time-info-text"><%= request.getParameter("ret-dep-time") %></span>
+							<span class="time-info-text"><%= returnDepartureTime %></span>
 							<span class="airport-code-text">
-								<div aria-label="도쿄 하네다, HND, 일본">
-									<%= request.getParameter("ret-dep-airport") %>
+								<div>
+									<%= returnDepartureAirport %>
 								</div>
 							</span>
 						</div>
 						<div class="mid-info">
 							<span class="" style="font-size: .75rem;line-height: 1rem;font-weight: 400;">
-								<%= request.getParameter("ret-duration") %>
+								<%= returnDuration %>
 							</span>
 							<div class="plane-pointer">
 								<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 12 12" class="plane-icon">
@@ -248,10 +294,10 @@
 							</div>
 						</div>
 						<div class="time-airport atright">
-							<span class="time-info-text"><%= request.getParameter("ret-arr-time") %></span>
+							<span class="time-info-text"><%= returnArrivalTime %></span>
 							<span class="airport-code-text">
-								<div aria-label="인천국제공항, ICN, 대한민국">
-									<%= request.getParameter("ret-arr-airport") %>
+								<div>
+									<%= returnArrivalAirport %>
 								</div>
 							</span>
 						</div>
@@ -266,20 +312,34 @@
 			<div>
 				<div class="main-price">
 					<span class="price">
-						￦<%= request.getParameter("price") %>
+						￦<%= numFormatter.format(flightPrice) %>
 					</span>
 				</div>
-				<span class="total-price">총 가격 ￦<%=request.getParameter("total") %></span>
+				<span class="total-price">총 가격 ￦<%= numFormatter.format(Integer.parseInt(request.getParameter("total")))%></span>
 			</div>
-			<button type="button" class="btn my-button1 ticket-btn">
-				선택하기&nbsp;
-				<span style="line-height: 1rem; display: inline-block; margin-top: 0.1rem; vertical-align: top;">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="BpkIcon_bpk-icon--rtl-support__YWE2M" fill="white" style="width: 1rem; height: 1rem;">
-						<path d="M3 12a1.5 1.5 0 001.5 1.5h11.379l-4.94 4.94a1.5 1.5 0 002.122 2.12l7.5-7.5a1.5 1.5 0 000-2.12l-7.5-7.5a1.5 1.5 0 00-2.122 2.12l4.94 4.94H4.5A1.5 1.5 0 003 12z" clip-rule="evenodd">
-						</path>
-					</svg>
-				</span>
-			</button>
+			<c:set var="isModal" value="${param.isModal}"/>
+			<c:if test="${ isModal eq 'select' }">
+				<a href="/TravelMaker/SelectFlight.do<%=flight.getQueryString() %>" class="btn my-button1 ticket-btn">
+					선택하기&nbsp;
+					<span style="line-height: 1rem; display: inline-block; margin-top: 0.1rem; vertical-align: top;">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="BpkIcon_bpk-icon--rtl-support__YWE2M" fill="white" style="width: 1rem; height: 1rem;">
+							<path d="M3 12a1.5 1.5 0 001.5 1.5h11.379l-4.94 4.94a1.5 1.5 0 002.122 2.12l7.5-7.5a1.5 1.5 0 000-2.12l-7.5-7.5a1.5 1.5 0 00-2.122 2.12l4.94 4.94H4.5A1.5 1.5 0 003 12z" clip-rule="evenodd">
+							</path>
+						</svg>
+					</span>
+				</a>
+			</c:if>
+			<c:if test="${ isModal eq 'change' }">
+				<button type="button" class="btn my-button1 ticket-btn"  onclick="openModal()">
+					변경하기&nbsp;
+					<span style="line-height: 1rem; display: inline-block; margin-top: 0.1rem; vertical-align: top;">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="BpkIcon_bpk-icon--rtl-support__YWE2M" fill="white" style="width: 1rem; height: 1rem;">
+							<path d="M3 12a1.5 1.5 0 001.5 1.5h11.379l-4.94 4.94a1.5 1.5 0 002.122 2.12l7.5-7.5a1.5 1.5 0 000-2.12l-7.5-7.5a1.5 1.5 0 00-2.122 2.12l4.94 4.94H4.5A1.5 1.5 0 003 12z" clip-rule="evenodd">
+							</path>
+						</svg>
+					</span>
+				</button>
+			</c:if>
 		</div>
 	</div>
 </div>

@@ -8,15 +8,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class HotelList {
 	@JsonProperty("data")
-	private List<HotelData> data;
-	public List<HotelData> getHotelData() {
+	private List<HotelListData> data;
+	public List<HotelListData> getHotelListData() {
 		return data;
 	}
-	public void setHotelData(List<HotelData> data) {
+	public void setHotelListData(List<HotelListData> data) {
 		this.data = data;
 	}
+	public String getHotelListString() {
+		StringBuilder builder = new StringBuilder();
+		for (HotelListData hotel : data) {
+			builder.append(hotel.getHotelId() + ",");
+		}
+		String result = builder.toString();
+		if (result.endsWith(",")) {
+		    result = result.substring(0, result.length() - 1);
+		}
+		return "?hotelIds=" + result;
+	}
 	@JsonIgnoreProperties(ignoreUnknown = true)
-	public static class HotelData{
+	public static class HotelListData{
 		@JsonProperty("name")
         private String name;
 		@JsonProperty("hotelId")
@@ -40,12 +51,7 @@ public class HotelList {
 		}
 		public void setGeoCode(GeoCode geoCode) {
 			this.geoCode = geoCode;
-		}
-		@Override
-		public String toString() {
-			return "Data [name=" + name + ", hotelId=" + hotelId + ", geoCode=" + geoCode + "]";
-		}
-		
+		}		
 	}
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	public static class GeoCode{

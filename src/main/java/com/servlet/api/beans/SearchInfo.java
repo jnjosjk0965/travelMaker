@@ -1,5 +1,6 @@
 package com.servlet.api.beans;
 
+
 import com.java.mapping.CityMapper;
 
 public class SearchInfo {
@@ -25,11 +26,17 @@ public class SearchInfo {
 	public String getDepartureDate() {
 		return departureDate;
 	}
+	public String getDepFormatDate() {
+		return departureDate.replace("-", "");
+	}
 	public void setDepartureDate(String departureDate) {
 		this.departureDate = departureDate;
 	}
 	public String getReturnDate() {
 		return returnDate;
+	}
+	public String getRetFormatDate() {
+		return returnDate.replace("-", "");
 	}
 	public void setReturnDate(String returnDate) {
 		this.returnDate = returnDate;
@@ -45,6 +52,13 @@ public class SearchInfo {
 	}
 	public void setChildren(String children) {
 		this.children = children;
+	}
+	public int getNoP() { // 인원수 구하는 함수
+		if(children == null) {
+			return Integer.parseInt(adults);
+		}else {
+			return (Integer.parseInt(adults) + Integer.parseInt(children));
+		}
 	}
 	public String getTravelClass() {
 		return travelClass;
