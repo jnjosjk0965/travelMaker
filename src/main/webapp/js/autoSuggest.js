@@ -13,16 +13,10 @@ originInput.addEventListener('input', ()=>{
 destinationInput.addEventListener('input', ()=>{
 	showSuggestion(destinationInput,destinationInput.value,'suggestion-destination');
 });
-originInput.addEventListener('keydown', (event) => {
-    handleKeyDown(event, 'suggestion-origin', originInput);
-});
-destinationInput.addEventListener('keydown', (event) => {
-    handleKeyDown(event, 'suggestion-destination', destinationInput);
-});
 
 function showSuggestion(input ,value, suggestionId){
 	const inputElement = input;
-	const airport = ["대한민국 인천국제공항","도쿄 하네다","도쿄 나리타","오사카 칸사이인터내셔널",
+	const airport = ["대한민국 인천국제공항","대한민국 제주국제공항","도쿄 하네다","도쿄 나리타","오사카 칸사이인터내셔널",
 		"오사카 이타미","삿포로 신치토세","후쿠오카","나고야 주부","오키나와 나하","센다이"];
 	// 추천 목록을 표시할 엘리먼트 가져오기
 	const suggestElement = document.getElementById(suggestionId);

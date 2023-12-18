@@ -246,20 +246,20 @@
 		                  
 		                      <div class="col-md-3 mb-4 px-4">
 		                        <div class="custom-card">
+		                          <img src="img/home/tokyo.jpg" alt="Danang" width="200" height="270">
+		                          <div class="card-content">
+		                            <h2 style="font-family:'Black Han Sans', sans-serif, Helvetica, Arial;">도쿄</h2>
+		                            <p>일본의 현재</p>
+		                          </div>
+		                        </div>
+		                      </div>
+		                      
+		                      <div class="col-md-3 mb-4 px-4">
+		                        <div class="custom-card">
 		                          <img src="img/home/jeju.jpg" alt="jeju" width="200" height="270">
 		                          <div class="card-content">
 		                            <h2 style="font-family:'Black Han Sans', sans-serif, Helvetica, Arial;">제주</h2>
 		                            <p>신비로운 자연과 푸른 바다</p>
-		                          </div>
-		                        </div>
-		                      </div>
-		                  
-		                      <div class="col-md-3 mb-4 px-4">
-		                        <div class="custom-card">
-		                          <img src="img/home/danang.jpg" alt="Danang" width="200" height="270">
-		                          <div class="card-content">
-		                            <h2 style="font-family:'Black Han Sans', sans-serif, Helvetica, Arial;">다낭</h2>
-		                            <p>즐거움이 넘치는 휴양지</p>
 		                          </div>
 		                        </div>
 		                      </div>
@@ -273,7 +273,7 @@
 		        <!-- footer end -->
 		    </div>
 		    <jsp:include page="module/loginModal.jsp"/>
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     		<script src="js/bs/bootstrap.bundle.js"></script>
     		<script src="js/button.js"></script>
     		<script src="js/app.js"></script>
@@ -285,16 +285,18 @@
 		    	const checkOut = document.getElementById('checkOut');
 		    	const departureDate = document.getElementById("departureDate");
 		    	const returnDate = document.getElementById("returnDate");
+		    	let depDefault = new Date();
+		    	depDefault.setDate(depDefault.getDate() + 1);
 		    	let retDefault = new Date();
-		    	retDefault.setDate(retDefault.getDate() + 3);
+		    	retDefault.setDate(retDefault.getDate() + 4);
 		    	flatpickr(checkIn, {
 		    		dateFormat: 'Y-m-d',
 		    		enableTime: false,
 		    		minDate: 'today',
-		    		defaultDate: 'today',
+		    		defaultDate: depDefault,
 		    		locale: 'ko',
 		    		onReady: function(selectedDates, dateStr, instance){
-		                departureDate.value = instance.formatDate(new Date(), 'Y-m-d');
+		                departureDate.value = instance.formatDate(depDefault, 'Y-m-d');
 		            },
 		    		onClose: function(selectedDates, dateStr, instance) {
 		                // 선택된 날짜를 input 요소에 설정

@@ -23,7 +23,10 @@ public class FlightOffer {
 	@JsonIgnore
 	private static NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
 	@JsonIgnore
-	private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("a h:mm",Locale.getDefault());
+	private static DateTimeFormatter toTimeFormatter = DateTimeFormatter.ofPattern("a h:mm",Locale.getDefault());
+	@JsonIgnore
+	private static DateTimeFormatter toDateFormatter = DateTimeFormatter.ofPattern("yyMMdd");
+	
 
     public FlightMeta getFlightMeta() {
 		return meta;
@@ -37,6 +40,32 @@ public class FlightOffer {
 	public void setFlightData(List<FlightData> data) {
 		this.data = data;
 	}
+	public FlightDTO getCheapestFlight(String travelClass) {
+        if (data == null || data.isEmpty()) {
+            // Handle the case where the data list is empty
+        	System.out.println("getCheapestFlight::no data");
+            return null;
+        }
+        
+        // Initialize variables to store the minimum price and corresponding flight ID
+        double minPrice = Double.MAX_VALUE;
+        FlightData cheapestFlight = null;
+
+        // Iterate through the FlightData list
+        for (FlightData flightData : data) {
+            if (flightData.getPrice() != null && flightData.getPrice().getTotal() != null) {
+                // Parse the price as a double
+                double currentPrice = Double.parseDouble(flightData.getPrice().getTotal());
+                // Update the minimum price and corresponding flight ID if the current price is lower
+                if (currentPrice < minPrice) {
+                    minPrice = currentPrice;
+                    cheapestFlight = flightData;
+                }
+            }
+        }
+        
+        return cheapestFlight.getFlightDTO(travelClass);
+    }
 	// Inner classes for nested structures
 
     public static class FlightMeta {
@@ -141,6 +170,34 @@ public class FlightOffer {
 		public void setTravelerPricings(List<TravelerPricing> travelerPricings) {
 			this.travelerPricings = travelerPricings;
 		}
+		public FlightDTO getFlightDTO(String travelClass) {
+			FlightDTO result = new FlightDTO();
+	        result.setFlightPrice(Integer.parseInt(this.getTravelerPricings().get(0).getPrice().getTotal().split("\\.")[0]));
+	        String outNumber = this.getItineraries().get(0).getSegments().get(0).getNumber();
+	        String retNumber = this.getItineraries().get(1).getSegments().get(0).getNumber();
+	        
+	        result.setOutboundAirline(this.getItineraries().get(0).getSegments().get(0).getCarrierCode());
+	        result.setOutboundSeatClass(travelClass);
+	        result.setOutboundFlightNo(this.getItineraries().get(0).getSegments().get(0).getCarrierCode() + outNumber);
+	        result.setOutboundDuration(this.getItineraries().get(0).getDuration());
+	        result.setOutboundDepartureTime(this.getItineraries().get(0).getSegments().get(0).getDeparture().getAt());
+	        result.setOutboundDepartureAirport(this.getItineraries().get(0).getSegments().get(0).getDeparture().getIataCode());
+	        result.setOutboundArrivalTime(this.getItineraries().get(0).getSegments().get(0).getArrival().getAt());
+	        result.setOutboundArrivalAirport(this.getItineraries().get(0).getSegments().get(0).getArrival().getIataCode());
+
+	        result.setReturnAirline(this.getItineraries().get(1).getSegments().get(0).getCarrierCode());
+	        result.setReturnSeatClass(travelClass);
+	        result.setReturnFlightNo(this.getItineraries().get(1).getSegments().get(0).getCarrierCode() + retNumber);
+	        result.setReturnDuration(this.getItineraries().get(1).getDuration());
+	        result.setReturnDepartureTime(this.getItineraries().get(1).getSegments().get(0).getDeparture().getAt());
+	        result.setReturnDepartureAirport(this.getItineraries().get(1).getSegments().get(0).getDeparture().getIataCode());
+	        result.setReturnArrivalTime(this.getItineraries().get(1).getSegments().get(0).getArrival().getAt());
+	        result.setReturnArrivalAirport(this.getItineraries().get(1).getSegments().get(0).getArrival().getIataCode());
+	        
+	        result.setFlightId(this.getItineraries().get(0).getSegments().get(0).getDeparture().getDate() + result.getOutboundFlightNo() +
+	        					this.getItineraries().get(1).getSegments().get(0).getDeparture().getDate() + result.getReturnFlightNo());
+	        return result;
+		}
     }
 	@JsonIgnoreProperties(ignoreUnknown = true)
     public static class Itinerary {
@@ -159,6 +216,11 @@ public class FlightOffer {
 		public void setSegments(List<Segment> segments) {
 			this.segments = segments;
 		}
+		@Override
+		public String toString() {
+			return "Itinerary [duration=" + duration + ", segments=" + segments + "]";
+		}
+		
     }
 	@JsonIgnoreProperties(ignoreUnknown = true)
     public static class Segment {
@@ -205,6 +267,12 @@ public class FlightOffer {
 		public void setId(String id) {
 			this.id = id;
 		}
+		@Override
+		public String toString() {
+			return "Segment [id=" + id + ", departure=" + departure + ", arrival=" + arrival + ", carrierCode="
+					+ carrierCode + ", number=" + number + ", aircraft=" + aircraft + "]";
+		}
+		
     }
 	@JsonIgnoreProperties(ignoreUnknown = true)
     public static class Departure {
@@ -225,7 +293,10 @@ public class FlightOffer {
 			this.terminal = terminal;
 		}
 		public String getAt() {
-			return LocalDateTime.parse(at).format(dateFormatter);
+			return LocalDateTime.parse(at).format(toTimeFormatter);
+		}
+		public String getDate() {
+			return LocalDateTime.parse(at).format(toDateFormatter);
 		}
 		public void setAt(String at) {
 			this.at = at;
@@ -250,7 +321,10 @@ public class FlightOffer {
 			this.terminal = terminal;
 		}
 		public String getAt() {
-			return LocalDateTime.parse(at).format(dateFormatter);
+			return LocalDateTime.parse(at).format(toTimeFormatter);
+		}
+		public String getDate() {
+			return LocalDateTime.parse(at).format(toDateFormatter);
 		}
 		public void setAt(String at) {
 			this.at = at;
@@ -280,32 +354,41 @@ public class FlightOffer {
 		public void setCurrency(String currency) {
 			this.currency = currency;
 		}
-		public String getTotal() {
+		public String getFormatTotal() {
 			String[]temp = total.split("\\.");
 			if(temp.length == 0)
 				return numFormatter.format(Integer.parseInt(total)); 
 			else
 				return numFormatter.format(Integer.parseInt(temp[0]));
 		}
+		public String getTotal() {
+			return total;
+		}
 		public void setTotal(String total) {
 			this.total = total;
 		}
-		public String getBase() {
+		public String getFormatBase() {
 			String[]temp = base.split("\\.");
 			if(temp.length == 0)
 				return numFormatter.format(Integer.parseInt(base)); 
 			else
 				return numFormatter.format(Integer.parseInt(temp[0]));
 		}
+		public String getBase() {
+			return base;
+		}
 		public void setBase(String base) {
 			this.base = base;
 		}
-		public String getGrandTotal() {
+		public String getFormatGrandTotal() {
 			String[]temp = grandTotal.split("\\.");
 			if(temp.length == 0)
 				return numFormatter.format(Integer.parseInt(grandTotal)); 
 			else
 				return numFormatter.format(Integer.parseInt(temp[0]));
+		}
+		public String getGrandTotal() {
+			return grandTotal;
 		}
 		public void setGrandTotal(String grandTotal) {
 			this.grandTotal = grandTotal;
