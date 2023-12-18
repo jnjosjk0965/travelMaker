@@ -57,9 +57,9 @@ int krwPrice = Integer.parseInt(roomPrice) * Currency.JPY;
 	<div class="hotelInfo mx-3">
 		<div style="cursor: pointer;">
 			<div class="title-info">
-				<a href="TravelMaker/SelectHotel.do<%=queryString + "&showDetail=True"%>">
+				<a href="/TravelMaker/SelectHotel.do<%=queryString + "&showDetail=True"%>">
 					<span style="font-size: 18px;font-weight: bold">
-						<%= request.getParameter("hotelName") %>
+						<%= hotelName %>
 					</span>
 				</a>
 			</div>
@@ -67,7 +67,7 @@ int krwPrice = Integer.parseInt(roomPrice) * Currency.JPY;
 	</div>
 	<div class="c-flex justify-content-md-between">
 		<span><%= numFormatter.format(krwPrice) %> 원</span>
-		<a href="TravelMaker/SelectHotel.do<%=queryString + "&showDetail=False"%>" class="btn my-button1 ticket-btn" >
+		<a href="/TravelMaker/SelectHotel.do<%=queryString + "&showDetail=False"%>" class="btn my-button1 ticket-btn" >
 			예약&nbsp;
 			<span style="line-height: 1rem; display: inline-block; margin-top: 0.1rem; vertical-align: top;">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="BpkIcon_bpk-icon--rtl-support__YWE2M" fill="white" style="width: 1rem; height: 1rem;">
