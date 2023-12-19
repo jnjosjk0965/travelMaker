@@ -121,12 +121,7 @@ NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
 	                    <h3 style="font-weight:bold;">
 	                        환불 정책 </h3>
 	                    <p style="font-weight: 600;"> 일주일 전까지 무료로 취소하실 수 있습니다. 
-	                        그 후에 취소하시면 예약 대금이 환불되지 않습니다. </p>
-	                    <a href="/TravelMaker/MakeReservation.do" class="btn btn-danger">
-	                        <span style="font-size:1rem; line-height:1.5rem; text-overflow: ellipsis; white-space: nowrap;overflow: hidden; ">
-	                            예약 취소
-	                        </span>
-	                    </a>	 						                   
+	                        그 후에 취소하시면 예약 대금이 환불되지 않습니다. </p> 						                   
                     </div>
 				</div> <!-- 여행 예약 확인 섹션 끝 -->
 

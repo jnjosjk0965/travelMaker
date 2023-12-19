@@ -1,7 +1,16 @@
+<%@page import="com.servlet.api.beans.HotelDTO"%>
+<%@page import="com.servlet.api.beans.RoomDTO"%>
+<%@page import="com.servlet.api.beans.FlightDTO"%>
+<%@page import="com.java.user.ReservationDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 UserDTO user = (UserDTO)session.getAttribute("userinfo");
+ArrayList<ReservationDTO> resvList = (ArrayList<ReservationDTO>)request.getAttribute("resvList");
+ArrayList<FlightDTO> flightList = (ArrayList<FlightDTO>)request.getAttribute("flightList");
+ArrayList<RoomDTO> roomList = (ArrayList<RoomDTO>)request.getAttribute("roomList");
+ArrayList<HotelDTO> hotelList = (ArrayList<HotelDTO>)request.getAttribute("hotelList");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,11 +32,13 @@ UserDTO user = (UserDTO)session.getAttribute("userinfo");
         }
         #nav-content-reservation,
         #nav-content-review {
+        	width: 40rem;
             height: 90vh;
             padding: 1px; /* 안쪽 여백 설정 */
             display: none;
         }
-        .#nav-content-account{
+        #nav-content-account{
+        	width: 40rem;
             height: 90vh;
             padding: 1px; /* 안쪽 여백 설정 */
         }
@@ -81,19 +92,36 @@ UserDTO user = (UserDTO)session.getAttribute("userinfo");
             text-align: center;
             text-size: 15px;
         }
-        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
    
     </style>
     <script>
         // 페이지 내용을 동적으로 로드하는 함수
        	function toggleContent(contentId) {
-    	const navContentuser = document.getElementById("nav-content-user");
     	const navContentaccount = document.getElementById("nav-content-account");
     	const navContentreservation = document.getElementById("nav-content-reservation");
 		const navContentreview = document.getElementById("nav-content-review"); 
 
 	    // 모든 nav-content를 숨김
-	    navContentuser.style.display = "none";
 	    navContentaccount.style.display = "none";
 	    navContentreservation.style.display = "none";
 	    navContentreview.style.display = "none";
@@ -149,19 +177,60 @@ UserDTO user = (UserDTO)session.getAttribute("userinfo");
     		<div id="nav-content-account" class="ms-5">
     			<h1 style="text-align: center;">계정</h1>
     			<div class="c-flex">
-    				<h3>이메일</h3>
-    				<input type="email" name="email" readonly="readonly" value="<%=user.getUserEmail() %>" style="width: 400px; height:40px; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
-    				<hr>
-    				<h3>비밀번호</h3>
-    				<input type="password" name="pwd"style="width: 400px; height:40px; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; ">
-    				<input type="submit" value="비밀번호 변경" style="width:110px; height: 40px;">
-		    		<hr>
-    				<h3>계정</h3>
-    				<input type="submit" value="계정 탈퇴" style="width:110px; height: 40px;">
+    				<form action="">
+    					<h3>이메일</h3>
+    					<input type="email" name="email" readonly="readonly" value="<%=user.getUserEmail() %>" style="width: 400px; height:40px; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+		    			<hr>
+    					<h3>계정</h3>
+    					<input class="btn btn-danger" type="submit" value="계정 탈퇴" style="width:110px; height: 40px;">
+    				</form>
     			</div>
     		</div>
 	       	<div id="nav-content-reservation">
-	    		<h1 style="text-align: center;">내 예약</h1>    
+	    		<h1 style="text-align: center;">내 예약</h1>
+	    		<form action="/TravelMaker/DeleteReservation.do" method="post">
+	    			<table>
+					    <thead>
+					        <tr>
+					        	<th></th>
+					            <th>예약 번호</th>
+					            <th>호텔 이름</th>
+					            <th>체크인 날짜</th>
+					            <th>체크아웃 날짜</th>
+					            <th>출발지</th>
+					            <th>도착지</th>
+					        </tr>
+					    </thead>
+					    <tbody>
+					    	<%
+					    	if(resvList != null){
+					    		for(int i = 0; i < resvList.size(); i++){
+						    		ReservationDTO tresv = resvList.get(i);
+						    		FlightDTO tflight = flightList.get(i);
+						    		RoomDTO troom = roomList.get(i);
+						    		HotelDTO thotel = hotelList.get(i);
+						    		%>
+						            <tr>
+						                <td>
+						                    <input type="checkbox" name="resvIdCheckbox" value="<%=tresv.getResvId()%>">
+						                </td>
+						                <td><%=tresv.getResvId()%></td>
+						                <td><%=thotel.getHotelName()%></td>
+						                <td><%=troom.getCheckInDate()%></td>
+						                <td><%=troom.getCheckOutDate()%></td>
+						                <td><%=tflight.getOutboundDepartureAirport()%></td>
+						                <td><%=tflight.getOutboundArrivalAirport()%></td>
+						            </tr>
+							<%
+						    	}	
+					    	}
+					    	%>
+					    </tbody>
+					</table>
+					<div class="text-end mt-3">
+						<input class="btn btn-danger" type="submit" value="예약 취소" style="width:100px;">
+					</div>
+	    		</form>    
 	    	</div>
 	       	<div id="nav-content-review">
 	    		<h1 style="text-align: center;">작성한 리뷰</h1>

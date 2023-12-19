@@ -42,7 +42,7 @@
 				</button>
 				<ul id="user-dropdown" class="dropdown-menu border border-1" data-bs-theme="light" style="overflow:hidden;transition: height ease-out 0.4s 0s;padding:0;background-color: #FDFBFA;">
 				    <li class="mt-1">
-				      	<a class="dropdown-item d-flex gap-2 align-items-center" href="myPageMain.jsp">
+				      	<a class="dropdown-item d-flex gap-2 align-items-center" href="/TravelMaker/LoadMyPage.do">
 				        	<svg class="bi" width="16" height="16"><use xlink:href="#image-fill"></use></svg>
 				        	계정
 				      	</a>

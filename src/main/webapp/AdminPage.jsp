@@ -72,7 +72,6 @@
             <th>회원 비밀번호</th>
             <th>회원 닉네임</th>
             <th>회원 여권이름</th>
-            <th>회원 국가</th>
             <th>회원 생년월일</th>
             <th>권한 부여</th>
             <th>회원 탈퇴</th>
@@ -85,7 +84,6 @@
                 <td><%= user.getUserPwd() %></td>
                 <td><%= user.getUserNName() %></td>
                 <td><%= user.getUserEName() %></td>
-                <td><%= user.getUserCountry() %></td>
                 <td><%= user.getUserBirth() %></td>
                 <td><%= String.valueOf(user.isAdmin()) %></td>
                 <td>

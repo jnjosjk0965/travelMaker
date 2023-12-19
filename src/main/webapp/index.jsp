@@ -3,6 +3,7 @@
 <% 
 String parentInfo = "index.jsp";
 session.setAttribute("parentInfo", parentInfo); 
+session.removeAttribute("selected");
 %>
     <!DOCTYPE html>
     <html>

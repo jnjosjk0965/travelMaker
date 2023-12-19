@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 import com.servlet.api.beans.FlightDTO;
 import com.servlet.api.beans.HotelDTO;
@@ -145,4 +147,153 @@ public class ReservationDAO {
 		}
     	return 0;
     }
+    
+    // 조회 
+    public ArrayList<ReservationDTO> getResvList(UserDTO user){
+    	String sql = "SELECT * FROM reservation where userEmail = ?;";
+    	ArrayList<ReservationDTO> resvList = new ArrayList<>();
+    	try {
+    		conn = JDBCUtil.getConnection();
+    		pstmt = conn.prepareStatement(sql);
+    		pstmt.setString(1, user.getUserEmail());
+    		rs = pstmt.executeQuery();
+    		while(rs.next()) {
+    			ReservationDTO temp = new ReservationDTO();
+    			temp.setResvId(rs.getString(1));
+    			temp.setResvDate(rs.getString(2));
+    			temp.setUserEmail(rs.getString(3));
+    			temp.setFlightId(rs.getString(4));
+    			temp.setRoomId(rs.getString(5));
+    			temp.setAdults(rs.getInt(6));
+    			temp.setChildren(rs.getInt(7));
+    			resvList.add(temp);
+    		}
+    	}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs, pstmt, conn);
+		}
+    	return resvList;
+    }
+    
+    public FlightDTO getResvFlight(ReservationDTO resv){
+    	String sql = "SELECT * FROM Flight where flightId = ?;";
+    	FlightDTO temp = new FlightDTO();
+    	try {
+    		conn = JDBCUtil.getConnection();
+    		pstmt = conn.prepareStatement(sql);
+    		pstmt.setString(1, resv.getFlightId());
+    		rs = pstmt.executeQuery();
+
+    		if(rs.next()) {
+    			temp.setFlightId(rs.getString(1));
+    			temp.setFlightPrice(rs.getInt(2));
+    			temp.setOutboundFlightNo(rs.getString(3));
+    			temp.setOutboundSeatClass(rs.getString(4));
+    			temp.setOutboundAirline(rs.getString(5));
+    			temp.setOutboundDuration(rs.getString(6));
+    			temp.setOutboundDepartureTime(rs.getString(7));
+    			temp.setOutboundDepartureAirport(rs.getString(8));
+    			temp.setOutboundArrivalTime(rs.getString(9));
+    			temp.setOutboundArrivalAirport(rs.getString(10));
+    			temp.setReturnFlightNo(rs.getString(11));
+    			temp.setReturnSeatClass(rs.getString(12));
+    			temp.setReturnAirline(rs.getString(13));
+    			temp.setReturnDuration(rs.getString(14));
+    			temp.setReturnDepartureTime(rs.getString(15));
+    			temp.setReturnDepartureAirport(rs.getString(16));
+    			temp.setReturnArrivalTime(rs.getString(17));
+    			temp.setReturnArrivalAirport(rs.getString(18));
+    		}
+    	}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs, pstmt, conn);
+		}
+    	return temp;
+    }
+    
+    public RoomDTO getResvRoom(ReservationDTO resv){
+    	String sql = "SELECT * FROM room where roomId = ?;";
+		RoomDTO temp = new RoomDTO();
+    	try {
+    		conn = JDBCUtil.getConnection();
+    		pstmt = conn.prepareStatement(sql);
+    		pstmt.setString(1, resv.getRoomId());
+    		rs = pstmt.executeQuery();
+    		if(rs.next()) {
+    			temp.setRoomId(rs.getString(1));
+    			temp.setHotelId(rs.getString(2));
+    			temp.setCheckInDate(LocalDate.parse(rs.getString(3)));
+    			temp.setCheckOutDate(LocalDate.parse(rs.getString(4)));
+    			temp.setBeds(rs.getInt(5));
+    			temp.setBedType(rs.getString(6));
+    			temp.setRoomPrice(rs.getInt(7));
+    		}
+    	}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs, pstmt, conn);
+		}
+    	return temp;
+    }
+    
+    public HotelDTO getResvHotel(RoomDTO room){
+    	String sql = "SELECT * FROM Hotel where hotelId = ?;";
+    	HotelDTO temp = new HotelDTO();
+    	try {
+    		conn = JDBCUtil.getConnection();
+    		pstmt = conn.prepareStatement(sql);
+    		pstmt.setString(1, room.getHotelId());
+    		rs = pstmt.executeQuery();
+    		if(rs.next()) {
+    			temp.setHotelId(rs.getString(1));
+    			temp.setHotelName(rs.getString(2));
+    			temp.setLatitude(rs.getFloat(3));
+    			temp.setLongitude(rs.getFloat(4));;
+    		}
+    	}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs, pstmt, conn);
+		}
+    	return temp;
+    }
+    
+    public void deleteResv(String resvId) {
+    	String select = "SELECT * FROM reservation where resvId = ?;";
+    	String deleteResv = "DELETE FROM reservation where resvId = ?;";
+    	String deleteFlight = "DELETE FROM Flight where flightId = ?;";
+    	String deleteRoom = "DELETE FROM room where roomId = ?;";
+    	ReservationDTO temp = new ReservationDTO();
+    	try {
+			conn = JDBCUtil.getConnection();
+			pstmt = conn.prepareStatement(select);
+			pstmt.setString(1, resvId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				temp.setResvId(rs.getString(1));
+    			temp.setResvDate(rs.getString(2));
+    			temp.setUserEmail(rs.getString(3));
+    			temp.setFlightId(rs.getString(4));
+    			temp.setRoomId(rs.getString(5));
+    			temp.setAdults(rs.getInt(6));
+    			temp.setChildren(rs.getInt(7));
+			}
+			pstmt = conn.prepareStatement(deleteResv);
+			pstmt.setString(1, resvId);
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement(deleteFlight);
+			pstmt.setString(1, temp.getFlightId());
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement(deleteRoom);
+			pstmt.setString(1, temp.getRoomId());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs, pstmt, conn);
+		}
+    }
+
 }
