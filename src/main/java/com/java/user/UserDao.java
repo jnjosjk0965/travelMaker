@@ -79,14 +79,14 @@ public class UserDao {
             conn = JDBCUtil.getConnection();
 
             // 사용자가 이미 존재하는지 확인
-            String selectSql = "SELECT * FROM user WHERE userEmail = ?";
+            String selectSql = "SELECT * FROM user WHERE userEmail = ?;";
             pstmt = conn.prepareStatement(selectSql);
             pstmt.setString(1, dto.getUserEmail());
             rs = pstmt.executeQuery();
             if(rs.next()) {
                 cnt = -1;
              } else {
-          		String insertsql = "INSERT INTO user (userEmail, userPwd, userNName, userEName, userPassport, userCountry, userBirth) VALUES (?, ?, ?, ?, ?, ?, ?)";
+          		String insertsql = "INSERT INTO user (userEmail, userPwd, userNName, userEName, userPassport, userCountry, userBirth) VALUES (?, ?, ?, ?, ?, ?, ?);";
             	pstmt = conn.prepareStatement(insertsql);
             	pstmt.setString(1, dto.getUserEmail());
             	pstmt.setString(2, dto.getUserPwd());
@@ -110,7 +110,7 @@ public class UserDao {
     
     //관리자 페이지의 모든 회원 정보 출력 DAO
     public ArrayList<UserDTO> getAllUsers() {
-        String sql = "SELECT * FROM USER";
+        String sql = "SELECT * FROM USER;";
         ArrayList<UserDTO> userList = new ArrayList<>();
         UserDTO udto = null;
         
@@ -155,7 +155,7 @@ public class UserDao {
 
         try {
         	conn = JDBCUtil.getConnection();
-        	String searchsql = "SELECT * FROM user WHERE userEmail = ?";
+        	String searchsql = "SELECT * FROM user WHERE userEmail = ?;";
         	pstmt = conn.prepareStatement(searchsql);
             pstmt.setString(1, searchEmail);
             
@@ -182,7 +182,7 @@ public class UserDao {
  
         try {
             conn = JDBCUtil.getConnection();
-            String deletesql = "DELETE FROM user WHERE userEmail = ?";
+            String deletesql = "DELETE FROM user WHERE userEmail = ?;";
             pstmt = conn.prepareStatement(deletesql);
             pstmt.setString(1, deleteuser);
             System.out.println("deleteuser: " + deleteuser);
@@ -191,7 +191,7 @@ public class UserDao {
             
             if (rowsAffected > 0) {
                 // 회원 삭제가 성공하면 남은 회원 목록을 조회
-                String selectSql = "SELECT * FROM user";
+                String selectSql = "SELECT * FROM user;";
                 pstmt = conn.prepareStatement(selectSql);
                 ResultSet rs = pstmt.executeQuery();
 

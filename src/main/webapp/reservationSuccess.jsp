@@ -87,10 +87,7 @@ NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
                 <!-- 여행 예약 확인 섹션 -->
                 <div class="col-md-5">
                     <h2 class="my-4" style="font-weight:bold;position: relative;">
-                        <button id="back_button" class="back-btn " onclick="goBack()">
-                            &lt;
-                        </button>
-                        확인 및 결제
+                        예약에 성공했습니다!
                     </h2>
                     <div>
  						<h4 style="font-weight:bold;"> 예약 정보 </h4> <br>
@@ -110,9 +107,9 @@ NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
 	
 	                    <h3 style="font-weight:bold;">결제 수단</h3>
 	                    <select id="paymentMethod" name="paymentMethod" class="form-control">
-	                        <option value="" disabled selected>결제 수단 선택</option>
+	                        <option value="" disabled>결제 수단 선택</option>
 	                        <hr>
-	                        <option value="kbBank">국민은행</option>
+	                        <option value="kbBank" selected>국민은행</option>
 	                        <option value="nhBank">농협은행</option>
 	                        <option value="shBank">신한은행</option>
 	                        <!-- 원하는 결제수단 옵션 추가 -->
@@ -127,7 +124,7 @@ NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
 	                        그 후에 취소하시면 예약 대금이 환불되지 않습니다. </p>
 	                    <a href="/TravelMaker/MakeReservation.do" class="btn my-button1">
 	                        <span style="font-size:1rem; line-height:1.5rem; text-overflow: ellipsis; white-space: nowrap;overflow: hidden; ">
-	                            확인 및 결제
+	                            예약 취소
 	                        </span>
 	                    </a>	 						                   
                     </div>
@@ -228,44 +225,6 @@ NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="js/button.js"></script>
     <script src="js/app.js"></script>
-	<script>
-	    function toggleDateEdit() {
-	        var dateInput1 = document.getElementById("editDate");
-	        var dateInput2 = document.getElementById("editDate2");
-	
-	        if (dateInput1.style.display === "none" || dateInput1.style.display === "") {
-	            dateInput1.style.display = "inline-block";
-	            dateInput2.style.display = "inline-block";
-	        } else {
-	            dateInput1.style.display = "none";
-	            dateInput2.style.display = "none";
-	        }
-	    }
-	</script>
-	<script>
-	    function toggleTravelerEdit() {
-	        var travelerEdit = document.getElementById("travelerEdit");
-	
-	        if (travelerEdit.style.display === "none" || travelerEdit.style.display === "") {
-	            travelerEdit.style.display = "block";
-	        } else {
-	            travelerEdit.style.display = "none";
-	        }
-	    }
-	
-	    function confirmTravelerEdit() {
-	        var adultsInput = document.getElementById("adultsInput").value;
-	        var childrenInput = document.getElementById("childrenInput").value;
-	
-	        // Perform any additional logic or validation as needed
-	
-	        // Update the display or perform other actions with the new values
-	        alert("성인: " + adultsInput + ", 유아: " + childrenInput);
-	
-	        // Hide the traveler edit section after confirming
-	        toggleTravelerEdit();
-	    }
-	</script>
 </body>
 
 </html>

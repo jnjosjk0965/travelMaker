@@ -24,8 +24,8 @@ public class SelectHotelController extends HttpServlet {
 		
 		hotelInfo.setHotelId(request.getParameter("hotelId"));
 		hotelInfo.setHotelName(request.getParameter("hotelName"));
-		hotelInfo.setLatitude(Double.parseDouble(request.getParameter("latitude")));
-		hotelInfo.setLongitude(Double.parseDouble(request.getParameter("longitude")));
+		hotelInfo.setLatitude(Float.parseFloat(request.getParameter("latitude")));
+		hotelInfo.setLongitude(Float.parseFloat(request.getParameter("longitude")));
 		
 		roomInfo.setHotelId(request.getParameter("hotelId"));
 		roomInfo.setRoomId(request.getParameter("roomId"));
@@ -40,11 +40,14 @@ public class SelectHotelController extends HttpServlet {
 		session.setAttribute("roomInfo", roomInfo);
 		
 		UserDTO user = (UserDTO)session.getAttribute("userinfo");
-		String parentInfo = (String)session.getAttribute("parentInfo");
 		
 		boolean showDetail = Boolean.parseBoolean(request.getParameter("showDetail"));
 		
-		if(user == null) {
+		if(showDetail) {
+			// 상세 페이지로
+			response.sendRedirect("hotelInfo.jsp?description=" + description);
+		}
+		else if(user == null) {
             String errorMessage = "로그인이 필요합니다.";
             session.setAttribute("permissionError", errorMessage);
             
@@ -53,13 +56,10 @@ public class SelectHotelController extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
 
             // 
-            String alertScript = "alert('" + errorMessage + "'); window.location.href='"+ parentInfo +"';";
+            String alertScript = "alert('" + errorMessage + "'); window.location.href='searchResult.jsp';";
             response.getWriter().println("<script>" + alertScript + "</script>");
 		}
-		else if(showDetail) {
-			// 상세 페이지로
-			response.sendRedirect("hotelInfo.jsp?description=" + description);
-		}else {
+		else {
 			// 결제 페이지로
 			response.sendRedirect("purchase.jsp");
 		}

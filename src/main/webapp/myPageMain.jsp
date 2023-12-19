@@ -118,39 +118,38 @@
     </style>
     <script>
         // 페이지 내용을 동적으로 로드하는 함수
-        function toggleContent(contentId) {
-    var navContentuser = document.getElementById("nav-content-user");
-    var navContentaccount = document.getElementById("nav-content-account");
-    var navContentreservation = document.getElementById("nav-content-reservation");
-    var navContentreview = document.getElementById("nav-content-review"); 
+       	function toggleContent(contentId) {
+    	const navContentuser = document.getElementById("nav-content-user");
+    	const navContentaccount = document.getElementById("nav-content-account");
+    	const navContentreservation = document.getElementById("nav-content-reservation");
+		const navContentreview = document.getElementById("nav-content-review"); 
 
-    // 모든 nav-content를 숨김
-    navContentuser.style.display = "none";
-    navContentaccount.style.display = "none";
-    navContentreservation.style.display = "none";
-    navContentreview.style.display = "none";
-    
-    // 클릭한 contentId에 해당하는 nav-content를 표시
-    var navContent = document.getElementById(contentId);
-    if (navContent.style.display === "none") {
-        navContent.style.display = "block";
-    } else {
-        navContent.style.display = "none";
-    }
+	    // 모든 nav-content를 숨김
+	    navContentuser.style.display = "none";
+	    navContentaccount.style.display = "none";
+	    navContentreservation.style.display = "none";
+	    navContentreview.style.display = "none";
+	    
+	    // 클릭한 contentId에 해당하는 nav-content를 표시
+	    var navContent = document.getElementById(contentId);
+	    if (navContent.style.display === "none") {
+	        navContent.style.display = "block";
+	    } else {
+	        navContent.style.display = "none";
+	    }
 }
     </script>
 </head>
 <body>
-  <div class="SearchContainer p-5" ">
-		<h1>Header부분</h1>
+  	<div class="SearchContainer p-4">
+		<%@ include file="module/header.jsp" %>
+		<%@	include file="module/searchHeader.jsp" %>
 	</div>
-    <hr>
-		<div id="nav-container">
-		 <div class="image-container">
-        <img src="img/icon/user_icon.png" alt="User Profile">
-        <div class="text">[사용자]</div>
+	<div id="nav-container">
+		<div class="image-container">
+        	<img src="img/icon/user_icon.png" alt="User Profile">
+        	<div class="text">[사용자]</div>
         </div>
-		<br>
         <!-- 항목 목록 -->
         <ul>
             <li><a href="#" onclick="toggleContent('nav-content-user')"><img src="img/icon/user_icon.png" alt="User Profile" style="width: 40px; height: 40px;">

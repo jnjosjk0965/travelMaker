@@ -12,6 +12,12 @@ String parentInfo = "hotelInfo.jsp";
 session.setAttribute("parentInfo", parentInfo); 
 HotelDTO thisHotel = (HotelDTO)session.getAttribute("selectedHotel"); 
 RoomDTO thisRoom = (RoomDTO)session.getAttribute("roomInfo");
+
+String queryString = "?hotelId=" + thisHotel.getHotelId() +"&hotelName=" + thisHotel.getHotelName() + 
+"&latitude=" + thisHotel.getLatitude() +"&longitude=" + thisHotel.getLongitude() +
+"&roomId=" + thisRoom.getRoomId() + "&checkInDate=" + thisRoom.getCheckInDate() + "&checkOutDate=" + thisRoom.getCheckOutDate() + 
+"&beds=" + thisRoom.getBeds() + "&bedType=" + thisRoom.getBedType() + "&roomPrice=" + thisRoom.getRoomPrice();
+
 long daysDifference = ChronoUnit.DAYS.between(thisRoom.getCheckInDate(), thisRoom.getCheckOutDate());
 int totalPrice = thisRoom.getRoomPrice() * Currency.JPY;
 int dayPrice = (int)(totalPrice / daysDifference);
@@ -283,7 +289,9 @@ if(thisRoom.getBeds() > 1){
 			</div>	
       		<hr>
       		<h3><%=numFormatter.format(dayPrice)%>원 x <%=daysDifference %>박</h3><h3><%=numFormatter.format(totalPrice) %> 원</h3>
-      		<a href="#" class="btn my-button1" style="background-color: #7b9acc">예약하기</a>
+      		<a href="/TravelMaker/SelectHotel.do<%=queryString + "&showDetail=False"%>" class="btn my-button1 ticket-btn" style="background-color: #7b9acc">
+				예약하기&nbsp;
+			</a>
     	</div>
 	</div>
 	

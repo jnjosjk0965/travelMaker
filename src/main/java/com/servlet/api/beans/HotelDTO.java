@@ -3,8 +3,8 @@ package com.servlet.api.beans;
 public class HotelDTO {
 	private String hotelId;
 	private String hotelName;
-	private double latitude;
-	private double longitude;
+	private float latitude;
+	private float longitude;
 	public String getHotelId() {
 		return hotelId;
 	}
@@ -17,16 +17,16 @@ public class HotelDTO {
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
 	}
-	public double getLatitude() {
+	public float getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(double latitude) {
+	public void setLatitude(float latitude) {
 		this.latitude = latitude;
 	}
-	public double getLongitude() {
+	public float getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(double longitude) {
+	public void setLongitude(float longitude) {
 		this.longitude = longitude;
 	}
 }

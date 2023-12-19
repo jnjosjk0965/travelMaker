@@ -50,11 +50,7 @@ String queryString = "?hotelId=" + hotelId +"&hotelName=" + hotelName + "&latitu
 
 NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
 int krwPrice = Integer.parseInt(roomPrice) * Currency.JPY;
-UserDTO user = (UserDTO)session.getAttribute("userinfo");
-boolean isUserNull = user == null;
-boolean isLogin = user != null;
 %>
-<%= isUserNull + " " + isLogin%>
 <div class="hotel-card mb-3">
 	<div class="hotelImg">
 		<div style="width: 100%;height: 100%;">

@@ -6,8 +6,8 @@ public class ReservationDTO {
 	private String userEmail;
 	private String flightId;
 	private String roomId;
-	private String adults;
-	private String children;
+	private int adults;
+	private int children;
 	
 	
 	public String getResvId() {
@@ -40,23 +40,16 @@ public class ReservationDTO {
 	public void setRoomId(String roomId) {
 		this.roomId = roomId;
 	}
-	public String getAdults() {
+	public int getAdults() {
 		return adults;
 	}
-	public void setAdults(String adults) {
+	public void setAdults(int adults) {
 		this.adults = adults;
 	}
-	public String getChildren() {
+	public int getChildren() {
 		return children;
 	}
-	public void setChildren(String children) {
+	public void setChildren(int children) {
 		this.children = children;
 	}
-	
-	
-	
-	
-	
-	
-	
 }

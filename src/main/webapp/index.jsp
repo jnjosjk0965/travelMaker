@@ -191,7 +191,7 @@ session.setAttribute("parentInfo", parentInfo);
 															</svg>
 														</span>
 													</button>
-													<input type="text" aria-live="polite" readonly="" id="children-nudger" name="" class="BpkNudger" tabindex="0" value="0">
+													<input type="text" aria-live="polite" readonly="" id="children-nudger" name="children" class="BpkNudger" tabindex="0" value="0">
 													<button type="button" class="BpkButton" title="인원 늘리기 유/소아" onclick="incrementCount('children-nudger')">
 														<span style="line-height: 1rem; display: inline-block; margin-top: 0.25rem; vertical-align: top;">
 															<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="" style="width: 1rem; height: 1rem;">
