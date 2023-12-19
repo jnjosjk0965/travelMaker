@@ -293,6 +293,49 @@ if(thisRoom.getBeds() > 1){
     <!-- 여기서부터 UserReview 부분 -->
    
     <div id="user-reviews">
+<<<<<<< HEAD
+    <!-- Review Box 1 -->
+    <div class="review-box">
+       
+      <img src="img/flag/south-korea.png" alt="south-korea" style="width: 32px; height: 32px;">
+      <h4>jinwoo-Jeon</h4>
+	  <img src="img/rating/star.png" alt="star-rating" style="width: 24px; height: 24px; margin-left: 90px;">
+  	  <img src="img/rating/star.png" alt="star-rating" style="width: 24px; height: 24px;">
+      <img src="img/rating/star.png" alt="star-rating" style="width: 24px; height: 24px;">
+      <img src="img/rating/star.png" alt="star-rating" style="width: 24px; height: 24px;">
+      <img src="img/rating/blankstar.png" alt="star-rating" style="width: 24px; height: 24px;">
+      <hr>
+      <p>깔끔하고 좋아요! 조식이 아쉽지만 에어컨도 잘 나오고 무엇보다 프론트가 24시간란 점이 참 좋았던 것 같아요!</p>
+      
+    </div>
+
+    <!-- Review Box 2 -->
+    <div class="review-box">
+    <img src="img/flag/united-states-of-america.png" alt="usa" style="width: 32px; height: 32px;">
+      <h4>Robert Downey Jr</h4>
+      <img src="img/rating/star.png" alt="star-rating" style="width: 24px; height: 24px; margin-left: 30px;">
+  	  <img src="img/rating/star.png" alt="star-rating" style="width: 24px; height: 24px;">
+      <img src="img/rating/star.png" alt="star-rating" style="width: 24px; height: 24px;">
+      <img src="img/rating/star.png" alt="star-rating" style="width: 24px; height: 24px;">
+      <img src="img/rating/star.png" alt="star-rating" style="width: 24px; height: 24px;">
+      <hr>
+      <p>This is great hotel. I've ever seen before like this hotel!! wonderful!!</p>
+    </div>
+
+    <!-- Review Box 3 -->
+    <div class="review-box">
+    <img src="img/flag/china.png" alt="china" style="width: 32px; height: 32px;">
+      <h4>Li Yuanhao</h4>
+      <img src="img/rating/star.png" alt="star-rating" style="width: 24px; height: 24px; margin-left: 100px;">
+  	  <img src="img/rating/star.png" alt="star-rating" style="width: 24px; height: 24px;">
+      <img src="img/rating/star.png" alt="star-rating" style="width: 24px; height: 24px;">
+      <img src="img/rating/star.png" alt="star-rating" style="width: 24px; height: 24px;">
+      <img src="img/rating/half-star.png" alt="half-star" style="width: 24px; height: 24px;">
+      <hr>
+      <p>非常好的设施！ 您的设施状况良好。</p>
+    </div>
+    
+=======
 	    <!-- Review Box 1 -->
 	    <div class="review-box c-flex"> 
 	    	<div class="mb-3" style="border-bottom: 1px solid">
@@ -350,6 +393,7 @@ if(thisRoom.getBeds() > 1){
 				<p>非常好的设施！ 您的设施状况良好。</p>
 			</div>    
 	    </div>
+>>>>>>> fd75785d6283f3d90c5d9d0af7ebe12360758f46
     </div>
     	<!-- 리뷰 작성은 모달로 전해집니다! -->
     <div id="review-button-box">

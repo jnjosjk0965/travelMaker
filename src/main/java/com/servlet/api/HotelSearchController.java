@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.apiKeys.APIKey;
+//import com.apiKeys.APIKey;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class HotelSearchController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	// api 인증 정보 설정 후 accessToken 발급
-    	String access = APIKey.getAmaedusAccessToken();
+    	//String access = APIKey.getAmaedusAccessToken();
     	
 //    	// 검색 조건 설정
     	
@@ -52,9 +52,9 @@ public class HotelSearchController extends HttpServlet {
 //    	String apiURL = "https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-geocode"
 //    			+ "?latitude="+lat+"&longitude="+lon+"&radius="+radius+"&radiusUnit=KM"
 //    					+ "&amenities=PARKING,WI-FI_IN_ROOM&ratings=4,5&hotelSource=ALL";
-    	String result = listofHotels(access);
+    	//String result = listofHotels(access);
     	resp.setContentType("text/html; charset=utf-8");
-    	resp.getWriter().write("<p>" + result + "</p>");
+    	// resp.getWriter().write("<p>" + result + "</p>");
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

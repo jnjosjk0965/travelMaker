@@ -11,6 +11,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bs/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/mycss.css">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
@@ -45,9 +46,13 @@
     <button class="search-button" type="submit">검색</button>
 </form>
  <br>
+ <form action="check.do" method="post">
+    <button type="submit" name="checkuser" style="margin-left: 5px; width: 90px; height: 40px; margin-bottom: 10px;">조회</button>
+</form>
 <%
     // DAO 클래스 및 메서드 호출
     UserDao userDao = new UserDao();
+	
     List<UserDTO> userList = userDao.getAllUsers();
     
     List<UserDTO> usersByEmail = (List<UserDTO>)request.getAttribute("userList");
@@ -56,7 +61,6 @@
     }
     
     List<UserDTO> usersDelete = (List<UserDTO>)request.getAttribute("remainlist");
-
 %>
 
 <div class="table-container">
