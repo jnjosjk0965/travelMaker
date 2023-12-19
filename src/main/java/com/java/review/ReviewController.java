@@ -23,12 +23,13 @@ public class ReviewController extends HttpServlet {
 		//세션 값 받아오기. <userinfo>, <selectedHotel>
 		HttpSession usersession = request.getSession();
 		UserDTO userinfo = (UserDTO) usersession.getAttribute("userinfo");
-		String userEmail = userinfo.getUserEmail(); // UserDTO에 있는 userEmail 속성을 가져옴
-			
+		String userEmail = userinfo.getUserEmail();
+		
+		
 		HttpSession hotelsession = request.getSession();
 		HotelDTO selectedHotel = (HotelDTO) hotelsession.getAttribute("selectedHotel");
-		String hotelID = selectedHotel.getHotelId(); // HotelDTO에 있는 hotelID 속성을 가져옴
-		
+		String hotelID = selectedHotel.getHotelId();
+				
 		// 별점 값 받아오기
         String allRating = request.getParameter("allRating");
         String cleanRating = request.getParameter("cleanRating");
@@ -40,6 +41,8 @@ public class ReviewController extends HttpServlet {
         String contents = request.getParameter("contents");
 
         // 받아온 값 확인
+        System.out.println("userinfo : "+ userEmail);
+        System.out.println("hotelID : "+ hotelID);
         System.out.println("arateRating: " + allRating);
         System.out.println("cleanRating: " + cleanRating);
         System.out.println("locationRating: " + locationRating);
@@ -50,7 +53,7 @@ public class ReviewController extends HttpServlet {
         ReviewDTO rdto = new ReviewDTO(userEmail, hotelID, allRating, cleanRating, locationRating, 
         		serviceRating, faciRating, contents);
         ReviewDao rdao = new ReviewDao();    
-
+        int cnt = rdao.reviewRegister(rdto);
 	}
 
 }

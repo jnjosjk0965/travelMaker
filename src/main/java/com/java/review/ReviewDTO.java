@@ -74,12 +74,12 @@ public class ReviewDTO {
 	}
 
 
-	public String getuserLocation() {
+	public String getUserLocation() {
 		return userLocation;
 	}
 
 
-	public void setuserLocation(String userLocation) {
+	public void setUserLocation(String userLocation) {
 		this.userLocation = userLocation;
 	}
 

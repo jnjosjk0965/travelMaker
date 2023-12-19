@@ -82,8 +82,9 @@
 	<jsp:include page="module/header.jsp"/>
 </div>
 <div id="nav-container">
-<h2>전반적 만족도</h2>
 <form name="allRating" method="post" action="review.do">
+<h2>전반적 만족도</h2>
+
     <div class="star_rating">
         <span class="star" name="arate1" onclick="setRating('all',1)"></span>
         <span class="star" name="arate2" onclick="setRating('all',2)"></span>
@@ -93,10 +94,10 @@
     </div>
     <div id="allRating"></div>
     <input type="hidden" id="allRatingInput" name="allRating" value="">
-</form>
 
 
-<form name="cleanRating" method="post" action="review.do">
+
+
     <h1>청결</h1>
     <div class="star_rating">
         <span class="star" value="1" name="clean1" onclick="setRating('clean', 1)"></span>
@@ -107,9 +108,9 @@
     </div>
   <div id="cleanRating"></div>  
   <input type="hidden" id="cleanRatingInput" name="cleanRating" value="">
-</form>
 
-<form name="locationRating" method="post" action="review.do">
+
+
     <h1>위치</h1>
     <div class="star_rating">
         <span class="star" value="1" name="location1" onclick="setRating('location', 1)"></span>
@@ -120,9 +121,9 @@
     </div>
     <div id="locationRating"></div>
     <input type="hidden" id="locationRatingInput" name="locationRating" value="">
-</form>
 
-<form name="serviceRating" method="post" action="review.do">
+
+
     <h1>서비스</h1>
     <div class="star_rating">
         <span class="star" value="1" name="service1" onclick="setRating('service', 1)"></span>
@@ -134,9 +135,9 @@
     </div>
     <div id="serviceRating"></div>
     <input type="hidden" id="serviceRatingInput" name="serviceRating" value="">
-</form>
 
-<form name="faciRating" method="post" action="review.do">
+
+
     <h1>시설</h1>
     <div class="star_rating">
         <span class="star" value="1" name="faci1" onclick="setRating('faci', 1)"></span>
@@ -148,13 +149,13 @@
     </div>
     <div id="faciRating"></div>
     <input type="hidden" id="faciRatingInput" name="faciRating" value="">
-</form>
+
 
 </div>
-<form name="contents" method="post" action="review.do">
-<textarea class="star_box" placeholder="리뷰 내용을 작성해주세요." ></textarea>
 
-<input type="submit" class="btn02" value="리뷰 등록" name="contents" />
+<textarea class="star_box" placeholder="리뷰 내용을 작성해주세요." name="contents"></textarea>
+
+<input type="submit" class="btn02" value="리뷰 등록"/>
 </form>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
