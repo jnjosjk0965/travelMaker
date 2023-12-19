@@ -15,25 +15,29 @@ public class ReviewDao {
 	    
 	    // review내용을 등록하는 메소드
 	    public int reviewRegister(ReviewDTO rdto) {
-	    	int cnt=0;
+	        int cnt = 0;
+
 	        try {
 	            conn = JDBCUtil.getConnection();
-	            rs = pstmt.executeQuery();
-	      
-	          		String insertsql = "INSERT INTO user (userEmail, hotelID, userAllrate, userClean, userLocation,userService,userFacility, userContents) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	            	pstmt = conn.prepareStatement(insertsql);
-	            	pstmt.setString(1, rdto.getUserEmail());
-	            	pstmt.setString(2, rdto.getHotelID());
-	            	pstmt.setString(3, rdto.getUserAllrate());
-	            	pstmt.setString(4, rdto.getUserClean());
-	            	pstmt.setString(5, rdto.getuserLocation());
-	            	pstmt.setString(6, rdto.getUserService());
-	            	pstmt.setString(7, rdto.getUserFacility());
-	            	pstmt.setString(8, rdto.getUserContents());
-	          		cnt = pstmt.executeUpdate();
-	          		
+
+	            // 이 부분은 필요 없으므로 주석 처리
+	            // rs = pstmt.executeQuery();
+
+	            String insertsql = "INSERT INTO review (userEmail, hotelID, userAllrate, userClean, userLocation, userService, userFacility, userContents) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+	            pstmt = conn.prepareStatement(insertsql);
+	            pstmt.setString(1, rdto.getUserEmail());
+	            pstmt.setString(2, rdto.getHotelID());
+	            pstmt.setString(3, rdto.getUserAllrate());
+	            pstmt.setString(4, rdto.getUserClean());
+	            pstmt.setString(5, rdto.getUserLocation());
+	            pstmt.setString(6, rdto.getUserService());
+	            pstmt.setString(7, rdto.getUserFacility());
+	            pstmt.setString(8, rdto.getUserContents());
+	            cnt = pstmt.executeUpdate();
+
 	        } catch (Exception e) {
 	            e.printStackTrace();
+	            System.out.println("Exception: " + e.getMessage());
 	        } finally {
 	            // 사용한 자원을 닫음
 	            JDBCUtil.close(rs, pstmt, conn);
@@ -41,6 +45,5 @@ public class ReviewDao {
 
 	        // 결과 값을 반환
 	        return cnt;
-
 	    }
-}
+	}
