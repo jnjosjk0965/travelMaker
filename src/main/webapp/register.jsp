@@ -14,6 +14,9 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-image: url('img/register/register.jpg'); /* 실제 이미지의 경로로 변경해주세요 */
+		    background-size: cover; /* 배경 이미지 크기 조절 */
+		    background-position: center; /* 배경 이미지 위치 조절 */
         }
 
         .signup-container {
@@ -69,7 +72,7 @@
     </style>
 </head>
 <body>
-    <div class="signup-container">
+    <div class="signup-container" >
         <div class="signup-header">회원가입</div>
         <form class="signup-form" action="/TravelMaker/register.do" method="post">
             <input class="form-input" type="text" id="userEmail" name="userEmail" placeholder="이메일" required>
@@ -117,10 +120,10 @@
 			        %>
 			    </select>
 			</div>
-            <button class="form-button" type="submit">가입하기</button>
+            <button class="form-button" type="submit" style="background-color: #8AADE6; font-weight: bold">가입하기</button>
         </form>
         <div class="signup-link">
-            계정이 이미 있으신가요? <a href="index.jsp">로그인</a>
+            계정이 이미 있으신가요? <a href="index.jsp" >로그인</a>
         </div>
     </div>
 </body>
