@@ -7,9 +7,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% 
+String parentInfo = "searchResult.jsp";
+session.setAttribute("parentInfo", parentInfo); 
 SearchInfo searchInfo = (SearchInfo)session.getAttribute("searchInfo");
 FlightOffer flightOffers = (FlightOffer)session.getAttribute("flightOffers");
-//Hotel hotelOffers = (Hotel)session.getAttribute("hotelOffers");
+Hotel hotelOffers = (Hotel)session.getAttribute("hotelOffers");
 FlightDTO selectedFlight;
 if(session.getAttribute("selected") == null){
 	selectedFlight = flightOffers.getCheapestFlight(searchInfo.getTravelClass());
@@ -17,8 +19,6 @@ if(session.getAttribute("selected") == null){
 }else{
 	selectedFlight = (FlightDTO)session.getAttribute("selected");
 }
-		
-
 %>
 <!DOCTYPE html>
 <html>
@@ -76,9 +76,17 @@ if(session.getAttribute("selected") == null){
 			<c:if test="${ not empty hotelOffers }">
 				<c:forEach var="hotel" items="${ hotelOffers.getData() }">
 					<jsp:include page="module/hotelCard.jsp">
+						<jsp:param value="${hotel.getHotelDetailData().getHotelId()}" name="hotelId"/>
 						<jsp:param value="${hotel.getHotelDetailData().getName()}" name="hotelName"/>
-						<jsp:param value="${hotel.isAvailable()}" name="isAvailable"/>
-						<jsp:param value="${hotel.getOffers().get(0).getPrice().getTotal()}" name="hotelPrice"/>
+						<jsp:param value="${hotel.getHotelDetailData().getLatitude()}" name="latitude"/>
+						<jsp:param value="${hotel.getHotelDetailData().getLongitude()}" name="longitude"/>
+						<jsp:param value="${hotel.getOffers().get(0).getId()}" name="roomId"/>
+						<jsp:param value="${hotel.getOffers().get(0).getCheckInDate()}" name="checkInDate"/>
+						<jsp:param value="${hotel.getOffers().get(0).getCheckOutDate()}" name="checkOutDate"/>
+						<jsp:param value="${hotel.getOffers().get(0).getRoom().getTypeEstimated().getBeds()}" name="beds"/>
+						<jsp:param value="${hotel.getOffers().get(0).getRoom().getTypeEstimated().getBedType()}" name="bedType"/>
+						<jsp:param value="${hotel.getOffers().get(0).getPrice().getTotal()}" name="roomPrice"/>
+						<jsp:param value="${hotel.getOffers().get(0).getRoom().getDescription().getText()}" name="description"/>
 					</jsp:include>
 				</c:forEach>
 			</c:if>

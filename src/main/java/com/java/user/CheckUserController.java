@@ -27,6 +27,6 @@ public class CheckUserController extends HttpServlet {
 	            // AdminPage.jsp로 포워딩
 	            RequestDispatcher dispatcher = request.getRequestDispatcher("AdminPage.jsp");
 	            dispatcher.forward(request, response);
-	            System.out.println("이거 나오면 데이터 뿌리는거 되는건데 ㅋ");
+	            
 	}
 }

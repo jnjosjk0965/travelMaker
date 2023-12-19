@@ -1,8 +1,10 @@
+<%@page import="com.java.user.UserDTO"%>
 <%@page import="java.util.Locale"%>
 <%@page import="common.Currency"%>
 <%@page import="java.text.NumberFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
 	.hotel-card{
 		display: flex;
@@ -30,11 +32,30 @@
 	}
 </style>
 <% 
-NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
-int krwPrice = Integer.parseInt(request.getParameter("hotelPrice")) * Currency.JPY;
-%>
+String hotelId = request.getParameter("hotelId");
+String hotelName = request.getParameter("hotelName");
+String latitude = request.getParameter("latitude"); 
+String longitude = request.getParameter("longitude");
+String roomId = request.getParameter("roomId");
+String checkInDate = request.getParameter("checkInDate");
+String checkOutDate = request.getParameter("checkOutDate");
+String beds = request.getParameter("beds");
+String bedType = request.getParameter("bedType");
+String roomPrice = request.getParameter("roomPrice");
+String description = request.getParameter("description");
+String queryString = "?hotelId=" + hotelId +"&hotelName=" + hotelName + "&latitude=" + latitude +"&longitude=" + longitude +
+					"&roomId=" + roomId + "&checkInDate=" + checkInDate + "&checkOutDate=" + checkOutDate + 
+					"&beds=" + beds + "&bedType=" + bedType + "&roomPrice=" + roomPrice + 
+					"&description=" + description;
 
-<div class="hotel-card mb-1">
+NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
+int krwPrice = Integer.parseInt(roomPrice) * Currency.JPY;
+UserDTO user = (UserDTO)session.getAttribute("userinfo");
+boolean isUserNull = user == null;
+boolean isLogin = user != null;
+%>
+<%= isUserNull + " " + isLogin%>
+<div class="hotel-card mb-3">
 	<div class="hotelImg">
 		<div style="width: 100%;height: 100%;">
 			<img src="https://ak-d.tripcdn.com/images/220j0u000000jbzbr714C_C_300_225_R5.jpg" style="width: 100%; height: 100%; object-fit: cover;object-position: center center;background-color: rgb(240, 242, 245);">
@@ -43,15 +64,17 @@ int krwPrice = Integer.parseInt(request.getParameter("hotelPrice")) * Currency.J
 	<div class="hotelInfo mx-3">
 		<div style="cursor: pointer;">
 			<div class="title-info">
-				<span style="font-size: 18px;font-weight: bold">
-					<%= request.getParameter("hotelName") %>
-				</span>
+				<a href="/TravelMaker/SelectHotel.do<%=queryString + "&showDetail=True"%>">
+					<span style="font-size: 18px;font-weight: bold">
+						<%= hotelName %>
+					</span>
+				</a>
 			</div>
 		</div>
 	</div>
 	<div class="c-flex justify-content-md-between">
 		<span><%= numFormatter.format(krwPrice) %> 원</span>
-		<button type="button" class="btn my-button1 ticket-btn"  onclick="openModal()">
+		<a href="/TravelMaker/SelectHotel.do<%=queryString + "&showDetail=False"%>" class="btn my-button1 ticket-btn">
 			예약&nbsp;
 			<span style="line-height: 1rem; display: inline-block; margin-top: 0.1rem; vertical-align: top;">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="BpkIcon_bpk-icon--rtl-support__YWE2M" fill="white" style="width: 1rem; height: 1rem;">
@@ -59,6 +82,6 @@ int krwPrice = Integer.parseInt(request.getParameter("hotelPrice")) * Currency.J
 					</path>
 				</svg>
 			</span>
-		</button>
+		</a>
 	</div>
 </div>

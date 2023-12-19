@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+import com.apiKeys.APIKey;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.servlet.api.beans.FlightOffer;
 import com.servlet.api.beans.Hotel;
@@ -29,6 +31,8 @@ public class SearchController extends HttpServlet {
 	private static String accessToken;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		accessToken = APIKey.getAmaedusAccessToken();
 
 		HttpSession session = request.getSession();
 		

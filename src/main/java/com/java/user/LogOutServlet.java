@@ -19,11 +19,14 @@ public class LogOutServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		session.invalidate();
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);
-		
+		String parentInfo = (String)session.getAttribute("parentInfo");
+		session.removeAttribute("userinfo");
+
+		if(parentInfo == null) { // 비회원은 이용 불가한 페이지
+			response.sendRedirect("index.jsp");
+		}else {
+			response.sendRedirect(parentInfo);
+		}
   }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

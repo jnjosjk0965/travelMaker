@@ -3,13 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bs/bootstrap.css">
             <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/mycss.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
             <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
 <style>
+
+
+
+
+
 .starpoint_wrap{display:inline-block;}
 .star_rating {
   width: 100%; 
@@ -67,7 +71,7 @@
 #nav-container{
 			backgroundcolor: white;
             width: 400px; /* 큰 네모 크기 설정 */
-            height: 600px;
+            height: 660px;
             border: 2px solid #ccc; /* 테두리 설정 */
             padding: 10px; /* 안쪽 여백 설정 */
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
@@ -78,65 +82,100 @@
 <title>Insert title here</title>
  <div class="container containerSize" style="padding:0;">
 	<jsp:include page="module/header.jsp"/>
+</div>
 </head>
 <body>
+
 <div id="nav-container">
 <h2>전반적 만족도</h2>
+<form name="allRating" method="post" action="review.do">
+    <div class="star_rating">
+        <span class="star" name="arate1" onclick="setRating('all',1)"></span>
+        <span class="star" name="arate2" onclick="setRating('all',2)"></span>
+        <span class="star" name="arate3" onclick="setRating('all',3)"></span>
+        <span class="star" name="arate4" onclick="setRating('all',4)"></span>
+        <span class="star" name="arate5" onclick="setRating('all',5)"></span>
+    </div>
+    <div id="allRating"></div>
+    <input type="hidden" id="allRatingInput" name="allRating" value="">
+</form>
 
-<div class ="star_rating">
-  <span class="star on" value="1" name="score1"> </span>
-  <span class="star" value="2" name="score2"> </span>
-  <span class="star" value="3" name="score3"> </span>
-  <span class="star" value="4" name="score4"> </span>
-  <span class="star" value="5" name="score5"> </span>
-</div>
 
-<br>
-<h1>청결</h1>
-<div class ="star_rating">
-  <span class="star on" value="1" name="rating1"> </span>
-  <span class="star" value="2" name="rating2"> </span>
-  <span class="star" value="3" name="rating3"> </span>
-  <span class="star" value="4" name="rating4"> </span>
-  <span class="star" value="5" name="rating5"> </span>
-</div>
+<form name="cleanRating" method="post" action="review.do">
+    <h1>청결</h1>
+    <div class="star_rating">
+        <span class="star" value="1" name="clean1" onclick="setRating('clean', 1)"></span>
+        <span class="star" value="2" name="clean2" onclick="setRating('clean', 2)"></span>
+        <span class="star" value="3" name="clean3" onclick="setRating('clean', 3)"></span>
+        <span class="star" value="4" name="clean4" onclick="setRating('clean', 4)"></span>
+        <span class="star" value="5" name="clean5" onclick="setRating('clean', 5)"></span> 
+    </div>
+  <div id="cleanRating"></div>  
+  <input type="hidden" id="cleanRatingInput" name="cleanRating" value="">
+</form>
 
-<h1>위치</h1>
-<div class ="star_rating">
-  <span class="star on" value="1" name="rating1"> </span>
-  <span class="star" value="2" name="rating2"> </span>
-  <span class="star" value="3" name="rating3"> </span>
-  <span class="star" value="4" name="rating4"> </span>
-  <span class="star" value="5" name="rating5"> </span>
-</div>
+<form name="locationRating" method="post" action="review.do">
+    <h1>위치</h1>
+    <div class="star_rating">
+        <span class="star" value="1" name="location1" onclick="setRating('location', 1)"></span>
+        <span class="star" value="2" name="location2" onclick="setRating('location', 2)"></span>
+        <span class="star" value="3" name="location3" onclick="setRating('location', 3)"></span>
+        <span class="star" value="4" name="location4" onclick="setRating('location', 4)"></span>
+        <span class="star" value="5" name="location5" onclick="setRating('location', 5)"></span>
+    </div>
+    <div id="locationRating"></div>
+    <input type="hidden" id="locationRatingInput" name="locationRating" value="">
+</form>
 
-<h1>서비스</h1>
-<div class ="star_rating">
-  <span class="star on" value="1" name="rating1"> </span>
-  <span class="star" value="2" name="rating2"> </span>
-  <span class="star" value="3" name="rating3"> </span>
-  <span class="star" value="4" name="rating4"> </span>
-  <span class="star" value="5" name="rating5"> </span>
-</div>
+<form name="serviceRating" method="post" action="review.do">
+    <h1>서비스</h1>
+    <div class="star_rating">
+        <span class="star" value="1" name="service1" onclick="setRating('service', 1)"></span>
+        <span class="star" value="2" name="service2" onclick="setRating('service', 2)"></span>
+        <span class="star" value="3" name="service3" onclick="setRating('service', 3)"></span>
+        <span class="star" value="4" name="service4" onclick="setRating('service', 4)"></span>
+        <span class="star" value="5" name="service5" onclick="setRating('service', 5)"></span>
 
-<h1>시설</h1>
-<div class ="star_rating">
-  <span class="star on" value="1" name="rating1"> </span>
-  <span class="star" value="2" name="rating2"> </span>
-  <span class="star" value="3" name="rating3"> </span>
-  <span class="star" value="4" name="rating4"> </span>
-  <span class="star" value="5" name="rating5"> </span>
-</div>
+    </div>
+    <div id="serviceRating"></div>
+    <input type="hidden" id="serviceRatingInput" name="serviceRating" value="">
+</form>
+
+<form name="faciRating" method="post" action="review.do">
+    <h1>시설</h1>
+    <div class="star_rating">
+        <span class="star" value="1" name="faci1" onclick="setRating('faci', 1)"></span>
+        <span class="star" value="2" name="faci2" onclick="setRating('faci', 2)"></span>
+        <span class="star" value="3" name="faci3" onclick="setRating('faci', 3)"></span>
+        <span class="star" value="4" name="faci4" onclick="setRating('faci', 4)"></span>
+        <span class="star" value="5" name="faci5" onclick="setRating('faci', 5)"></span>
+		
+    </div>
+    <div id="faciRating"></div>
+    <input type="hidden" id="faciRatingInput" name="faciRating" value="">
+</form>
 
 </div>
+<form name="contents" method="post" action="review.do">
 <textarea class="star_box" placeholder="리뷰 내용을 작성해주세요." ></textarea>
 
-<input type="submit" class="btn02" value="리뷰 등록"/>
+<input type="submit" class="btn02" value="리뷰 등록" name="contents" />
+</form>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
 $('.star_rating > .star').click(function() {
 	  $(this).parent().children('span').removeClass('on');
 	  $(this).addClass('on').prevAll('span').addClass('on');
 	})
+function setRating(category, rating) {
+    // 선택된 별점에 해당하는 숫자를 표시
+    document.getElementById(category + 'Rating').innerText = '선택한 별점 : ' + rating + '점';
+    
+    document.getElementById(category + 'RatingInput').value = rating;
+}
+
 </script>
+
+
 </body>
 </html>
