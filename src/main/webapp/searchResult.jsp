@@ -81,8 +81,10 @@ if(session.getAttribute("selected") == null){
 						<jsp:param value="${hotel.getOffers().get(0).getId()}" name="roomId"/>
 						<jsp:param value="${hotel.getOffers().get(0).getCheckInDate()}" name="checkInDate"/>
 						<jsp:param value="${hotel.getOffers().get(0).getCheckOutDate()}" name="checkOutDate"/>
-						<jsp:param value="${hotel.getOffers().get(0).getRoom().getType()}" name="roomType"/>
+						<jsp:param value="${hotel.getOffers().get(0).getRoom().getTypeEstimated().getBeds()}" name="beds"/>
+						<jsp:param value="${hotel.getOffers().get(0).getRoom().getTypeEstimated().getBedType()}" name="bedType"/>
 						<jsp:param value="${hotel.getOffers().get(0).getPrice().getTotal()}" name="roomPrice"/>
+						<jsp:param value="${hotel.getOffers().get(0).getRoom().getDescription().getText()}" name="description"/>
 					</jsp:include>
 				</c:forEach>
 			</c:if>

@@ -7,7 +7,8 @@ public class RoomDTO {
 	private String roomId;
 	private LocalDate checkInDate;
 	private LocalDate checkOutDate;
-	private String roomType;
+	private int beds;
+	private String bedType;
 	private int RoomPrice;
 	public String getHotelId() {
 		return hotelId;
@@ -33,11 +34,17 @@ public class RoomDTO {
 	public void setCheckOutDate(LocalDate checkOutDate) {
 		this.checkOutDate = checkOutDate;
 	}
-	public String getRoomType() {
-		return roomType;
+	public int getBeds() {
+		return beds;
 	}
-	public void setRoomType(String roomType) {
-		this.roomType = roomType;
+	public void setBeds(int beds) {
+		this.beds = beds;
+	}
+	public String getBedType() {
+		return bedType;
+	}
+	public void setBedType(String bedType) {
+		this.bedType = bedType;
 	}
 	public int getRoomPrice() {
 		return RoomPrice;

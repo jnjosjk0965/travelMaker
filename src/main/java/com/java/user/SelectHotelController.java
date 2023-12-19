@@ -31,9 +31,11 @@ public class SelectHotelController extends HttpServlet {
 		roomInfo.setRoomId(request.getParameter("roomId"));
 		roomInfo.setCheckInDate(LocalDate.parse(request.getParameter("checkInDate")));
 		roomInfo.setCheckOutDate(LocalDate.parse(request.getParameter("checkOutDate")));
-		roomInfo.setRoomType(request.getParameter("roomType"));
+		roomInfo.setBeds(Integer.parseInt(request.getParameter("beds")));
+		roomInfo.setBedType(request.getParameter("bedType"));
 		roomInfo.setRoomPrice(Integer.parseInt(request.getParameter("roomPrice")));
 		
+		String description = request.getParameter("description");
 		session.setAttribute("selectedHotel", hotelInfo);
 		session.setAttribute("roomInfo", roomInfo);
 		
@@ -41,7 +43,7 @@ public class SelectHotelController extends HttpServlet {
 		
 		if(showDetail) {
 			// 상세 페이지로
-			response.sendRedirect("hotelInfo.jsp");
+			response.sendRedirect("hotelInfo.jsp?description=" + description);
 		}else {
 			// 결제 페이지로
 		}
