@@ -126,17 +126,17 @@ public class UserDao {
 			conn = JDBCUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				userEmail = rs.getString(1);
-        		userPwd = rs.getString(2);
-        		userNName = rs.getString(3);
-        		userEName = rs.getString(4);
-        		userPassport = rs.getString(5);
-        		userCountry = rs.getString(6);
-        		userBirth = rs.getString(7);
-        		isAdmin = rs.getBoolean(8);
-        		udto = new UserDTO(userEmail,userPwd,userNName,userEName,userPassport,userCountry,userBirth,isAdmin);
-        		userList.add(udto);
+			while(rs.next()) { 
+				UserDTO uto = new UserDTO();
+				uto.setUserEmail(rs.getString(1));
+				uto.setUserPwd(rs.getString(2));
+				uto.setUserNName(rs.getString(3));
+				uto.setUserEName(rs.getString(4));
+				uto.setUserPassport(rs.getString(5));
+				uto.setUserCountry(rs.getString(6));
+				uto.setUserBirth(rs.getString(7));
+				uto.setAdmin(rs.getBoolean(8));
+				userList.add(uto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -146,7 +146,7 @@ public class UserDao {
         // 모든 유저 정보 반환 (ArrayList형태로 반환 받는다.)
         return userList;
     }
-    
+     
     // 유저 이메일을 통해 정보를 받아오는 메소드
     public List<UserDTO> searchUsersByEmail(String searchEmail) {
     	List<UserDTO> userList = new ArrayList<>();
