@@ -37,18 +37,20 @@ String longitude = request.getParameter("longitude");
 String roomId = request.getParameter("roomId");
 String checkInDate = request.getParameter("checkInDate");
 String checkOutDate = request.getParameter("checkOutDate");
-String roomType = request.getParameter("roomType");
+String beds = request.getParameter("beds");
+String bedType = request.getParameter("bedType");
 String roomPrice = request.getParameter("roomPrice");
-
+String description = request.getParameter("description");
 String queryString = "?hotelId=" + hotelId +"&hotelName=" + hotelName + "&latitude=" + latitude +"&longitude=" + longitude +
 					"&roomId=" + roomId + "&checkInDate=" + checkInDate + "&checkOutDate=" + checkOutDate + 
-					"&roomType=" + roomType + "&roomPrice=" + roomPrice;
+					"&beds=" + beds + "&bedType=" + bedType + "&roomPrice=" + roomPrice + 
+					"&description=" + description;
 
 NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
 int krwPrice = Integer.parseInt(roomPrice) * Currency.JPY;
 %>
 
-<div class="hotel-card mb-1">
+<div class="hotel-card mb-3">
 	<div class="hotelImg">
 		<div style="width: 100%;height: 100%;">
 			<img src="https://ak-d.tripcdn.com/images/220j0u000000jbzbr714C_C_300_225_R5.jpg" style="width: 100%; height: 100%; object-fit: cover;object-position: center center;background-color: rgb(240, 242, 245);">
