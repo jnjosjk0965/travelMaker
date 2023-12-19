@@ -1,8 +1,10 @@
+<%@page import="com.java.user.UserDTO"%>
 <%@page import="java.util.Locale"%>
 <%@page import="common.Currency"%>
 <%@page import="java.text.NumberFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
 	.hotel-card{
 		display: flex;
@@ -48,8 +50,11 @@ String queryString = "?hotelId=" + hotelId +"&hotelName=" + hotelName + "&latitu
 
 NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
 int krwPrice = Integer.parseInt(roomPrice) * Currency.JPY;
+UserDTO user = (UserDTO)session.getAttribute("userinfo");
+boolean isUserNull = user == null;
+boolean isLogin = user != null;
 %>
-
+<%= isUserNull + " " + isLogin%>
 <div class="hotel-card mb-3">
 	<div class="hotelImg">
 		<div style="width: 100%;height: 100%;">
@@ -69,7 +74,7 @@ int krwPrice = Integer.parseInt(roomPrice) * Currency.JPY;
 	</div>
 	<div class="c-flex justify-content-md-between">
 		<span><%= numFormatter.format(krwPrice) %> 원</span>
-		<a href="/TravelMaker/SelectHotel.do<%=queryString + "&showDetail=False"%>" class="btn my-button1 ticket-btn" >
+		<a href="/TravelMaker/SelectHotel.do<%=queryString + "&showDetail=False"%>" class="btn my-button1 ticket-btn">
 			예약&nbsp;
 			<span style="line-height: 1rem; display: inline-block; margin-top: 0.1rem; vertical-align: top;">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="BpkIcon_bpk-icon--rtl-support__YWE2M" fill="white" style="width: 1rem; height: 1rem;">

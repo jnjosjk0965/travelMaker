@@ -133,13 +133,13 @@
 	}.plane-icon{
 		position: absolute;
     	top: 50%;
-    	right: -0.25rem;
+    	right: -0.9rem;
     	display: block;
     	width: 1rem;
     	height: 1rem;
     	margin-top: -0.5rem;
     	padding-left: 0.25rem;
-    	background-color: #fff;
+    	background-color: transparent;
 	}
 	.oneway-info{
 		display: flex;
@@ -340,6 +340,7 @@ flight.setFlightId(flightId);
 					</span>
 				</button>
 			</c:if>
+			<c:if test="${ isModal eq 'purchase' }"></c:if>
 		</div>
 	</div>
 </div>

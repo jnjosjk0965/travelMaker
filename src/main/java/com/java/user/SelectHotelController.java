@@ -39,13 +39,29 @@ public class SelectHotelController extends HttpServlet {
 		session.setAttribute("selectedHotel", hotelInfo);
 		session.setAttribute("roomInfo", roomInfo);
 		
+		UserDTO user = (UserDTO)session.getAttribute("userinfo");
+		String parentInfo = (String)session.getAttribute("parentInfo");
+		
 		boolean showDetail = Boolean.parseBoolean(request.getParameter("showDetail"));
 		
-		if(showDetail) {
+		if(user == null) {
+            String errorMessage = "로그인이 필요합니다.";
+            session.setAttribute("permissionError", errorMessage);
+            
+            // 인코딩 설정
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html;charset=UTF-8");
+
+            // 
+            String alertScript = "alert('" + errorMessage + "'); window.location.href='"+ parentInfo +"';";
+            response.getWriter().println("<script>" + alertScript + "</script>");
+		}
+		else if(showDetail) {
 			// 상세 페이지로
 			response.sendRedirect("hotelInfo.jsp?description=" + description);
 		}else {
 			// 결제 페이지로
+			response.sendRedirect("purchase.jsp");
 		}
 	}
 

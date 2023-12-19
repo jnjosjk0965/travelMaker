@@ -7,7 +7,10 @@
 <%@page import="com.servlet.api.beans.HotelDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%HotelDTO thisHotel = (HotelDTO)session.getAttribute("selectedHotel"); 
+<%
+String parentInfo = "hotelInfo.jsp";
+session.setAttribute("parentInfo", parentInfo); 
+HotelDTO thisHotel = (HotelDTO)session.getAttribute("selectedHotel"); 
 RoomDTO thisRoom = (RoomDTO)session.getAttribute("roomInfo");
 long daysDifference = ChronoUnit.DAYS.between(thisRoom.getCheckInDate(), thisRoom.getCheckOutDate());
 int totalPrice = thisRoom.getRoomPrice() * Currency.JPY;
@@ -31,7 +34,6 @@ String googleApiKey = APIKey.getGoogleAPiKey();
 	<script src="https://maps.googleapis.com/maps/api/js?key=<%=googleApiKey %>&callback=initMap" async defer></script>
   	<script>
     	function initMap() {
-      		// 초기 위치 설정 (예시로 서울의 위도와 경도 사용)
      	 	const myLatLng = {lat: <%= thisHotel.getLatitude()%>, lng: <%= thisHotel.getLongitude()%>};
 
      	 	// 지도 생성

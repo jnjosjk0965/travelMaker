@@ -26,11 +26,16 @@ public class loginServlet extends HttpServlet {
 		UserDao uDao = new UserDao();
 		UserDTO udto = new UserDTO(userEmail,userPwd);
 		UserDTO login = uDao.login(udto);
-		
 		HttpSession session = request.getSession();
+		
+		String parentInfo = (String)session.getAttribute("parentInfo");
+
 		if(login != null) {
 			session.setAttribute("userinfo", login);
-			response.sendRedirect("index.jsp");
+			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+			response.setHeader("Pragma", "no-cache");
+			response.setDateHeader("Expires", 0);
+			response.sendRedirect(parentInfo);
 			
 		} else {
 			// Login failed
@@ -42,7 +47,7 @@ public class loginServlet extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
 
             // Show alert and redirect to the index page
-            String alertScript = "alert('" + errorMessage + "'); window.location.href='index.jsp';";
+            String alertScript = "alert('" + errorMessage + "'); window.location.href='"+ parentInfo +"';";
             response.getWriter().println("<script>" + alertScript + "</script>");
 		}
 	}

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% 
+String parentInfo = "index.jsp";
+session.setAttribute("parentInfo", parentInfo); 
+%>
     <!DOCTYPE html>
     <html>
         <head>

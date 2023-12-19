@@ -1,7 +1,16 @@
+<%@page import="com.servlet.api.beans.SearchInfo"%>
+<%@page import="com.servlet.api.beans.RoomDTO"%>
+<%@page import="com.servlet.api.beans.HotelDTO"%>
+<%@page import="com.servlet.api.beans.FlightDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+FlightDTO flight = (FlightDTO)session.getAttribute("selected");
+HotelDTO hotel = (HotelDTO)session.getAttribute("selectedHotel");
+RoomDTO room = (RoomDTO)session.getAttribute("roomInfo");
+SearchInfo searchInfo = (SearchInfo)session.getAttribute("searchInfo");
+%>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bs/bootstrap.css">
@@ -22,10 +31,19 @@
             cursor: pointer;
                 
         }
-
+        .shadow{
+        	box-shadow: 0 1px 3px 0 rgba(37,32,31,.3);
+        }
+		.hotel-card{
+			position: relative;
+			align-items: stretch;
+			box-shadow: 0 1px 3px 0 rgba(37,32,31,.3);
+			cursor: pointer;
+			border-radius: 0.75rem;
+	    	z-index: 0;
+		}
     </style>
 </head>
-
 <body>
     <div id="app-root">
         <!-- 헤더/검색창 시작 -->
@@ -93,59 +111,56 @@
 
                 <!-- Card 컴포넌트 시작 -->
                 <div class="col-md-6 mb-4">
-                    <div class="card" >
-                        <div class="flex flex-col space-y-1.5 p-6">
-                            <h3 class="text-2xl font-semibold leading-none tracking-tight">왕복 항공</h3>
-                            <p class="text-sm text-muted-foreground">성인 1명</p>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-center mb-4">
-                                <div class="w-24 h-24 bg-gray-200"></div>
-                                <div>
-                                    <p class="font-semibold">인천 ICN</p>
-                                    <p>16:40</p>
-                                    <p>2시간 20분</p>
-                                    <!-- PlaneIcon 컴포넌트의 HTML 구조 -->
-                                    <!-- PlaneIcon은 SVG 아이콘을 렌더링하는 컴포넌트 -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-                                        strokeLinejoin="round" class="text-gray-500">
-                                        <path
-                                            d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z">
-                                        </path>
-                                    </svg>
-                                    <p>도쿄(나리타) NRT</p>
-                                    <p>19:00</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">도쿄(나리타) NRT</p>
-                                    <p>11:25</p>
-                                    <p>2시간 40분</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-                                        strokeLinejoin="round" class="text-gray-500">
-                                        <path
-                                            d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z">
-                                        </path>
-                                    </svg>
-                                    <p>인천 ICN</p>
-                                    <p>14:05</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="items-center p-6 flex justify-between">
-                            <div>
-                                <h3 style="font-weight:bold;"> 요금 세부 정보</h3>
-                                <p class="mb-1:bold"> 숙박 요금</p>
-                                <!--  요숙박 요금 -->
-                                <p class="mb-1:bold"> 항공권</p>
-                                <!-- 항공권요금 -->
-                            </div>
-                            <div>
-                                <h3 class="font-semibold mb-1">총 합계</h3>
-                                <p class="text-xl font-bold">665,000원</p>
-                            </div>
-                        </div>
+                    <div class="card shadow p-4">
+                    	<div>
+                    		<div>
+                    			<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 12 12" class="mb-3" style="height:20px;background-color: transparent;display: inline-block;">
+									<path fill="#898294" d="M3.922 12h.499a.52.52 0 0 0 .444-.247L7.949 6.8l3.233-.019A.8.8 0 0 0 12 6a.8.8 0 0 0-.818-.781L7.949 5.2 4.866.246A.525.525 0 0 0 4.421 0h-.499a.523.523 0 0 0-.489.71L5.149 5.2H2.296l-.664-1.33a.523.523 0 0 0-.436-.288L0 3.509 1.097 6 0 8.491l1.196-.073a.523.523 0 0 0 .436-.288l.664-1.33h2.853l-1.716 4.49a.523.523 0 0 0 .489.71" transform="rotate(315 6 6)">
+									</path>
+								</svg>
+                    			<span style="font-size: 20px;font-weight: bold" >항공편 정보</span>
+                    		</div>
+	                        <jsp:include page="module/flightCard.jsp">
+								<jsp:param value="<%= flight.getOutboundAirline()%>" name="out-airline"/>
+								<jsp:param value="<%= flight.getOutboundFlightNo()%>" name="out-number"/>
+								<jsp:param value="<%= flight.getOutboundDuration()%>" name="out-duration"/>
+								<jsp:param value="<%= flight.getOutboundDepartureTime()%>" name="out-dep-time"/>
+								<jsp:param value="<%= flight.getOutboundDepartureAirport()%>" name="out-dep-airport"/>
+								<jsp:param value="<%= flight.getOutboundArrivalTime()%>" name="out-arr-time"/>
+								<jsp:param value="<%= flight.getOutboundArrivalAirport()%>" name="out-arr-airport"/>
+								<jsp:param value="<%= flight.getReturnAirline()%>" name="ret-airline"/>
+								<jsp:param value="<%= flight.getReturnFlightNo()%>" name="ret-number"/>
+								<jsp:param value="<%= flight.getReturnDuration()%>" name="ret-duration"/>
+								<jsp:param value="<%= flight.getReturnDepartureTime()%>" name="ret-dep-time"/>
+								<jsp:param value="<%= flight.getReturnDepartureAirport()%>" name="ret-dep-airport"/>
+								<jsp:param value="<%= flight.getReturnArrivalTime()%>" name="ret-arr-time"/>
+								<jsp:param value="<%= flight.getReturnArrivalAirport()%>" name="ret-arr-airport"/>
+								<jsp:param value="<%= flight.getFlightPrice()%>" name="price"/>
+								<jsp:param value="<%= flight.getFlightPrice() * searchInfo.getNoP() %>" name="total"/>
+								<jsp:param value="purchase" name="isModal"/>
+							</jsp:include>
+                    	</div>
+                    	<div>
+                    		<div>
+	                   			<span style="font-size: 20px;font-weight: bold" >호텔 정보</span>
+	                   		</div>
+	                    	<div class="hotel-card r-flex">
+	                    		<div class="hotel-info c-flex">
+	                    			<div>
+		                    			호텔이름
+		                    		</div>
+		                    		<div>
+		                    			객실 1개 일정 도쿄
+		                    		</div>
+		                    		<div>
+		                    			사진 및 방 설명
+		                    		</div>
+	                    		</div>
+	                    		<div class="hotel-price">
+	                    			대충 가격
+	                    		</div>
+	                    	</div>
+                    	</div>
                     </div>
                 </div> <!-- Card 컴포넌트 끝 -->
             </div>

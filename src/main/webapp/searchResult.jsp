@@ -7,6 +7,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% 
+String parentInfo = "searchResult.jsp";
+session.setAttribute("parentInfo", parentInfo); 
 SearchInfo searchInfo = (SearchInfo)session.getAttribute("searchInfo");
 FlightOffer flightOffers = (FlightOffer)session.getAttribute("flightOffers");
 Hotel hotelOffers = (Hotel)session.getAttribute("hotelOffers");
