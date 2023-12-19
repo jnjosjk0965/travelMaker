@@ -18,7 +18,7 @@ if(thisRoom.getBeds() > 1){
 	bed = thisRoom.getBeds() + " " + thisRoom.getBedType() + " Beds";
 }else
 	bed = thisRoom.getBedType() + " " + "Bed";
-String googleApiKey = APIKey.getGoogleAPiKey();
+ String googleApiKey = APIKey.getGoogleAPiKey();
 %>
 <!DOCTYPE html>
 <html lang="en">

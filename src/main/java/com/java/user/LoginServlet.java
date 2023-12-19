@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/login.do")
-public class loginServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 	  private static final long serialVersionUID = 1L;
 
 
