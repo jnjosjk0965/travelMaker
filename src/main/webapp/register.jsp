@@ -83,7 +83,6 @@
             </div>
             
             <input class="form-input" type="text" id="userPassport" name="userPassport" placeholder="여권번호" required>
-            <input class="form-input" type="text" id="userCountry" name="userCountry" placeholder="국가/지역" required>
             
             <div class="split-input">
 			    <!-- 년(Year) 선택 -->

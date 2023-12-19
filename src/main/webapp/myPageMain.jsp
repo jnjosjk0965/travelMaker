@@ -1,82 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+UserDTO user = (UserDTO)session.getAttribute("userinfo");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bs/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/mycss.css">
     <title>Travel Maker</title>
     <!-- jQuery CDN 링크 추가 -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    
-   <style>
+   	<style>
         #nav-container {
         	backgroundcolor: white;
             width: 400px; /* 큰 네모 크기 설정 */
-            height: 720px;
+            height: 90vh;
             border: 2px solid #ccc; /* 테두리 설정 */
             padding: 10px; /* 안쪽 여백 설정 */
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-            position: absolute;
-            top: 150px;
-            left: 300px;
         }
-        #nav-content-user {
-            width: 400px; /* 큰 네모 크기 설정 */
-            height: 720px;
-            
-            padding: 1px; /* 안쪽 여백 설정 */
-            position: absolute;
-            top: 150px;
-            right: 300px;
-            display: none;
-        }
-        #nav-content-account {
-            width: 400px; /* 큰 네모 크기 설정 */
-            height: 720px;
-            
-            padding: 1px; /* 안쪽 여백 설정 */
-            position: absolute;
-            top: 150px;
-            right: 300px;
-            display: none;
-        }
-        #nav-content-reservation {
-            width: 400px; /* 큰 네모 크기 설정 */
-            height: 720px;
-            
-            padding: 1px; /* 안쪽 여백 설정 */
-            position: absolute;
-            top: 150px;
-            right: 300px;
-            display: none;
-        }
+        #nav-content-reservation,
         #nav-content-review {
-            width: 400px; /* 큰 네모 크기 설정 */
-            height: 720px;
-            
+            height: 90vh;
             padding: 1px; /* 안쪽 여백 설정 */
-            position: absolute;
-            top: 150px;
-            right: 300px;
             display: none;
         }
-     
-
-        ul {
+        .#nav-content-account{
+            height: 90vh;
+            padding: 1px; /* 안쪽 여백 설정 */
+        }
+        .func-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        li {
+        .func-list-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 5px; /* 각 링크 사이의 간격 설정 */
         }
 
-        li a {
+        .func-list-item a {
             display: block; /* 세로로 배치하기 위해 변경 */
             text-align: left; /* 텍스트 우측 정렬 */
             line-height: 30px; /* 세로 중앙 정렬 */
@@ -88,10 +56,10 @@
             font-size: 30px;
         }
 
-        li a:hover {
+        .func-list-item a:hover {
             background-color: #aaa; /* 호버 시 배경색 변경 */
         }
-        li p {
+        .func-list-item span {
         	font-size: 15px;
         	display: flex;
         }
@@ -141,95 +109,67 @@
     </script>
 </head>
 <body>
-  	<div class="SearchContainer p-4">
+  	<div class="SearchContainer p-4 pb-1" style="background-color: #7b9acc;">
 		<%@ include file="module/header.jsp" %>
-		<%@	include file="module/searchHeader.jsp" %>
 	</div>
-	<div id="nav-container">
-		<div class="image-container">
-        	<img src="img/icon/user_icon.png" alt="User Profile">
-        	<div class="text">[사용자]</div>
-        </div>
-        <!-- 항목 목록 -->
-        <ul>
-            <li><a href="#" onclick="toggleContent('nav-content-user')"><img src="img/icon/user_icon.png" alt="User Profile" style="width: 40px; height: 40px;">
-            회원 정보<br><p>문의하고 싶은 내용을 입력해주세요</p></a></li>
-            <li><a href="#" onclick="toggleContent('nav-content-account')"><img src="img/icon/account_icon.png" alt="User Account" style="width: 40px; height: 40px;">
-            계정<br><p>계정 정보를 관리하세요</p></a></li>
-            <li><a href="#" onclick="toggleContent('nav-content-reservation')"><img src="img/icon/reservation_icon.png" alt="User Reservation" style="width: 40px; height: 40px;">
-            내 예약<br><p>예약 정보를 확인하고 관리하세요</p></a></li>
-            <li><a href="#" onclick="toggleContent('nav-content-review')"><img src="img/icon/review_icon.png" alt="User Review" style="width: 40px; height: 40px;">
-            리뷰 관리<br><p>당신이 여행한 곳을 알려주세요</p></a></li>
-        </ul>
-    </div>
-	
-    
-    <div id="nav-content-user">
-        <h1 style="text-align: center;">여행객 상세 정보</h1>
-        <br>
-        <ul>
-        	<h3>이름*</h3>
-        	<li><input type="text" placeholder="내용을 입력해주세요" style="width: 600px; height:40px;"></li>
-        	<h3>성*</h3>
-        	<li><input type="text" placeholder="내용을 입력해주세요" style="width: 600px; height:40px;"></li>
-        	<li><p>※여권과 일치해야합니다.</p></li>
-        	<h3>성별</h3>
-        	<input type="radio" name="gender">남성<input type="radio" name="gender">여성<br>
-        	<h3>국가/지역</h3>
-        	<li>
-        	<form action="#">
-  			<select name="local" id="local" placeholder="국가/지역 선택" style="width: 400px; height: 40px;">
-    		<option value="GMP">대한민국/서울</option>
-    		<option value="GMP">대한민국/강원도</option>
-    		<option value="GMP">대한민국/대전</option>
-    		<option value="GMP">대한민국/부산</option>
-    		<option value="GMP">대한민국/광주</option>
-    		<option value="GMP">대한민국/대구</option>
-    		<option value="GMP">대한민국/충남</option>
-    		<option value="GMP">대한민국/충북</option>
-    		<option value="GMP">대한민국/경남</option>
-    		<option value="GMP">대한민국/경북</option>
-    		<option value="GMP">대한민국/전남</option>
-    		<option value="GMP">대한민국/전북</option>
-    		<option value="GMP">대한민국/경기도</option>
-    		
-  			</select>
-        	</form>
-        	</li>
-        	<h3>생년월일</h3>
-        	<li><input type="text" placeholder="내용을 입력해주세요" style="width: 600px; height:40px;"></li>
-        	<br>
-        	<input type="submit" value="저장하기" style="width:110px; height: 40px; position: absolute; right: 3px">
-        </ul>
-    </div>
-    <div id="nav-content-account">
-    <h1 style="text-align: center;">계정</h1>
-    <h3>이메일</h3>
-    <input type="email" name="email"style="width: 400px; height:40px; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
-    <hr>
-    <li>
-    <h3>비밀번호</h3>
-    <input type="submit" value="비밀번호 변경" style="width:110px; height: 40px; position: absolute; right: 3px">
-    
-   	</li>
-    <input type="password" name="pwd"style="width: 400px; height:40px; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; ">
-    <hr>
-    <h3>기기 접속 기록</h3>
-    <br>
-    <hr>
-    <li>
-    <h3>계정</h3>
-    <input type="submit" value="계정 탈퇴" style="width:110px; height: 40px; position: absolute; right: 3px">
-    </li>
-    </div>
-       <div id="nav-content-reservation">
-    <h1 style="text-align: center;">내 예약</h1>
-    
-    </div>
-       <div id="nav-content-review">
-    <h1 style="text-align: center;">작성한 리뷰</h1>
-    
-    </div>
+	<!-- 바디 -->
+	<div class="r-flex p-3 mx-auto"> 
+		<div id="nav-container">
+			<div class="image-container">
+	        	<img src="img/icon/user_icon.png" alt="User Profile">
+	        	<div class="text"><%=user.getUserNName() %></div>
+	        </div>
+	        <!-- 항목 목록 -->
+	        <div class="func-list">
+	            <div class="func-list-item">
+	            	<a href="#" onclick="toggleContent('nav-content-account')">
+	            		<img src="img/icon/account_icon.png" alt="User Account" style="width: 40px; height: 40px;">
+	            		계정
+	            		<span>계정 정보를 관리하세요</span>
+	            	</a>
+	            </div>
+	            <div class="func-list-item">
+	            	<a href="#" onclick="toggleContent('nav-content-reservation')">
+	            		<img src="img/icon/reservation_icon.png" alt="User Reservation" style="width: 40px; height: 40px;">
+	            		내 예약
+	            		<span>예약 정보를 확인하고 관리하세요</span>
+	            	</a>
+	            </div>
+	            <div class="func-list-item">
+	            	<a href="#" onclick="toggleContent('nav-content-review')">
+	            		<img src="img/icon/review_icon.png" alt="User Review" style="width: 40px; height: 40px;">
+	            		리뷰 관리
+	            		<span>당신이 여행한 곳을 알려주세요</span>
+	            	</a>
+	            </div>
+	        </div>
+    	</div>
+    	<!-- 기능들 -->
+		<div class="m-3">
+    		<div id="nav-content-account" class="ms-5">
+    			<h1 style="text-align: center;">계정</h1>
+    			<div class="c-flex">
+    				<h3>이메일</h3>
+    				<input type="email" name="email" readonly="readonly" value="<%=user.getUserEmail() %>" style="width: 400px; height:40px; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+    				<hr>
+    				<h3>비밀번호</h3>
+    				<input type="password" name="pwd"style="width: 400px; height:40px; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; ">
+    				<input type="submit" value="비밀번호 변경" style="width:110px; height: 40px;">
+		    		<hr>
+    				<h3>계정</h3>
+    				<input type="submit" value="계정 탈퇴" style="width:110px; height: 40px;">
+    			</div>
+    		</div>
+	       	<div id="nav-content-reservation">
+	    		<h1 style="text-align: center;">내 예약</h1>    
+	    	</div>
+	       	<div id="nav-content-review">
+	    		<h1 style="text-align: center;">작성한 리뷰</h1>
+	    	</div>
+		</div>
+	</div>	
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="js/bs/bootstrap.bundle.js"></script>
 </body>
 </html>
     

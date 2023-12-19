@@ -10,10 +10,6 @@
             <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
 <style>
 
-
-
-
-
 .starpoint_wrap{display:inline-block;}
 .star_rating {
   width: 100%; 
@@ -80,12 +76,11 @@
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <div class="container containerSize" style="padding:0;">
-	<jsp:include page="module/header.jsp"/>
-</div>
 </head>
 <body>
-
+<div class="container containerSize" style="padding:0;">
+	<jsp:include page="module/header.jsp"/>
+</div>
 <div id="nav-container">
 <h2>전반적 만족도</h2>
 <form name="allRating" method="post" action="review.do">

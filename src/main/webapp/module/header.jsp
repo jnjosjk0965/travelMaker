@@ -40,29 +40,11 @@
 						<%} %> 
 					</span>
 				</button>
-				<ul id="user-dropdown" class="dropdown-menu" data-bs-theme="light" style="overflow:hidden;transition: height ease-out 0.4s 0s;padding:0;border:0;">
+				<ul id="user-dropdown" class="dropdown-menu border border-1" data-bs-theme="light" style="overflow:hidden;transition: height ease-out 0.4s 0s;padding:0;background-color: #FDFBFA;">
 				    <li class="mt-1">
-						<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
-				        	<svg class="bi" width="16" height="16"><use xlink:href="#files"></use></svg>
-				        	예약 현황
-				      	</a>
-				    </li>
-				    <li class="mt-1">
-				      	<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+				      	<a class="dropdown-item d-flex gap-2 align-items-center" href="myPageMain.jsp">
 				        	<svg class="bi" width="16" height="16"><use xlink:href="#image-fill"></use></svg>
 				        	계정
-				      	</a>
-				    </li>
-				    <li class="mt-1">
-				      	<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
-				        	<svg class="bi" width="16" height="16"><use xlink:href="#film"></use></svg>
-				        	예약 관리
-				      	</a>
-				    </li>
-				    <li class="mt-1">
-				      	<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
-				        	<svg class="bi" width="16" height="16"><use xlink:href="#music-note-beamed"></use></svg>
-				        	리뷰 작성
 				      	</a>
 				    </li>
 				    <%if(udto.isAdmin()){%>

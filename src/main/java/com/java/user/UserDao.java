@@ -23,7 +23,6 @@ public class UserDao {
         String userNName=null;
         String userEName=null;
         String userPassport=null;
-        String userCountry=null;
         String userBirth=null;
         boolean isAdmin = false;
         
@@ -41,10 +40,9 @@ public class UserDao {
         		userNName = rs.getString(3);
         		userEName = rs.getString(4);
         		userPassport = rs.getString(5);
-        		userCountry = rs.getString(6);
-        		userBirth = rs.getString(7);
-        		isAdmin = rs.getBoolean(8);
-        		udto = new UserDTO(userEmail,userPwd,userNName,userEName,userPassport,userCountry,userBirth,isAdmin);
+        		userBirth = rs.getString(6);
+        		isAdmin = rs.getBoolean(7);
+        		udto = new UserDTO(userEmail,userPwd,userNName,userEName,userPassport,userBirth,isAdmin);
         	}
         	
         } catch(SQLException e) {
@@ -86,15 +84,14 @@ public class UserDao {
             if(rs.next()) {
                 cnt = -1;
              } else {
-          		String insertsql = "INSERT INTO user (userEmail, userPwd, userNName, userEName, userPassport, userCountry, userBirth) VALUES (?, ?, ?, ?, ?, ?, ?);";
+          		String insertsql = "INSERT INTO user (userEmail, userPwd, userNName, userEName, userPassport, userBirth) VALUES (?, ?, ?, ?, ?, ?);";
             	pstmt = conn.prepareStatement(insertsql);
             	pstmt.setString(1, dto.getUserEmail());
             	pstmt.setString(2, dto.getUserPwd());
             	pstmt.setString(3, dto.getUserNName());
             	pstmt.setString(4, dto.getUserEName());
             	pstmt.setString(5, dto.getUserPassport());
-            	pstmt.setString(6, dto.getUserCountry());
-            	pstmt.setString(7, dto.getUserBirth());
+            	pstmt.setString(6, dto.getUserBirth());
           		cnt = pstmt.executeUpdate();
           		}
         } catch (Exception e) {
@@ -112,16 +109,6 @@ public class UserDao {
     public ArrayList<UserDTO> getAllUsers() {
         String sql = "SELECT * FROM USER;";
         ArrayList<UserDTO> userList = new ArrayList<>();
-        UserDTO udto = null;
-        
-        String userEmail=null;  
-        String userPwd=null;
-        String userNName=null;
-        String userEName=null;
-        String userPassport=null;
-        String userCountry=null;
-        String userBirth=null;
-        boolean isAdmin = false;
         try {
 			conn = JDBCUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -133,9 +120,8 @@ public class UserDao {
 				uto.setUserNName(rs.getString(3));
 				uto.setUserEName(rs.getString(4));
 				uto.setUserPassport(rs.getString(5));
-				uto.setUserCountry(rs.getString(6));
-				uto.setUserBirth(rs.getString(7));
-				uto.setAdmin(rs.getBoolean(8));
+				uto.setUserBirth(rs.getString(6));
+				uto.setAdmin(rs.getBoolean(7));
 				userList.add(uto);
 			}
 		} catch (Exception e) {
@@ -162,7 +148,7 @@ public class UserDao {
             rs = pstmt.executeQuery(); 
             while (rs.next()) {
             	user = new UserDTO(rs.getString("userEmail"),rs.getString("userPwd"),rs.getString("userNName"),rs.getString("userEName"),
-            					rs.getString("userPassport"),rs.getString("userCountry"),rs.getString("userBirth"),rs.getBoolean("isAdmin"));
+            					rs.getString("userPassport"),rs.getString("userBirth"),rs.getBoolean("isAdmin"));
             	userList.add(user);
             }
             
@@ -197,8 +183,7 @@ public class UserDao {
 
                 while (rs.next()) {
                     UserDTO user = new UserDTO(rs.getString("userEmail"), rs.getString("userPwd"), rs.getString("userNName"),
-                            rs.getString("userEName"), rs.getString("userPassport"), rs.getString("userCountry"),
-                            rs.getString("userBirth"), rs.getBoolean("isAdmin"));
+                            rs.getString("userEName"), rs.getString("userPassport"), rs.getString("userBirth"), rs.getBoolean("isAdmin"));
                     remainlist.add(user);
                 }
 

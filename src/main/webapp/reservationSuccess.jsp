@@ -23,7 +23,7 @@ NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bs/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/mycss.css">
-    <title>결제</title>
+    <title>예약 성공!</title>
     <style>
         .back-btn {
             border: none;
@@ -122,7 +122,7 @@ NumberFormat numFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
 	                        환불 정책 </h3>
 	                    <p style="font-weight: 600;"> 일주일 전까지 무료로 취소하실 수 있습니다. 
 	                        그 후에 취소하시면 예약 대금이 환불되지 않습니다. </p>
-	                    <a href="/TravelMaker/MakeReservation.do" class="btn my-button1">
+	                    <a href="/TravelMaker/MakeReservation.do" class="btn btn-danger">
 	                        <span style="font-size:1rem; line-height:1.5rem; text-overflow: ellipsis; white-space: nowrap;overflow: hidden; ">
 	                            예약 취소
 	                        </span>

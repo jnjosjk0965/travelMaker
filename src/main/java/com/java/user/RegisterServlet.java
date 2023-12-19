@@ -32,14 +32,13 @@ public class RegisterServlet extends HttpServlet {
         String userEName = firstName + lastName;
         
         String userPassport = request.getParameter("userPassport");
-        String userCountry = request.getParameter("userCountry");
         // 년,월,일 버튼 3개로 나눈걸 userBirth에 합쳐 userBith 입력
         String birthYear = request.getParameter("birthYear");
         String birthMonth = request.getParameter("birthMonth");
         String birthDay = request.getParameter("birthDay");
         String userBirth = birthYear + "-" + birthMonth + "-" + birthDay;
 
-        UserDTO rdto = new UserDTO(userEmail,userPwd,userNName,userEName,userPassport,userCountry,userBirth);
+        UserDTO rdto = new UserDTO(userEmail,userPwd,userNName,userEName,userPassport,userBirth);
         UserDao rdao = new UserDao();
         int cnt = rdao.register(rdto);
         if(cnt>0) {
